@@ -395,7 +395,7 @@ text {
   }
 
   .hero-content {
-    gap: 0.5rem;
+    gap: 5rem;
   }
 
   .text-content {
@@ -407,6 +407,7 @@ text {
     gap: 1px;
     position: relative;
     left: -25px;
+    padding: 20px auto;
   }
 
   h2 {
@@ -469,11 +470,16 @@ text {
     font-size: 0.9rem;
   }
 
+  .image-content {
+    border-radius: none;
+  }
+
   .image-content .image-slider {
     height: 500px;
     width: 100vw;
     position: relative;
-    left: -27px;
+    left: -20px;
+    border-radius: none;
   }
 }
 
