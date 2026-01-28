@@ -329,9 +329,15 @@
     gap: 10px;
   }
 
+  .why-choose .absolute-img {
+    bottom: auto;
+    left: auto;
+    top: 65px;
+    right: 25px;
+  }
+
   .why-choose .absolute-img img {
     height: 100px;
-    left: 10px;
   }
 }
 
@@ -3027,6 +3033,7 @@
     background: white;
   }
 }
+
 
 
 
