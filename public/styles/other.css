@@ -1175,12 +1175,12 @@
 
   .testimonial-content .janitor {
     img {
-      height: 100px;
+      height: 50px;
     }
   }
   .testimonial-content .plane {
     img {
-      height: 70px;
+      height: 50px;
     }
   }
 }
@@ -3027,6 +3027,7 @@
     background: white;
   }
 }
+
 
 
 
