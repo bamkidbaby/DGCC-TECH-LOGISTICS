@@ -189,6 +189,7 @@
 /*Why choose us*/
 .why-choose {
   padding: 80px 60px;
+  position: relative;
   background: #ecf0f1;
 }
 
@@ -196,7 +197,7 @@
   position: absolute;
   z-index: 5;
   left: 0;
-  margin-top: 70vh;
+  bottom: 0;
   transition: 0.3s;
   animation: bounce-two 6s ease-in-out infinite;
 }
@@ -3027,4 +3028,5 @@
     background: white;
   }
 }
+
 
