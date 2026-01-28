@@ -1175,16 +1175,15 @@
 
   .testimonial-content .janitor {
     img {
-      height: 150px;
+      height: 100px;
     }
   }
   .testimonial-content .plane {
     img {
-      height: 80px;
+      height: 70px;
     }
   }
 }
-
 /*==== Pricing Section =====*/
 .pricing-section {
   padding: 80px 100px;
@@ -3028,5 +3027,6 @@
     background: white;
   }
 }
+
 
 
