@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(rgba(26, 35, 55, 0.7), rgba(26, 35, 55, 0.7)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&h=400&fit=crop') center/cover;
+            padding: 100px 0 60px;
+            color: white;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            color: #FF5722;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-label {
+            color: #FF5722;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            color: #1a1a2e;
+            margin-bottom: 30px;
+        }
+
+        .billing-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .toggle-label {
+            font-size: 16px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: #FF5722;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(30px);
+        }
+
+        .save-badge {
+            background: #FF5722;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .plan-name {
+            font-size: 24px;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .plan-description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .plan-price {
+            font-size: 48px;
+            color: #FF5722;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .plan-period {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 12px 0;
+            color: #666;
+            font-size: 14px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        .get-started-btn {
+            width: 100%;
+            background: #1a2337;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .get-started-btn:hover {
+            background: #FF5722;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <h1>Pricing</h1>
+        <div class="breadcrumb">
+            <a href="#">Home</a> > <span>Pricing</span>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">💰 PRICING PLAN</div>
+                <h2 class="section-title">Choose The Right Plan For Growth</h2>
+            </div>
+
+            <div class="billing-toggle">
+                <span class="toggle-label">Monthly</span>
+                <div class="toggle-switch">
+                    <div class="toggle-slider"></div>
+                </div>
+                <span class="toggle-label">Yearly</span>
+                <span class="save-badge">Save 25%</span>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Basic Plan -->
+                <div class="pricing-card">
+                    <h3 class="plan-name">Basic Plan</h3>
+                    <p class="plan-description">Perfect for startups needing features to get started</p>
+                    <div class="plan-price">$150</div>
+                    <div class="plan-period">per year</div>
+                    <ul class="plan-features">
+                        <li>Branding and design identity</li>
+                        <li>Data size Marketing Solutions</li>
+                        <li>Limited Network analysis</li>
+                        <li>24/7 system Monitoring</li>
+                        <li>Securitied IP Address</li>
+                    </ul>
+                    <button class="get-started-btn">Get Started →</button>
+                </div>
+
+                <!-- Standard Plan -->
+                <div class="pricing-card">
+                    <h3 class="plan-name">Standard Plan</h3>
+                    <p class="plan-description">the best for standard needing features to get</p>
+                    <div class="plan-price">$250</div>
+                    <div class="plan-period">per year</div>
+                    <ul class="plan-features">
+                        <li>Branding and design identity</li>
+                        <li>Data size Marketing Solutions</li>
+                        <li>Limited Network analysis</li>
+                        <li>24/7 system Monitoring</li>
+                        <li>Securitied IP Address</li>
+                    </ul>
+                    <button class="get-started-btn">Get Started →</button>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="pricing-card">
+                    <h3 class="plan-name">Premium Plan</h3>
+                    <p class="plan-description">Perfect for startups needing features to get</p>
+                    <div class="plan-price">$450</div>
+                    <div class="plan-period">per year</div>
+                    <ul class="plan-features">
+                        <li>Branding and design identity</li>
+                        <li>Data size Marketing Solutions</li>
+                        <li>Limited Network analysis</li>
+                        <li>24/7 system Monitoring</li>
+                        <li>Securitied IP Address</li>
+                    </ul>
+                    <button class="get-started-btn">Get Started →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const toggleSwitch = document.querySelector('.toggle-switch');
+
+        toggleSwitch.addEventListener('click', function () {
+            this.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>

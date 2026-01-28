@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Product</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(rgba(26, 35, 55, 0.7), rgba(26, 35, 55, 0.7)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&h=400&fit=crop') center/cover;
+            padding: 100px 0 60px;
+            color: white;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            color: #FF5722;
+        }
+
+        /* Product Section */
+        .product-section {
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 50px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Product Gallery */
+        .product-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .main-image-container {
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+
+        .main-product-image {
+            width: 100%;
+            display: block;
+        }
+
+        .thumbnail-list {
+            display: flex;
+            gap: 10px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+            border-color: #FF5722;
+        }
+
+        /* Product Info */
+        .product-info h1 {
+            font-size: 32px;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 36px;
+            color: #FF5722;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .stars {
+            color: #FFA726;
+        }
+
+        .reviews-count {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .product-description {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .product-meta {
+            margin-bottom: 25px;
+        }
+
+        .meta-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .meta-label {
+            color: #999;
+            min-width: 80px;
+        }
+
+        .meta-value {
+            color: #1a1a2e;
+            font-weight: 500;
+        }
+
+        .product-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Delivery Info */
+        .delivery-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .delivery-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .delivery-icon {
+            color: #FF5722;
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            margin-bottom: 25px;
+        }
+
+        .payment-title {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .payment-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .payment-icon {
+            width: 50px;
+            height: 30px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        /* Quantity and Add to Cart */
+        .purchase-section {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .qty-btn {
+            width: 40px;
+            height: 45px;
+            border: none;
+            background: #f5f5f5;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s;
+        }
+
+        .qty-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .qty-input {
+            width: 60px;
+            height: 45px;
+            border: none;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .add-to-cart-btn {
+            background: #FF5722;
+            color: white;
+            padding: 14px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #e64a19;
+            transform: translateY(-2px);
+        }
+
+        /* Product Tabs */
+        .product-tabs {
+            margin-top: 50px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid #e0e0e0;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            padding: 15px 30px;
+            border: none;
+            background: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            color: #FF5722;
+            border-bottom-color: #FF5722;
+        }
+
+        .tab-content {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 968px) {
+            .product-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .purchase-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <h1>Single Product</h1>
+        <div class="breadcrumb">
+            <a href="#">Home</a> > <span>Single Product</span>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section class="product-section">
+        <div class="container">
+            <div class="product-layout">
+                <!-- Product Gallery -->
+                <div class="product-gallery">
+                    <div class="main-image-container">
+                        <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&h=600&fit=crop"
+                            alt="Product" class="main-product-image">
+                    </div>
+                    <div class="thumbnail-list">
+                        <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=100&h=100&fit=crop"
+                            alt="Thumbnail" class="thumbnail active">
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=100&h=100&fit=crop"
+                            alt="Thumbnail" class="thumbnail">
+                        <img src="https://images.unsplash.com/photo-1503602642458-232111445657?w=100&h=100&fit=crop"
+                            alt="Thumbnail" class="thumbnail">
+                        <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=100&h=100&fit=crop"
+                            alt="Thumbnail" class="thumbnail">
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="product-info">
+                    <h1>Le Skinny De Jeanne Crop</h1>
+                    <div class="product-price">$329.99</div>
+                    <div class="product-rating">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <span class="reviews-count">(542 Reviews)</span>
+                    </div>
+
+                    <p class="product-description">
+                        Frame denim tender straighter jeans move comfortably in midweight denim stretch that makes a
+                        massive global audience. Major tones present are those of traditional sports, attending
+                        thousands of audiences in games and millions.</p>
+
+                    <div class="product-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">SKU:</span>
+                            <span class="meta-value">GLSKT47838</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Category:</span>
+                            <span class="meta-value">Sports Fashion</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Tags:</span>
+                            <div class="product-tags">
+                                <span class="tag">Game</span>
+                                <span class="tag">Sports</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="delivery-info">
+                        <div class="delivery-item">
+                            <span class="delivery-icon">🚚</span>
+                            <span><strong>Estimated Delivery:</strong> Jun 25 Nov, 2025</span>
+                        </div>
+                        <div class="delivery-item">
+                            <span class="delivery-icon">📦</span>
+                            <span><strong>Delivery In:</strong> 3-7 Working Day(s)</span>
+                        </div>
+                    </div>
+
+                    <div class="payment-methods">
+                        <div class="payment-title">Checkout with:</div>
+                        <div class="payment-icons">
+                            <div class="payment-icon">💳</div>
+                            <div class="payment-icon">STRIPE</div>
+                            <div class="payment-icon">MASTERCARD</div>
+                            <div class="payment-icon">GPAY</div>
+                            <div class="payment-icon">SKRILL</div>
+                        </div>
+                    </div>
+
+                    <div class="purchase-section">
+                        <div class="quantity-selector">
+                            <button class="qty-btn">-</button>
+                            <input type="number" class="qty-input" value="1" min="1">
+                            <button class="qty-btn">+</button>
+                        </div>
+                        <button class="add-to-cart-btn">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Tabs -->
+            <div class="product-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active">Dessertption</button>
+                    <button class="tab-btn">Additional Info</button>
+                    <button class="tab-btn">Reviews</button>
+                </div>
+                <div class="tab-content">
+                    <p>Lorem Ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Duis a duo labore aliqua. Duis autem vel eum iriure dolor in
+                        hendrerit in vulputate velit esse molestie consequat. Duis autem vel eum iriure dolor in commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                    <br>
+                    <h3 style="margin-bottom: 15px; color: #1a1a2e;">Main features</h3>
+                    <ul style="padding-left: 20px; color: #666; line-height: 2;">
+                        <li>Fashion has ipsum autem vel eum iriure dolor in hendrerit</li>
+                        <li>LA nisi ut aliquip ex ea commodo exercitation</li>
+                        <li>Vivamus ante dolor eri at elit ens ac lorem</li>
+                        <li>Dicing ultricies nulla eros, eu pretium enim consequat lectus</li>
+                        <li>Quis ac eum aute tempor dolor voluptate esse eos eu tellus</li>
+                        <li>Quisque et sem laoreet irure dolor in sit laoreet velit esse indicatae</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Quantity buttons
+        const qtyBtns = document.querySelectorAll('.qty-btn');
+        const qtyInput = document.querySelector('.qty-input');
+
+        qtyBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                let value = parseInt(qtyInput.value);
+                if (btn.textContent === '+') {
+                    qtyInput.value = value + 1;
+                } else if (value > 1) {
+                    qtyInput.value = value - 1;
+                }
+            });
+        });
+
+        // Thumbnail switching
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const mainImage = document.querySelector('.main-product-image');
+
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                thumbnails.forEach(t => t.classList.remove('active'));
+                thumb.classList.add('active');
+                mainImage.src = thumb.src.replace('w=100&h=100', 'w=600&h=600');
+            });
+        });
+
+        // Tab switching
+        const tabBtns = document.querySelectorAll('.tab-btn');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
