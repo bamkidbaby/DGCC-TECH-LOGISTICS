@@ -79,6 +79,12 @@ body {
   transition: height 0.3s ease;
 }
 
+@media (prefers-color-scheme: dark) {
+  .navbar-logo-img img {
+    filter: brightness(2);
+  }
+}
+
 /* SHRINK LOGO ON SCROLL */
 .navbar.scrolled .navbar-logo-img {
   height: 40px;
@@ -242,6 +248,13 @@ body {
   margin-left: 5px;
 }
 
+/*mobile--menu toggle*/
+.mobile-menu-toggle {
+  font-weight: 600;
+  font-size: 1.15rem;
+  display: none;
+}
+
 /* services-menu */
 .services-bg {
   display: none;
@@ -363,7 +376,6 @@ body {
 /* RESPONSIVE */
 @media (max-width: 992px) {
   .navbar {
-    flex-wrap: wrap;
     padding: 12px 20px;
   }
 
@@ -409,5 +421,13 @@ body {
     width: 100%;
     justify-content: flex-end;
     margin-top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
 }
