@@ -32,135 +32,128 @@
 // });
 
 //SCRIPT FOR SCROLL EFFECT
+/* ================= SCROLL EFFECT ================= */
 const navbar = document.querySelector(".navbar");
-const heroHeight = document.querySelector("#hero").offsetHeight;
+const hero = document.querySelector("#hero");
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > heroHeight - 50) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
-  }
-});
+if (navbar && hero) {
+  const heroHeight = hero.offsetHeight;
 
-//navbar services-menu
+  window.addEventListener("scroll", () => {
+    navbar.classList.toggle("scrolled", window.scrollY > heroHeight - 50);
+  });
+}
+
+/* ================= SERVICES MENU ================= */
 const servicesBtn = document.querySelector(".navbar-menu-btn");
 const bg = document.querySelector(".services-bg");
 const menu = document.querySelector(".services-menu");
 const closeBtn = document.querySelector(".services-menu .close-btn");
 
-servicesBtn.addEventListener("click", () => {
-  bg.style.display = "block";
-  menu.classList.add("active");
-});
+if (servicesBtn && bg && menu && closeBtn) {
+  servicesBtn.onclick = () => {
+    bg.style.display = "block";
+    menu.classList.add("active");
+  };
 
-closeBtn.addEventListener("click", () => {
-  bg.style.display = "none";
-  menu.classList.remove("active");
-});
+  closeBtn.onclick = () => {
+    bg.style.display = "none";
+    menu.classList.remove("active");
+  };
+}
 
-//Hero Image Slider Functionality
-let currentSlide = 0;
+/* ================= HERO SLIDER ================= */
 const slides = document.querySelectorAll(".slide");
-const totalSlides = slides.length;
+let currentSlide = 0;
 
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.remove("active");
-    if (i === index) {
-      slide.classList.add("active");
-    }
+if (slides.length) {
+  function showSlide(i) {
+    slides.forEach((s, index) => s.classList.toggle("active", index === i));
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  let auto = setInterval(nextSlide, 5000);
+
+  document.getElementById("nextBtn")?.addEventListener("click", () => {
+    clearInterval(auto);
+    nextSlide();
+    auto = setInterval(nextSlide, 5000);
+  });
+
+  document.getElementById("prevBtn")?.addEventListener("click", () => {
+    clearInterval(auto);
+    prevSlide();
+    auto = setInterval(nextSlide, 5000);
   });
 }
 
-function nextSlide() {
-  currentSlide = (currentSlide + 1) % totalSlides;
-  showSlide(currentSlide);
-}
-
-function prevSlide() {
-  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-  showSlide(currentSlide);
-}
-
-// Auto slide every 5 seconds
-let autoSlide = setInterval(nextSlide, 5000);
-
-// Arrow button controls
-document.getElementById("nextBtn").addEventListener("click", () => {
-  clearInterval(autoSlide);
-  nextSlide();
-  autoSlide = setInterval(nextSlide, 5000);
-});
-
-document.getElementById("prevBtn").addEventListener("click", () => {
-  clearInterval(autoSlide);
-  prevSlide();
-  autoSlide = setInterval(nextSlide, 5000);
-});
-
-//Service-overview card-slider
-const cards = document.querySelector(".service-overview .cards");
-const prevBtn = document.querySelector(".service-overview .prev");
-const nextBtn = document.querySelector(".service-overview .next");
+/* ================= SERVICE CARD SLIDER ================= */
+const cardsWrap = document.querySelector(".service-overview .cards");
+const prev = document.querySelector(".service-overview .prev");
+const next = document.querySelector(".service-overview .next");
 const dots = document.querySelectorAll(".service-overview .dot");
 
-const totalCards = cards.children.length;
-let currentIndex = 0;
+if (cardsWrap && prev && next) {
+  let index = 0;
 
-// Determine how many cards are visible based on screen width
-function getVisibleCards() {
-  if (window.innerWidth <= 768) return 1;
-  if (window.innerWidth <= 1024) return 2;
-  return 3;
-}
+  function visible() {
+    if (window.innerWidth <= 768) return 1;
+    if (window.innerWidth <= 1024) return 2;
+    return 3;
+  }
 
-// Update the slider position
-function updateSlider() {
-  const cardWidth = cards.children[0].offsetWidth;
-  const gap = 25; // same as CSS gap
-  cards.style.transform = `translateX(-${currentIndex * (cardWidth + gap)}px)`;
+  function updateCards() {
+    const card = cardsWrap.children[0];
+    if (!card) return;
 
-  // Update dots
-  const totalDots = dots.length;
-  const maxIndex = totalCards - getVisibleCards();
-  const dotIndex = Math.round((currentIndex / maxIndex) * (totalDots - 1));
-  dots.forEach((dot) => dot.classList.remove("active"));
-  dots[dotIndex].classList.add("active");
-}
+    const gap = 25;
+    const max = cardsWrap.children.length - visible();
 
-// Next slide
-nextBtn.addEventListener("click", () => {
-  const maxIndex = totalCards - getVisibleCards();
-  if (currentIndex < maxIndex) currentIndex++;
-  else currentIndex = 0; // loop to start
-  updateSlider();
-});
+    index = Math.max(0, Math.min(index, max));
 
-// Previous slide
-prevBtn.addEventListener("click", () => {
-  const maxIndex = totalCards - getVisibleCards();
-  if (currentIndex > 0) currentIndex--;
-  else currentIndex = maxIndex; // loop to last
-  updateSlider();
-});
+    const offset = index * (card.offsetWidth + gap);
+    cardsWrap.style.transform = `translateX(-${offset}px)`;
 
-// Click dots to navigate
-dots.forEach((dot, i) => {
-  dot.addEventListener("click", () => {
-    const maxIndex = totalCards - getVisibleCards();
-    currentIndex = Math.round((i / (dots.length - 1)) * maxIndex);
-    updateSlider();
+    if (dots.length) {
+      dots.forEach((d) => d.classList.remove("active"));
+      const dotIndex = Math.round((index / max) * (dots.length - 1)) || 0;
+      dots[dotIndex]?.classList.add("active");
+    }
+  }
+
+  next.onclick = () => {
+    index++;
+    updateCards();
+  };
+
+  prev.onclick = () => {
+    index--;
+    updateCards();
+  };
+
+  dots.forEach((dot, i) => {
+    dot.onclick = () => {
+      index = Math.round(
+        (i / (dots.length - 1)) * (cardsWrap.children.length - visible()),
+      );
+      updateCards();
+    };
   });
-});
 
-// Auto slide every 4 seconds
-setInterval(() => {
-  nextBtn.click();
-}, 4000);
+  setInterval(() => {
+    index++;
+    updateCards();
+  }, 4000);
 
-// Update on window resize
-window.addEventListener("resize", updateSlider);
-
-// Initialize slider
-updateSlider();
+  window.addEventListener("resize", updateCards);
+  updateCards();
+}

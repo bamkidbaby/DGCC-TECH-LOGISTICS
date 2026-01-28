@@ -317,9 +317,8 @@ text {
 }
 
 #hero .arrow-btn:hover {
-  background: #ff6b35;
+  background: #d3a500;
   transform: scale(1.15);
-  box-shadow: 0 10px 30px rgba(255, 107, 53, 0.5);
 }
 
 /* Responsive */
@@ -329,11 +328,16 @@ text {
     text-align: center;
   }
 
+  .text-content {
+    order: 1;
+  }
+
   h2 {
     font-size: 3rem;
   }
 
   .center-badge {
+    display: none;
     width: 180px;
     height: 180px;
   }
@@ -383,16 +387,26 @@ text {
     bottom: 5%;
     right: 5%;
   }
-}
 
-/* Mobile - 768px and below */
-@media (max-width: 768px) {
+  /*hero sizing*/
   #hero {
-    padding: 0 20px;
+    padding: 0 0 60px;
+    height: auto;
   }
 
   .hero-content {
-    gap: 2rem;
+    gap: 0.5rem;
+  }
+
+  .text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+    gap: 1px;
+    position: relative;
+    left: -25px;
   }
 
   h2 {
@@ -410,10 +424,6 @@ text {
     margin-bottom: 2rem;
   }
 
-  .image-content {
-    height: 400px;
-  }
-
   /* Hide center badge on mobile */
   .center-badge {
     display: none;
@@ -425,6 +435,7 @@ text {
     right: 50%;
     transform: translateX(50%);
     padding: 1rem 1.5rem;
+    display: none;
   }
 
   .avatar {
@@ -449,12 +460,20 @@ text {
   }
 
   #hero .arrows {
-    bottom: 3%;
+    bottom: 45%;
+    display: none;
   }
 
   .cta-btn {
     padding: 12px 24px;
     font-size: 0.9rem;
+  }
+
+  .image-content .image-slider {
+    height: 500px;
+    width: 100vw;
+    position: relative;
+    left: -27px;
   }
 }
 

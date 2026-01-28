@@ -318,15 +318,20 @@
   }
 
   .why-content {
-    text-align: center;
+    text-align: left;
   }
 
   .contact-info {
-    text-align: center;
+    text-align: left;
   }
 
   .why-grid {
-    gap: 30px;
+    gap: 10px;
+  }
+
+  .why-choose .absolute-img img {
+    height: 100px;
+    left: 10px;
   }
 }
 
@@ -655,6 +660,7 @@
 /* Tracking content */
 .tracking-section {
   height: 86vh;
+  padding: 80px 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1125,9 +1131,14 @@
     flex-direction: column;
   }
 
+  .testimonial-head {
+    text-align: left;
+  }
+
   .testimonial-image {
     flex: 0 0 100%;
     margin-bottom: 30px;
+    display: none;
   }
 
   .testimonial-content hr {
@@ -1144,6 +1155,14 @@
     padding: 20px;
   }
 
+  .testimonial-footer .line-divide {
+    display: none;
+  }
+
+  .testimonial-text {
+    text-align: left;
+  }
+
   .testimonial-avatars img {
     width: 30px;
     height: 30px;
@@ -1152,6 +1171,17 @@
   .testimonial-controls .arrow-btn {
     padding: 8px 12px;
     font-size: 14px;
+  }
+
+  .testimonial-content .janitor {
+    img {
+      height: 150px;
+    }
+  }
+  .testimonial-content .plane {
+    img {
+      height: 80px;
+    }
   }
 }
 
@@ -1340,6 +1370,13 @@
   }
   to {
     transform: translateY(-52%);
+  }
+}
+
+@media (max-width: 1024px) {
+  .drone {
+    height: 150px;
+    bottom: 0;
   }
 }
 

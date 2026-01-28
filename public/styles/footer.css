@@ -128,6 +128,8 @@
   justify-content: center;
   transition: background 0.3s;
   cursor: pointer;
+  text-decoration: none;
+  color: #fff;
 }
 
 .social-icon:hover {
@@ -234,8 +236,6 @@
 }
 
 .progress-ring__circle {
-  stroke: var(--accent-color);
-  stroke-width: 3;
   fill: transparent;
   transition: stroke-dashoffset 0.1s linear;
 }
@@ -451,17 +451,6 @@
 
   .footer-bottom a {
     margin: 0 8px;
-  }
-
-  .scroll-to-top {
-    width: 45px;
-    height: 45px;
-    bottom: 25px;
-    right: 25px;
-  }
-
-  .scroll-arrow {
-    font-size: 18px;
   }
 }
 
@@ -793,13 +782,6 @@
     font-size: 12px;
   }
 
-  .scroll-to-top {
-    width: 38px;
-    height: 38px;
-    bottom: 18px;
-    right: 18px;
-  }
-
   .scroll-arrow {
     font-size: 15px;
   }
@@ -1037,19 +1019,8 @@
     font-size: 10px;
   }
 
-  .scroll-to-top {
-    width: 34px;
-    height: 34px;
-    bottom: 14px;
-    right: 14px;
-  }
-
   .scroll-arrow {
     font-size: 13px;
-  }
-
-  .progress-ring__circle {
-    stroke-width: 2;
   }
 }
 
@@ -1176,10 +1147,6 @@
     transition: none;
   }
 
-  .scroll-to-top:hover {
-    transform: none;
-  }
-
   .newsletter-form button:hover i {
     transform: none;
   }
@@ -1286,10 +1253,5 @@
     width: 28px;
     height: 28px;
     font-size: 10px;
-  }
-
-  .scroll-to-top {
-    width: 32px;
-    height: 32px;
   }
 }
