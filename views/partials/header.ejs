@@ -25,7 +25,7 @@
         </div>
 
         <!-- NAV LINKS -->
-        <ul class="navbar-links">
+        <ul class="navbar-links" id="navLinks">
             <!-- Home -->
             <li class="navbar-item">
                 <a href="#" class="navbar-link">Home</a>
@@ -159,3 +159,233 @@
 
         <a href="/contact" class="cta-btn">Get a Quote <i class="fas fa-arrow-right"></i></a>
     </div>
+
+
+    <!-- Mobile Menu Background Overlay -->
+    <div class="mobile-bg"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="brand">
+            <img src="/images/logo.png" alt="Logo">
+            <i class="fas fa-times"></i>
+        </div>
+
+        <ul class="mobile-list">
+            <!-- Home -->
+            <li class="navbar-item">
+                <a href="#" class="navbar-link">Home</a>
+            </li>
+
+            <!-- Services -->
+            <li class="navbar-item">
+                <a href="/services" class="navbar-link">Services</a>
+            </li>
+
+            <!-- Pages -->
+            <li class="navbar-item dropdown dropdown-nested">
+                <a href="#" class="navbar-link dropdown-toggle">
+                    Pages
+                    <span class="dropdown-icon">
+                        <i class="fas fa-angle-down"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/about" class="dropdown-link">About</a></li>
+                    <li><a href="/pricing" class="dropdown-link">Pricing</a></li>
+                    <li><a href="/request-quote" class="dropdown-link">Request Quote</a></li>
+
+                    <!-- Team Nested -->
+                    <li class="navbar-item dropdown">
+                        <a href="#" class="dropdown-link dropdown-toggle">
+                            Team
+                            <span class="dropdown-icon">
+                                <i class="fas fa-angle-down"></i>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/team" class="dropdown-link">Our Team</a></li>
+                            <li><a href="/team-details" class="dropdown-link">Team Details</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Shop Nested -->
+                    <li class="navbar-item dropdown">
+                        <a href="#" class="dropdown-link dropdown-toggle">
+                            Shop
+                            <span class="dropdown-icon">
+                                <i class="fas fa-angle-down"></i>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/shop" class="dropdown-link">Shop</a></li>
+                            <li><a href="/product-details" class="dropdown-link">Product Details</a></li>
+                            <li><a href="/cart" class="dropdown-link">Cart</a></li>
+                            <li><a href="/checkout" class="dropdown-link">Checkout</a></li>
+                            <li><a href="/login" class="dropdown-link">Login</a></li>
+                            <li><a href="/register" class="dropdown-link">Register</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="/tracking" class="dropdown-link">Tracking</a></li>
+                    <li><a href="/faq" class="dropdown-link">FAQ</a></li>
+                    <li><a href="/error" class="dropdown-link">404 Page</a></li>
+                </ul>
+            </li>
+
+            <!-- Projects -->
+            <li class="navbar-item dropdown">
+                <a href="#" class="navbar-link dropdown-toggle">
+                    Projects
+                    <span class="dropdown-icon">
+                        <i class="fas fa-angle-down"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/projects" class="dropdown-link">Projects</a></li>
+                    <li><a href="/projects2" class="dropdown-link">Projects 02</a></li>
+                    <li><a href="/project-details" class="dropdown-link">Project Details</a></li>
+                </ul>
+            </li>
+
+            <!-- Blog -->
+            <li class="navbar-item dropdown">
+                <a href="#" class="navbar-link dropdown-toggle">
+                    Blog
+                    <span class="dropdown-icon">
+                        <i class="fas fa-angle-down"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/blog-grid-01" class="dropdown-link">Blog Grid 01</a></li>
+                    <li><a href="/blog-grid-02" class="dropdown-link">Blog Grid 02</a></li>
+                    <li><a href="/blog-classic" class="dropdown-link">Blog Classic</a></li>
+                    <li class="navbar-item dropdown">
+                        <a href="#" class="dropdown-link dropdown-toggle">
+                            Blog Details
+                            <span class="dropdown-icon">
+                                <i class="fas fa-angle-down"></i>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/single-post-01" class="dropdown-link">Single Post</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Contact -->
+            <li class="navbar-item">
+                <a href="/contact" class="navbar-link">Contact Us</a>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        // Mobile Menu JavaScript
+        // Handles menu opening/closing, dropdown toggles, and smooth animations
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Cache DOM elements
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileBg = document.querySelector('.mobile-bg');
+            const menuToggleBtn = document.querySelector('.mobile-menu-toggle'); // Add this button to your main nav
+            const closeBtn = document.querySelector('.mobile-menu .fa-times');
+            const dropdownToggles = document.querySelectorAll('.mobile-menu .dropdown-toggle');
+
+            // Open mobile menu
+            function openMenu() {
+                mobileMenu.style.transform = 'translateX(0)';
+                mobileBg.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            // Close mobile menu
+            function closeMenu() {
+                mobileMenu.style.transform = 'translateX(-100%)';
+                mobileBg.classList.remove('active');
+                document.body.style.overflow = '';
+
+                // Close all dropdowns when menu closes
+                const openDropdowns = document.querySelectorAll('.mobile-menu .dropdown-menu');
+                openDropdowns.forEach(dropdown => {
+                    dropdown.style.display = 'none';
+                    dropdown.style.maxHeight = '0';
+                });
+
+                // Reset all icons
+                const allIcons = document.querySelectorAll('.mobile-menu .dropdown-icon i');
+                allIcons.forEach(icon => {
+                    icon.classList.remove('fa-angle-up');
+                    icon.classList.add('fa-angle-down');
+                });
+            }
+
+            // Toggle dropdown menus
+            function toggleDropdown(e) {
+                e.preventDefault();
+
+                const parentLi = e.currentTarget.parentElement;
+                const dropdownMenu = parentLi.querySelector('.dropdown-menu');
+                const icon = e.currentTarget.querySelector('.dropdown-icon i');
+
+                if (!dropdownMenu) return;
+
+                // Check if dropdown is currently open
+                const isOpen = dropdownMenu.style.display === 'block';
+
+                if (isOpen) {
+                    // Close dropdown
+                    dropdownMenu.style.maxHeight = '0';
+                    setTimeout(() => {
+                        dropdownMenu.style.display = 'none';
+                    }, 300);
+                    icon.classList.remove('fa-angle-up');
+                    icon.classList.add('fa-angle-down');
+                } else {
+                    // Open dropdown
+                    dropdownMenu.style.display = 'block';
+                    const scrollHeight = dropdownMenu.scrollHeight;
+                    dropdownMenu.style.maxHeight = scrollHeight + 'px';
+                    icon.classList.remove('fa-angle-down');
+                    icon.classList.add('fa-angle-up');
+                }
+            }
+
+            // Event listeners
+            if (menuToggleBtn) {
+                menuToggleBtn.addEventListener('click', openMenu);
+            }
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeMenu);
+            }
+
+            if (mobileBg) {
+                mobileBg.addEventListener('click', closeMenu);
+            }
+
+            // Add dropdown toggle listeners
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', toggleDropdown);
+            });
+
+            // Handle escape key to close menu
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && mobileMenu.style.transform === 'translateX(0px)') {
+                    closeMenu();
+                }
+            });
+
+            // Handle window resize - close menu on desktop
+            let resizeTimer;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function () {
+                    if (window.innerWidth > 991) {
+                        closeMenu();
+                    }
+                }, 250);
+            });
+        });
+    </script>
