@@ -373,6 +373,203 @@ body {
   color: #2c3192;
 }
 
+/* Mobile Menu Enhanced Styles */
+/* Add these styles to complement your existing CSS */
+
+.mobile-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.mobile-bg.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu {
+  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  height: 100vh;
+  width: 75%;
+  max-width: 320px;
+  background: var(--bg-color);
+  overflow-y: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* When menu is open */
+.mobile-menu.active {
+  transform: translateX(0);
+}
+
+.mobile-menu::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-menu .brand {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  align-items: center;
+}
+
+.mobile-menu .brand img {
+  height: 40px;
+}
+
+.mobile-menu .brand i {
+  color: #fff;
+  background: var(--accent-color);
+  padding: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.mobile-menu .brand i:hover {
+  background: #e2b40ebe;
+}
+
+.mobile-menu .mobile-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-menu .navbar-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu .navbar-link,
+.mobile-menu .dropdown-link {
+  display: block;
+  padding: 15px 20px;
+  color: #111;
+  text-decoration: none;
+  transition:
+    background 0.3s ease,
+    padding-left 0.3s ease;
+  position: relative;
+}
+
+.mobile-menu .navbar-link:hover,
+.mobile-menu .dropdown-link:hover {
+  background: rgba(255, 255, 255, 0.05);
+  padding-left: 25px;
+}
+
+.mobile-menu .dropdown-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-menu .dropdown-icon {
+  transition: transform 0.3s ease;
+}
+
+.mobile-menu .dropdown-menu {
+  width: 100%;
+  opacity: 1;
+  display: none;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.mobile-menu .dropdown-menu .dropdown-link {
+  padding-left: 35px;
+  font-size: 0.95em;
+}
+
+/* Nested dropdown styles */
+.mobile-menu .dropdown-nested .dropdown-menu {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.mobile-menu .dropdown-nested .dropdown-menu .dropdown-menu {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.mobile-menu .dropdown-nested .dropdown-menu .dropdown-menu .dropdown-link {
+  padding-left: 50px;
+  font-size: 0.9em;
+}
+
+/* Show menu toggle on mobile */
+@media (max-width: 991px) {
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* Smooth scrolling for mobile menu */
+.mobile-menu {
+  scroll-behavior: smooth;
+}
+
+/* Menu items visible by default */
+.mobile-menu .navbar-item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Animation when menu opens */
+.mobile-menu.active .navbar-item {
+  animation: slideIn 0.3s ease forwards;
+}
+
+.mobile-menu.active .navbar-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.mobile-menu.active .navbar-item:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.mobile-menu.active .navbar-item:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.mobile-menu.active .navbar-item:nth-child(4) {
+  animation-delay: 0.25s;
+}
+.mobile-menu.active .navbar-item:nth-child(5) {
+  animation-delay: 0.3s;
+}
+.mobile-menu.active .navbar-item:nth-child(6) {
+  animation-delay: 0.35s;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 /* RESPONSIVE */
 @media (max-width: 992px) {
   .navbar {
@@ -380,14 +577,13 @@ body {
   }
 
   .navbar-links {
-    width: 100%;
-    flex-direction: column;
     display: none;
-    margin-top: 10px;
   }
 
-  .navbar-links.active {
+  .mobile-menu-toggle {
     display: flex;
+    align-items: center;
+    gap: 5px;
   }
 
   .navbar-item {
@@ -399,35 +595,5 @@ body {
 
   .navbar-cta {
     display: none;
-  }
-
-  .dropdown-menu {
-    position: relative;
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    box-shadow: none;
-    background: #f9f9f9;
-    border-radius: 0;
-  }
-
-  /* Nested dropdown inside mobile */
-  .dropdown-right > .dropdown-menu {
-    left: 0;
-    top: 0;
-  }
-
-  .navbar-actions {
-    width: 100%;
-    justify-content: flex-end;
-    margin-top: 10px;
-  }
-}
-
-@media (max-width: 768px) {
-  .mobile-menu-toggle {
-    display: flex;
-    align-items: center;
-    gap: 5px;
   }
 }
