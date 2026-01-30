@@ -1,0 +1,717 @@
+/* About Section */
+.about-section {
+  padding: 80px 60px;
+  background: #ffffff;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* ===== LEFT SIDE - IMAGE COLLAGE ===== */
+.image-collage {
+  position: relative;
+  height: 600px;
+}
+
+/* Experience Badge */
+.experience-badge {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  background: #ff5722;
+  color: white;
+  padding: 12px 30px;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 0 25px 25px 0;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+}
+
+/* Main Image - Woman */
+.main-image {
+  position: absolute;
+  top: 0;
+  left: 60px;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Container Image */
+.container-image {
+  position: absolute;
+  bottom: -15%;
+  left: -15%;
+  z-index: 5;
+}
+
+.container-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Center Badge */
+.center-badge {
+  position: absolute;
+  top: 63%;
+  left: 50%;
+  text-align: center;
+  z-index: 5;
+}
+
+/* Circular Truck Images */
+.truck-circle {
+  position: absolute;
+  overflow: hidden;
+  z-index: 4;
+}
+
+.truck-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.truck-circle-1 {
+  bottom: -7%;
+  right: 5%;
+}
+
+/* ===== RIGHT SIDE - CONTENT ===== */
+.content-area {
+  padding-left: 20px;
+}
+
+/* Section Label */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #ff5722;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.section-label i {
+  font-size: 16px;
+}
+
+/* Main Heading */
+.main-heading {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #1a1a1a;
+  margin-bottom: 25px;
+  max-width: 600px;
+}
+
+/* Description */
+.description {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  max-width: 580px;
+}
+
+/* Tab Navigation */
+.tab-navigation {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 35px;
+}
+
+.tab-btn {
+  padding: 14px 28px;
+  border: none;
+  background: #f5f5f5;
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+  background: #ffe8e0;
+  color: #ff5722;
+}
+
+.tab-btn.active {
+  background: #ff5722;
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+}
+
+/* Info Box */
+.info-box {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 30px;
+  align-items: flex-start;
+}
+
+.info-image {
+  width: 220px;
+  height: 160px;
+  border-radius: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.info-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info-text {
+  flex: 1;
+}
+
+.info-text p {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+
+/* Bottom Text */
+.bottom-text {
+  font-size: 16px;
+  color: #1a1a1a;
+  font-weight: 600;
+  margin-bottom: 35px;
+  max-width: 580px;
+}
+
+/* CTA Section */
+.cta-section {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 35px;
+  background: #ff5722;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+}
+
+.cta-btn:hover {
+  background: #e64a19;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
+}
+
+.cta-btn i {
+  font-size: 14px;
+}
+
+/* Phone Info */
+.phone-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.phone-icon {
+  width: 55px;
+  height: 55px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.phone-icon i {
+  color: white;
+  font-size: 20px;
+}
+
+.phone-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.phone-label {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.phone-number {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ff5722;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .about-grid {
+    gap: 60px;
+  }
+
+  .main-heading {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 991px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 80px;
+  }
+
+  .image-collage {
+    max-width: 500px;
+    margin: 0 auto;
+    display: none;
+  }
+
+  .content-area {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 50px 0;
+  }
+
+  .main-heading {
+    font-size: 36px;
+  }
+
+  .image-collage {
+    height: 500px;
+  }
+
+  .main-image {
+    width: 280px;
+    height: 380px;
+  }
+
+  .container-image {
+    width: 240px;
+    height: 170px;
+  }
+
+  .truck-circle {
+    width: 120px;
+    height: 120px;
+  }
+
+  .info-box {
+    flex-direction: column;
+  }
+
+  .info-image {
+    width: 100%;
+    height: 200px;
+  }
+
+  .cta-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tab-navigation {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-heading {
+    font-size: 28px;
+  }
+
+  .image-collage {
+    height: 450px;
+  }
+
+  .main-image {
+    width: 240px;
+    height: 340px;
+    left: 30px;
+  }
+
+  .experience-badge {
+    font-size: 12px;
+    padding: 10px 20px;
+  }
+
+  .tab-btn {
+    padding: 12px 20px;
+    font-size: 13px;
+  }
+}
+
+/*sucess section*/
+.success-section {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.success-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.section-label {
+  color: #ff5722;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.success-content h2 {
+  font-size: 42px;
+  color: white;
+  margin-bottom: 40px;
+  line-height: 1.3;
+}
+
+.quote-box {
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid #ff5722;
+  padding: 30px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.quote-box p {
+  color: #b8c5d6;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-item p {
+  color: #b8c5d6;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.stat-arrow {
+  color: #ff5722;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.success-image-container {
+  position: relative;
+}
+
+.success-main-image {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.info-card {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  max-width: 250px;
+}
+
+.info-card h4 {
+  font-size: 18px;
+  color: #1a1a2e;
+  margin-bottom: 10px;
+}
+
+.info-card p {
+  color: #666;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.more-link {
+  color: #ff5722;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+@media (max-width: 968px) {
+  .success-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .success-content h2 {
+    font-size: 32px;
+  }
+}
+
+/* team-members section */
+.team-section {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-label {
+  color: #ff5722;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.section-header h2 {
+  font-size: 42px;
+  color: #1a1a2e;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.team-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  position: relative;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+}
+
+.team-image {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+.team-info {
+  padding: 20px;
+  text-align: center;
+}
+
+.team-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 5px;
+}
+
+.team-role {
+  font-size: 14px;
+  color: #666;
+}
+
+@media (max-width: 1024px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Large laptops */
+@media (max-width: 1200px) {
+  .about-section {
+    padding: 70px 40px;
+  }
+
+  .main-heading {
+    font-size: 40px;
+  }
+
+  .success-content h2 {
+    font-size: 36px;
+  }
+
+  .team-grid {
+    gap: 20px;
+  }
+}
+
+/* Tablets & small laptops */
+@media (max-width: 992px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 70px;
+  }
+
+  .image-collage {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .main-heading {
+    font-size: 34px;
+  }
+
+  .success-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .about-section {
+    padding: 50px 20px;
+  }
+
+  .main-heading {
+    font-size: 30px;
+  }
+
+  .image-collage {
+    height: 480px;
+  }
+
+  .info-box {
+    flex-direction: column;
+  }
+
+  .info-image {
+    width: 100%;
+    height: 200px;
+  }
+
+  .cta-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .success-content h2 {
+    font-size: 30px;
+  }
+
+  .info-card {
+    position: static;
+    margin-top: 20px;
+  }
+}
+
+/* Large phones */
+@media (max-width: 576px) {
+  .main-heading {
+    font-size: 26px;
+  }
+
+  .experience-badge {
+    font-size: 12px;
+    padding: 10px 18px;
+  }
+
+  .tab-btn {
+    padding: 12px 18px;
+    font-size: 13px;
+  }
+
+  .image-collage {
+    height: 420px;
+  }
+
+  .team-image {
+    height: 240px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 420px) {
+  .about-section {
+    padding: 40px 15px;
+  }
+
+  .main-heading {
+    font-size: 24px;
+  }
+
+  .description,
+  .bottom-text {
+    font-size: 14px;
+  }
+
+  .success-content h2 {
+    font-size: 26px;
+  }
+
+  .team-info {
+    padding: 15px;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 360px) {
+  .main-heading {
+    font-size: 22px;
+  }
+
+  .tab-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .phone-number {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,55 @@
+:root {
+  --bg-color: #fff;
+  --text-color: #222;
+  --primary-color: #2c3192;
+  --accent-color: #e2b40e;
+}
+
+/* Page Hero */
+.page-hero {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("../images/imgi_2_promo.jpg") center/cover;
+  padding: 100px 150px 0;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 72vh;
+  background-attachment: fixed;
+}
+
+.page-title {
+  display: flex;
+  gap: 10px;
+}
+
+.page-text {
+  h1 {
+    font-size: 4rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--accent-color);
+  }
+}
+
+.page-title .vertical-line {
+  width: 3px;
+  height: 100%;
+  background: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+  .page-hero {
+    padding-inline: 15px;
+    height: 60vh;
+  }
+  .page-text {
+    h1 {
+      font-size: 3rem;
+    }
+  }
+}
