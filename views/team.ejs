@@ -1,0 +1,571 @@
+<%- include('partials/header.ejs') %>
+    <style>
+
+    </style>
+
+    <section class="page-hero">
+        <div class="page-title">
+            <div class="vertical-line"></div>
+            <div class="page-text">
+                <h1>Our Team</h1>
+                <div class="breadcrumb">
+                    <a href="/">Home</a> <i class="fas fa-arrow-right"></i> <span>Our Team</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <style>
+        :root {
+            /* New Brand Colors */
+            --bg-color: #fff;
+            --text-color: #222;
+            --primary-color: #2c3192;
+            --accent-color: #e2b40e;
+
+            /* Mapped to your existing system (so nothing breaks) */
+            --primary-navy: var(--primary-color);
+            --secondary-navy: #1f247a;
+
+            --accent-orange: var(--accent-color);
+            --accent-orange-light: #f0c93a;
+
+            --text-light: #ffffff;
+            --text-gray: #9aa3b2;
+
+            --card-bg: #ffffff;
+            --section-bg: #f6f7fb;
+        }
+
+        .team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* Team Card */
+        .team-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Team Image Container */
+        .team-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            aspect-ratio: 1;
+        }
+
+        .team-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .team-card:hover .team-image {
+            transform: scale(1.08);
+        }
+
+        /* Social Icon Overlay */
+        .team-social-icon {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.4);
+        }
+
+        .team-social-icon:hover {
+            background: white;
+            color: var(--accent-orange);
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        /* Gradient Overlay on Image */
+        .team-image-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .team-card:hover .team-image-container::after {
+            opacity: 1;
+        }
+
+        /* Team Info */
+        .team-info {
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .team-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .team-card:hover .team-name {
+            color: var(--accent-orange);
+        }
+
+        .team-position {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Social Links Popup */
+        .social-popup {
+            position: absolute;
+            bottom: 70px;
+            right: 20px;
+            background: white;
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .team-card:hover .social-popup {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .team-card .social-links {
+            display: flex;
+            gap: 8px;
+            flex-direction: column;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .social-link:hover {
+            background: var(--accent-orange);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 25px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .team-name {
+                font-size: 1.1rem;
+            }
+
+            .team-position {
+                font-size: 0.85rem;
+            }
+
+            .team-info {
+                padding: 20px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            body {
+                padding: 30px 15px;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .team-social-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .team-card {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .team-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .team-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .team-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .team-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .team-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .team-card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .team-card:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        .team-card:nth-child(8) {
+            animation-delay: 0.8s;
+        }
+    </style>
+
+
+    <body>
+        <div class="team-container">
+            <div class="section-header">
+                <h2 class="section-title">Meet Our Expert Team</h2>
+                <p class="section-subtitle">Dedicated professionals committed to delivering excellence in logistics and
+                    transportation services</p>
+            </div>
+
+            <div class="team-grid">
+                <!-- Team Member 1 -->
+                <div class="team-card">
+                    <div class="team-image-container">
+                        <img src="https://html.theme-village.com/transhub/demo/images/tm2.jpg" alt="Jenny Noah"
+                            class="team-image">
+                        <div class="team-social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div class="social-popup">
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Jenny Noah</h3>
+                        <p class="team-position">Head of Operations</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-card">
+                    <div class="team-image-container">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&h=500&fit=crop"
+                            alt="Jenny Mache" class="team-image">
+                        <div class="team-social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div class="social-popup">
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Jenny Mache</h3>
+                        <p class="team-position">Head of Operations</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-card">
+                    <div class="team-image-container">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=500&fit=crop"
+                            alt="Sofia Melisa" class="team-image">
+                        <div class="team-social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div class="social-popup">
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Sofia Melisa</h3>
+                        <p class="team-position">Project Manager</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-card">
+                    <div class="team-image-container">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&h=500&fit=crop"
+                            alt="Shane Darren" class="team-image">
+                        <div class="team-social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div class="social-popup">
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Shane Darren</h3>
+                        <p class="team-position">Head of Operations</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 5 -->
+                <div class="team-card">
+                    <div class="team-image-container">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&h=500&fit=crop"
+                            alt="Jenny Noah" class="team-image">
+                        <div class="team-social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div class="social-popup">
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Jenny Noah</h3>
+                        <p class="team-position">Head of Operations</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 6 -->
+                <div class="team-card">
+                    <div class="team-image-container">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&h=500&fit=crop"
+                            alt="Jenny Mache" class="team-image">
+                        <div class="team-social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div class="social-popup">
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Jenny Mache</h3>
+                        <p class="team-position">Head of Operations</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 7 -->
+                <div class="team-card">
+                    <div class="team-image-container">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&h=500&fit=crop"
+                            alt="Sofia Melisa" class="team-image">
+                        <div class="team-social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div class="social-popup">
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Sofia Melisa</h3>
+                        <p class="team-position">Project Manager</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 8 -->
+                <div class="team-card">
+                    <div class="team-image-container">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&h=500&fit=crop"
+                            alt="Shane Darren" class="team-image">
+                        <div class="team-social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div class="social-popup">
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Shane Darren</h3>
+                        <p class="team-position">Head of Operations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Add smooth scroll behavior
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Add active state to social links
+            document.querySelectorAll('.social-link').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    // Add your social media link functionality here
+                    console.log('Social link clicked:', this.querySelector('i').className);
+                });
+            });
+
+            // Parallax effect on scroll
+            window.addEventListener('scroll', () => {
+                const cards = document.querySelectorAll('.team-card');
+                cards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const scrollPercent = (window.innerHeight - rect.top) / window.innerHeight;
+                    if (scrollPercent > 0 && scrollPercent < 1) {
+                        const image = card.querySelector('.team-image');
+                        if (image) {
+                            image.style.transform = `scale(${1 + scrollPercent * 0.05})`;
+                        }
+                    }
+                });
+            });
+        </script>
+
+
+        <%- include('partials/footer.ejs') %>

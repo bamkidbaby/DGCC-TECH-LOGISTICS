@@ -1,86 +1,41 @@
 <%- include('partials/header.ejs') %>
-
     <style>
         :root {
-            --primary-navy: #0a1929;
-            --secondary-navy: #132f4c;
-            --accent-orange: #ff5722;
-            --accent-orange-light: #ff6e40;
+            /* New Brand Colors */
+            --bg-color: #fff;
+            --text-color: #222;
+            --primary-color: #2c3192;
+            --accent-color: #e2b40e;
+
+            /* Mapped to your existing system (so nothing breaks) */
+            --primary-navy: var(--primary-color);
+            --secondary-navy: #1f247a;
+
+            --accent-orange: var(--accent-color);
+            --accent-orange-light: #f0c93a;
+
             --text-light: #ffffff;
-            --text-gray: #b0bec5;
+            --text-gray: #9aa3b2;
+
             --card-bg: #ffffff;
-            --section-bg: #f5f7fa;
+            --section-bg: #f6f7fb;
         }
 
-        /* === Hero Section === */
-        .hero {
-            margin-top: 80px;
-            height: 60vh;
-            background: linear-gradient(135deg, rgba(10, 25, 41, 0.95), rgba(19, 47, 76, 0.85)),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%230a1929" width="1200" height="600"/><g fill-opacity="0.15"><circle fill="%23ff5722" cx="200" cy="100" r="150"/><circle fill="%23ff5722" cx="800" cy="400" r="200"/><circle fill="%23ff5722" cx="1100" cy="200" r="120"/></g></svg>');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect fill="none" width="100" height="100"/><path d="M0 0L50 50M50 0L0 50M100 0L50 50M50 50L100 100M0 100L50 50" stroke="%23ffffff" stroke-width="0.5" opacity="0.05"/></svg>');
-            opacity: 0.3;
-        }
-
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-family: 'Syne', sans-serif;
-            font-size: 4rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 1rem;
-            line-height: 1.1;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* === Services Section === */
-        .services-section {
+        /* Services Section */
+        .services {
             background: var(--section-bg);
             padding: 5rem 2rem;
         }
 
-        .container {
+        .services .container {
             max-width: 1400px;
             margin: 0 auto;
+            background: #fff;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -100,38 +55,11 @@
         }
 
         .service-image {
-            height: 200px;
-            background: linear-gradient(135deg, var(--secondary-navy), var(--primary-navy));
+            height: 150px;
             position: relative;
             overflow: hidden;
-        }
-
-        .service-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200"><rect fill="none" width="400" height="200"/><circle fill="%23ff5722" fill-opacity="0.2" cx="100" cy="100" r="80"/><circle fill="%23ff5722" fill-opacity="0.15" cx="300" cy="50" r="60"/></svg>');
-            background-size: cover;
-        }
-
-        .service-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            color: white;
+            background-repeat: no-repeat;
+            background-size: 120% 100%;
         }
 
         .service-content {
@@ -153,8 +81,9 @@
         }
 
         .service-link {
-            display: inline-flex;
-            align-items: center;
+            display: flex;
+            padding: 0 0 15px 15px;
+            align-items: flex-end;
             gap: 0.5rem;
             color: var(--accent-orange);
             font-weight: 600;
@@ -166,20 +95,93 @@
             gap: 1rem;
         }
 
-        .service-link::after {
-            content: '→';
-            font-size: 1.2rem;
-        }
 
-        /* === Contact Section === */
+        /* Contact Section */
         .contact-section {
-            background: var(--primary-navy);
-            padding: 5rem 2rem;
+            background: url("../images/imgi_10_whu-us-bg.jpg");
+            padding: 5rem 6rem;
             position: relative;
             overflow: hidden;
+            background-attachment: fixed;
         }
 
-        /* Quote Form inside Contact Section */
+
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .contact-info p {
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .info-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 87, 34, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-orange);
+            font-size: 1.3rem;
+        }
+
+        .info-text h4 {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-text p {
+            color: var(--text-gray);
+            margin: 0;
+        }
+
+        .contact-details {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+
+        .contact-details p {
+            color: var(--primary-navy);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Quote Form */
         .quote-form {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -188,14 +190,33 @@
             padding: 2.5rem;
         }
 
+        .form-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
         .form-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
         }
 
         .form-group.full-width {
             grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
         }
 
         .form-group input,
@@ -213,6 +234,19 @@
         .form-group input::placeholder,
         .form-group textarea::placeholder {
             color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent-orange);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
         }
 
         .submit-button {
@@ -236,14 +270,12 @@
             box-shadow: 0 6px 30px rgba(255, 87, 34, 0.4);
         }
 
-        /* === Responsive Media Queries === */
-        @media (max-width: 1200px) {
-            .form-grid {
-                grid-template-columns: 1fr 1fr;
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .contact-container {
+                grid-template-columns: 1fr;
             }
-        }
 
-        @media (max-width: 992px) {
             .form-grid {
                 grid-template-columns: 1fr;
             }
@@ -254,32 +286,16 @@
         }
 
         @media (max-width: 768px) {
-            .services-grid {
-                grid-template-columns: repeat(3, 1fr);
+            .nav-menu {
+                display: none;
             }
 
-            /* 3 cards per row on small screens */
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
-            }
-
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -303,14 +319,211 @@
     <section class="services-section">
         <div class="container">
             <div class="services-grid">
-                <!-- Repeat your service cards here -->
+                <!-- International Transport -->
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-image"
+                        style="background-image: url('https://html.theme-village.com/transhub/demo/images/serv-s5.png');">
+
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">International Transport</h3>
+                        <p class="service-description">At TransHub, we provide cargo consulting and connect you with
+                            global cargo delivery, specializing in comprehensive logistics solutions.</p>
+                        <a href="/single-service" class="service-link">View Details <i
+                                class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Land Track Transport -->
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-image"
+                        style="background-image: url('https://html.theme-village.com/transhub/demo/images/serv-s2.png');">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Land Track Transport</h3>
+                        <p class="service-description">At TransHub, we provide cargo consulting and connect you with
+                            global cargo delivery, specializing in logistics solutions.</p>
+                        <a href="/single-service" class="service-link">View Details <i
+                                class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Skyline Express -->
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-image"
+                        style="background-image: url('https://html.theme-village.com/transhub/demo/images/serv-s3.png');">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Skyline Express</h3>
+                        <p class="service-description">At TransHub, we provide cargo consulting and connect you with
+                            global cargo delivery, specializing in comprehensive logistics.</p>
+                        <a href="/single-service" class="service-link">View Details <i
+                                class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Rail Personal Delivery -->
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-image"
+                        style="background-image: url('https://html.theme-village.com/transhub/demo/images/serv-s4.png');">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Rail Personal Delivery</h3>
+                        <p class="service-description">At TransHub, we provide cargo consulting and connect you with
+                            global cargo delivery, specializing in comprehensive logistics solutions.</p>
+                        <a href="/single-service" class="service-link">View Details <i
+                                class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Multimodal Transport -->
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-image"
+                        style="background-image: url('https://html.theme-village.com/transhub/demo/images/serv-s6.png');">
+
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Multimodal Transport</h3>
+                        <p class="service-description">At TransHub, we provide cargo consulting and connect you with
+                            global cargo delivery, specializing in comprehensive logistics solutions.</p>
+                        <a href="/single-service" class="service-link">View Details <i
+                                class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- E-commerce Logistics -->
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-image"
+                        style="background-image: url('https://html.theme-village.com/transhub/demo/images/serv-s1.png');">
+
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">E-commerce Logistics</h3>
+                        <p class="service-description">At TransHub, we provide cargo consulting and connect you with
+                            global cargo delivery, specializing in comprehensive logistics solutions.</p>
+                        <a href="/single-service" class="service-link">View Details <i
+                                class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
-        <!-- Contact content and quote form -->
-    </section>
+        <div class="contact-container">
+            <div class="contact-info">
+                <p style="color: var(--accent-orange); font-weight: 600; margin-bottom: 0.5rem;">GET IN TOUCH</p>
+                <h2>We Want to Make a Good Impact on Your Business</h2>
+                <p>At TransHub, we are committed to driving your business forward with expert logistics solutions
+                    that enhance efficiency and growth.</p>
 
-    <%- include('partials/footer.ejs') %>
+                <div class="info-items">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="info-text">
+                            <h4>Mailing</h4>
+                            <p>businessconsulting@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="info-text">
+                            <h4>Location</h4>
+                            <p>Luzern, Switzerland</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="info-text">
+                            <h4>Phone</h4>
+                            <p>+88 (017) 5587 2487</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-details">
+                    <p>
+                        <i class="fa-solid fa-headset"></i>
+                        <strong> Call with us:</strong> +88 (017) 5587 2487
+                    </p>
+                </div>
+            </div>
+
+            <div class="quote-form">
+                <h3 class="form-title">Request Quote Form</h3>
+                <form>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Enter your name">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="Enter your email">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" placeholder="Enter your phone">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Delivery City</label>
+                            <input type="text" placeholder="Enter delivery city">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Freight</label>
+                            <select>
+                                <option>Select freight type</option>
+                                <option>Air Freight</option>
+                                <option>Sea Freight</option>
+                                <option>Land Freight</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Weight</label>
+                            <select>
+                                <option>Select weight range</option>
+                                <option>0-10 kg</option>
+                                <option>10-50 kg</option>
+                                <option>50+ kg</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Message</label>
+                            <textarea placeholder="Enter your message"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-button">
+                        Submit Now <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <%# faq section %>
+        <%- include('partials/faq.ejs') %>
+
+            <script>
+
+                // Form submission
+                document.querySelector('form').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Thank you for your request! We will contact you soon.');
+                });
+            </script>
+            <%- include('partials/footer.ejs') %>

@@ -1,304 +1,432 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Study</title>
+<%- include('partials/header.ejs') %>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-        }
-
-        /* Page Hero */
-        .page-hero {
-            background: linear-gradient(rgba(26, 35, 55, 0.7), rgba(26, 35, 55, 0.7)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&h=400&fit=crop') center/cover;
-            padding: 100px 0 60px;
-            color: white;
-            text-align: center;
-        }
-
-        .page-hero h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .breadcrumb {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            font-size: 14px;
-        }
-
-        .breadcrumb a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .breadcrumb span {
-            color: #FF5722;
-        }
-
-        /* Portfolio Section */
-        .portfolio-section {
+        .projects-container {
             padding: 80px 20px;
-        }
-
-        .container {
             max-width: 1200px;
             margin: 0 auto;
         }
 
+        /* Section Header */
         .section-header {
             text-align: center;
             margin-bottom: 50px;
         }
 
-        .section-label {
-            color: #FF5722;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-        }
-
         .section-title {
-            font-size: 42px;
-            color: #1a1a2e;
-            margin-bottom: 40px;
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.6rem, 4vw, 2.5rem);
+            font-weight: 800;
+            color: var(--primary-navy);
         }
 
         /* Filter Tabs */
         .filter-tabs {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 50px;
+            gap: 12px;
+            margin-bottom: 40px;
             flex-wrap: wrap;
         }
 
         .filter-btn {
-            padding: 12px 30px;
+            padding: 10px 26px;
             background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 30px;
-            cursor: pointer;
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
             font-weight: 600;
-            color: #666;
-            transition: all 0.3s;
+            font-size: 14px;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: .3s;
         }
 
-        .filter-btn.active,
         .filter-btn:hover {
-            background: #FF5722;
-            color: white;
-            border-color: #FF5722;
+            background: #e2b40e;
+            border-color: var(--accent-orange);
+            color: #fff;
         }
 
-        /* Portfolio Grid */
-        .portfolio-grid {
+        .filter-btn.active {
+            background: #e2b40e;
+            border-color: var(--accent-orange);
+            color: #fff;
+        }
+
+        /* Grid */
+        .projects-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 25px;
         }
 
-        .portfolio-item {
-            position: relative;
-            border-radius: 15px;
+        /* Card */
+        .project-card {
+            background: white;
+            border-radius: 18px;
             overflow: hidden;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, .08);
+            transition: .4s;
             cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            display: none;
         }
 
-        .portfolio-item:hover {
-            transform: translateY(-10px);
+        .project-card.show {
+            display: block;
+            animation: fadeIn .5s ease forwards;
         }
 
-        .portfolio-image {
+        .project-card:hover {
+            transform: translateY(-8px);
+        }
+
+        /* Image */
+        .project-image-container {
+            height: 240px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image {
             width: 100%;
-            height: 300px;
+            height: 100%;
             object-fit: cover;
+            transition: .5s;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.08);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, .65), transparent);
+            opacity: 0;
+            transition: .3s;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        /* Info */
+        .project-info {
+            padding: 22px;
+            position: relative;
+        }
+
+        .project-category-badge {
+            position: absolute;
+            top: -14px;
+            left: 18px;
+            background: var(--accent-orange);
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .project-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 12px;
+            color: var(--text-dark);
+        }
+
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading.show {
             display: block;
         }
 
-        .portfolio-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(26, 35, 55, 0.95), transparent);
-            padding: 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s;
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--accent-orange);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
 
-        .portfolio-item:hover .portfolio-overlay {
-            transform: translateY(0);
-        }
-
-        .portfolio-category {
-            background: #FF5722;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 5px;
-            font-size: 12px;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-
-        .portfolio-title {
-            color: white;
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        @media (max-width: 1024px) {
-            .portfolio-grid {
-                grid-template-columns: repeat(2, 1fr);
+        /* Animations */
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
             }
         }
 
-        @media (max-width: 640px) {
-            .portfolio-grid {
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 768px) {
+            .projects-container {
+                padding: 60px 15px;
+            }
+
+            .projects-grid {
                 grid-template-columns: 1fr;
+                padding: 40px;
             }
 
-            .filter-tabs {
-                flex-direction: column;
+            .project-image-container {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filter-btn {
+                padding: 8px 18px;
+                font-size: 13px;
+            }
+
+            .project-image-container {
+                height: 180px;
             }
         }
     </style>
-</head>
 
-<body>
-    <!-- Page Hero -->
     <section class="page-hero">
-        <h1>Case Study</h1>
-        <div class="breadcrumb">
-            <a href="#">Home</a> > <span>Case Study</span>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section class="portfolio-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">📁 CASE STUDY</div>
-                <h2 class="section-title">Explore Our Portfolio</h2>
-            </div>
-
-            <div class="filter-tabs">
-                <button class="filter-btn active">All</button>
-                <button class="filter-btn">Ocean Freight</button>
-                <button class="filter-btn">Air Freight</button>
-                <button class="filter-btn">Warehousing</button>
-                <button class="filter-btn">Road Freight</button>
-            </div>
-
-            <div class="portfolio-grid">
-                <!-- Portfolio Item 1 -->
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&h=350&fit=crop"
-                        alt="TransHub Company" class="portfolio-image">
-                    <div class="portfolio-overlay">
-                        <span class="portfolio-category">Warehousing</span>
-                        <h3 class="portfolio-title">TransHub Company</h3>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 2 -->
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=400&h=350&fit=crop"
-                        alt="TransHub Company" class="portfolio-image">
-                    <div class="portfolio-overlay">
-                        <span class="portfolio-category">Warehousing</span>
-                        <h3 class="portfolio-title">TransHub Company</h3>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 3 -->
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=400&h=350&fit=crop"
-                        alt="Air Freight Solution" class="portfolio-image">
-                    <div class="portfolio-overlay">
-                        <span class="portfolio-category">Warehousing</span>
-                        <h3 class="portfolio-title">Air Freight Solution</h3>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 4 -->
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=400&h=350&fit=crop"
-                        alt="Security For Cargo" class="portfolio-image">
-                    <div class="portfolio-overlay">
-                        <span class="portfolio-category">Warehousing</span>
-                        <h3 class="portfolio-title">Security For Cargo</h3>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 5 -->
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1586528116493-a029325540fa?w=400&h=350&fit=crop"
-                        alt="Warehouse Inventory" class="portfolio-image">
-                    <div class="portfolio-overlay">
-                        <span class="portfolio-category">Warehousing</span>
-                        <h3 class="portfolio-title">Warehouse Inventory</h3>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 6 -->
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=400&h=350&fit=crop"
-                        alt="Ocean Inventory" class="portfolio-image">
-                    <div class="portfolio-overlay">
-                        <span class="portfolio-category">Warehousing</span>
-                        <h3 class="portfolio-title">Ocean Inventory</h3>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 7 -->
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&h=350&fit=crop"
-                        alt="Warehouse Inventory" class="portfolio-image">
-                    <div class="portfolio-overlay">
-                        <span class="portfolio-category">Warehousing</span>
-                        <h3 class="portfolio-title">Warehouse Inventory</h3>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 8 -->
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=400&h=350&fit=crop"
-                        alt="Warehouse Inventory" class="portfolio-image">
-                    <div class="portfolio-overlay">
-                        <span class="portfolio-category">Warehousing</span>
-                        <h3 class="portfolio-title">Warehouse Inventory</h3>
-                    </div>
+        <div class="page-title">
+            <div class="vertical-line"></div>
+            <div class="page-text">
+                <h1>Case Study</h1>
+                <div class="breadcrumb">
+                    <a href="/">Home</a>
+                    <i class="fa-solid fa-angle-right"></i>
+                    <span>Case Study</span>
                 </div>
             </div>
         </div>
     </section>
+
+    <div class="projects-container">
+
+        <div class="section-header">
+            <h2 class="section-title">Our Recent Projects</h2>
+        </div>
+
+        <div class="filter-tabs">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="company">TransHub Company</button>
+            <button class="filter-btn" data-filter="freight">Air Freight</button>
+            <button class="filter-btn" data-filter="security">Security</button>
+            <button class="filter-btn" data-filter="warehouse">Warehouse</button>
+            <button class="filter-btn" data-filter="ocean">Ocean</button>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+        </div>
+
+        <div class="projects-grid">
+
+            <div class="project-card show" data-category="company">
+                <div class="project-image-container">
+                    <img class="project-image">
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <span class="project-category-badge">Company</span>
+                    <h3 class="project-title">TransHub Company</h3>
+                </div>
+            </div>
+
+            <div class="project-card show" data-category="company">
+                <div class="project-image-container">
+                    <img class="project-image">
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <span class="project-category-badge">Company</span>
+                    <h3 class="project-title">TransHub Company</h3>
+                </div>
+            </div>
+
+            <div class="project-card show" data-category="freight">
+                <div class="project-image-container">
+                    <img class="project-image">
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <span class="project-category-badge">Freight</span>
+                    <h3 class="project-title">Air Freight Solution</h3>
+                </div>
+            </div>
+
+            <div class="project-card show" data-category="security">
+                <div class="project-image-container">
+                    <img class="project-image">
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <span class="project-category-badge">Security</span>
+                    <h3 class="project-title">Cargo Protection</h3>
+                </div>
+            </div>
+
+            <div class="project-card show" data-category="warehouse">
+                <div class="project-image-container">
+                    <img class="project-image">
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <span class="project-category-badge">Warehouse</span>
+                    <h3 class="project-title">Inventory Control</h3>
+                </div>
+            </div>
+
+            <div class="project-card show" data-category="ocean">
+                <div class="project-image-container">
+                    <img class="project-image">
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <span class="project-category-badge">Ocean</span>
+                    <h3 class="project-title">Ocean Freight</h3>
+                </div>
+            </div>
+
+            <div class="project-card show" data-category="warehouse">
+                <div class="project-image-container">
+                    <img class="project-image">
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <span class="project-category-badge">Warehouse</span>
+                    <h3 class="project-title">Smart Storage</h3>
+                </div>
+            </div>
+
+            <div class="project-card show" data-category="warehouse">
+                <div class="project-image-container">
+                    <img class="project-image">
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-info">
+                    <span class="project-category-badge">Warehouse</span>
+                    <h3 class="project-title">Modern Logistics</h3>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <script>
-        // Filter functionality
-        const filterBtns = document.querySelectorAll('.filter-btn');
+        document.addEventListener('DOMContentLoaded', () => {
 
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', function () {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
+            // Auto images
+            document.querySelectorAll('.project-image').forEach((img, i) => {
+                img.src = `https://html.theme-village.com/transhub/demo/images/port${i + 1}.jpg`;
+            });
+
+            const buttons = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.project-card');
+            const loader = document.getElementById('loading');
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+
+                    buttons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filter = btn.dataset.filter;
+
+                    loader.classList.add('show');
+                    cards.forEach(c => c.classList.remove('show'));
+
+                    setTimeout(() => {
+                        loader.classList.remove('show');
+
+                        cards.forEach((card, i) => {
+                            if (filter === 'all' || card.dataset.category === filter) {
+                                setTimeout(() => card.classList.add('show'), i * 80);
+                            }
+                        });
+                    }, 300);
+                });
             });
         });
     </script>
-</body>
 
-</html>
+    <!-- <script>
+            // Filter Functionality
+            document.addEventListener('DOMContentLoaded', function () {
+                const filterButtons = document.querySelectorAll('.filter-btn');
+                const projectCards = document.querySelectorAll('.project-card');
+                const loading = document.getElementById('loading');
+
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const filterValue = this.getAttribute('data-filter');
+
+                        // Update active button
+                        filterButtons.forEach(btn => btn.classList.remove('active'));
+                        this.classList.add('active');
+
+                        // Show loading
+                        loading.classList.add('show');
+
+                        // Hide all cards first
+                        projectCards.forEach(card => {
+                            card.classList.remove('show');
+                        });
+
+                        // Filter and show cards after a short delay
+                        setTimeout(() => {
+                            loading.classList.remove('show');
+
+                            projectCards.forEach((card, index) => {
+                                const cardCategory = card.getAttribute('data-category');
+
+                                if (filterValue === 'all' || cardCategory === filterValue) {
+                                    setTimeout(() => {
+                                        card.classList.add('show');
+                                    }, index * 100); // Stagger animation
+                                }
+                            });
+                        }, 300);
+                    });
+                });
+
+                // Card click handler
+                projectCards.forEach(card => {
+                    card.addEventListener('click', function () {
+                        const title = this.querySelector('.project-title').textContent;
+                        console.log('Project clicked:', title);
+                        // Add your navigation logic here
+                    });
+                });
+
+                // Smooth scroll for any anchor links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
+        <%- include('partials/footer.ejs') %> -->
