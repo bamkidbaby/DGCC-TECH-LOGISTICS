@@ -214,7 +214,7 @@
 /* Large phones */
 @media (max-width: 768px) {
   .quote-form-section {
-    padding: 40px 15px;
+    padding: 40px 5px;
   }
 
   .quote-container {
@@ -223,6 +223,7 @@
 
   .form-grid {
     grid-template-columns: 1fr;
+    padding: 0;
   }
 
   .step-icon-box {
