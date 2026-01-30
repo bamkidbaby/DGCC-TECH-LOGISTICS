@@ -1,169 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('partials/header.ejs') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Error Page</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-        }
-
-        /* Page Hero */
-        .page-hero {
-            background: linear-gradient(rgba(26, 35, 55, 0.7), rgba(26, 35, 55, 0.7)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&h=400&fit=crop') center/cover;
-            padding: 100px 0 60px;
-            color: white;
-            text-align: center;
-        }
-
-        .page-hero h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .breadcrumb {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            font-size: 14px;
-        }
-
-        .breadcrumb a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .breadcrumb span {
-            color: #FF5722;
-        }
-
         /* Error Section */
         .error-section {
             padding: 80px 20px;
             text-align: center;
         }
 
-        .container {
+        .error-section .container {
             max-width: 800px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
         }
 
         .error-content {
             background: white;
             padding: 60px 40px;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .error-illustration {
-            font-size: 180px;
-            font-weight: 900;
-            color: #1a1a2e;
-            line-height: 1;
-            margin-bottom: 30px;
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .ufo-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 180px;
-            height: 180px;
-        }
-
-        .ufo {
-            width: 140px;
-            height: 140px;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            border-radius: 50% 50% 0 0;
-            position: relative;
-            margin: 0 auto;
-        }
-
-        .ufo::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 40px;
-            background: #4a90e2;
-            border-radius: 50%;
-        }
-
-        .ufo::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 180px;
-            height: 20px;
-            background: #FFD700;
-            border-radius: 50%;
-        }
-
-        .ufo-lights {
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
-        }
-
-        .light {
-            width: 12px;
-            height: 12px;
-            background: #fff;
-            border-radius: 50%;
-            animation: blink 1s infinite alternate;
-        }
-
-        .light:nth-child(2) {
-            animation-delay: 0.3s;
-        }
-
-        .light:nth-child(3) {
-            animation-delay: 0.6s;
-        }
-
-        @keyframes blink {
-            0% {
-                opacity: 0.3;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        .beam {
-            position: absolute;
-            bottom: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 100px solid transparent;
-            border-right: 100px solid transparent;
-            border-top: 80px solid rgba(138, 43, 226, 0.2);
-        }
 
         .error-title {
             font-size: 32px;
@@ -177,6 +38,7 @@
             font-size: 16px;
             line-height: 1.6;
             margin-bottom: 35px;
+            width: 75%;
         }
 
         .back-home-btn {
@@ -196,9 +58,8 @@
         }
 
         .back-home-btn:hover {
-            background: #FF5722;
+            background: #ca9b19;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 87, 34, 0.4);
         }
 
         @media (max-width: 640px) {
@@ -206,49 +67,35 @@
                 font-size: 120px;
             }
 
-            .ufo-container {
-                width: 120px;
-                height: 120px;
-            }
 
-            .ufo {
-                width: 100px;
-                height: 100px;
-            }
 
             .error-content {
                 padding: 40px 20px;
             }
         }
     </style>
-</head>
 
-<body>
-    <!-- Page Hero -->
-    <section class="page-hero">
-        <h1>Error 404 Page</h1>
-        <div class="breadcrumb">
-            <a href="#">Home</a> > <span>404 Error</span>
-        </div>
-    </section>
 
-    <!-- Error Section -->
-    <section class="error-section">
-        <div class="container">
-            <div class="error-content">
-                <div class="error-illustration">
-                    4
-                    <div class="ufo-container">
-                        <div class="ufo">
-                            <div class="ufo-lights">
-                                <div class="light"></div>
-                                <div class="light"></div>
-                                <div class="light"></div>
-                            </div>
-                        </div>
-                        <div class="beam"></div>
+    <body>
+        <section class="page-hero">
+            <div class="page-title">
+                <div class="vertical-line"></div>
+                <div class="page-text">
+                    <h1>Error 404 Page</h1>
+                    <div class="breadcrumb">
+                        <a href="/">Home</a>
+                        <i class="fas fa-arrow-right"></i>
+                        <span>Error 404</span>
                     </div>
-                    4
+                </div>
+            </div>
+        </section>
+
+        <!-- Error Section -->
+        <section class="error-section">
+            <div class="container">
+                <div class="error-content">
+                    <img src="images/404.svg" alt="">
                 </div>
 
                 <h2 class="error-title">Opp's that page can't be found</h2>
@@ -256,12 +103,12 @@
                     It looks the exciting was found at this location. Maybe try one of the links below or a search?
                 </p>
 
-                <a href="#" class="back-home-btn">
-                    🏠 Back to Home
+                <a href="/" class="back-home-btn">
+                    <i class="fas fa-house"></i> Back to Home
                 </a>
             </div>
-        </div>
-    </section>
-</body>
+            </div>
+        </section>
 
-</html>
+
+        <%- include('partials/footer.ejs') %>

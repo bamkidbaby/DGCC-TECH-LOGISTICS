@@ -1,0 +1,558 @@
+<%- include('partials/header.ejs') %>
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* Root Variables */
+        :root {
+            --bg-color: #fff;
+            --text-color: #222;
+            --primary-color: #2c3192;
+            --accent-color: #e2b40e;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: Arial, sans-serif;
+        }
+
+        /* Product Section */
+        .product-section {
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 50px;
+            background: var(--bg-color);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Product Gallery */
+        .product-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .main-image-container {
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+
+        .main-product-image {
+            width: 100%;
+            display: block;
+        }
+
+        .thumbnail-list {
+            display: flex;
+            gap: 10px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            object-fit: cover;
+        }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+            border-color: var(--accent-color);
+        }
+
+        /* Product Info */
+        .product-info h1 {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 36px;
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .stars i {
+            color: var(--accent-color);
+        }
+
+        .reviews-count {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .product-description {
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .product-meta {
+            margin-bottom: 25px;
+        }
+
+        .meta-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .meta-label {
+            min-width: 80px;
+            font-weight: 500;
+        }
+
+        .meta-value {
+            font-weight: 500;
+        }
+
+        .product-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 13px;
+            color: #444;
+        }
+
+        /* Delivery Info */
+        .delivery-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .delivery-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .delivery-icon {
+            color: var(--accent-color);
+            font-size: 18px;
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            margin-bottom: 25px;
+        }
+
+        .payment-title {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .payment-icons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .payment-icon {
+            width: 60px;
+            height: 40px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            background: var(--bg-color);
+        }
+
+        .payment-icon img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* Quantity and Add to Cart */
+        .purchase-section {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .qty-btn {
+            width: 40px;
+            height: 45px;
+            border: none;
+            background: #f5f5f5;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s;
+        }
+
+        .qty-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .qty-input {
+            width: 60px;
+            height: 45px;
+            border: none;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .add-to-cart-btn {
+            background: var(--accent-color);
+            color: #fff;
+            padding: 14px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #d19c07;
+            transform: translateY(-2px);
+        }
+
+        /* Product Tabs */
+        .product-tabs {
+            margin-top: 50px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid #e0e0e0;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            padding: 15px 30px;
+            border: none;
+            background: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .tab-content {
+            color: #444;
+            line-height: 1.8;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Review Form Styles */
+        .review-form label {
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .review-form input,
+        .review-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #222;
+        }
+
+        .review-form button {
+            background: var(--accent-color);
+            color: #fff;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .review-form button:hover {
+            background: #d19c07;
+        }
+
+        @media (max-width: 968px) {
+            .product-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .purchase-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+
+    <section class="page-hero">
+        <div class="page-title">
+            <div class="vertical-line"></div>
+            <div class="page-text">
+                <h1>Single Product</h1>
+                <div class="breadcrumb">
+                    <a href="/">Home</a>
+                    <i class="fa-solid fa-angle-right"></i>
+                    <span>Single Product</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-section">
+        <div class="container">
+            <div class="product-layout">
+                <!-- Product Gallery -->
+                <div class="product-gallery">
+                    <div class="main-image-container">
+                        <img src="https://html.theme-village.com/transhub/demo/images/shop1.jpg" alt="Product Image"
+                            class="main-product-image">
+                    </div>
+                    <div class="thumbnail-list">
+                        <img src="https://html.theme-village.com/transhub/demo/images/shop1.jpg"
+                            class="thumbnail active">
+                        <img src="https://html.theme-village.com/transhub/demo/images/shop2.jpg" class="thumbnail">
+                        <img src="https://html.theme-village.com/transhub/demo/images/shop3.jpg" class="thumbnail">
+                        <img src="https://html.theme-village.com/transhub/demo/images/shop4.jpg" class="thumbnail">
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="product-info">
+                    <h1>Le Skinny De Jeanne Crop</h1>
+                    <div class="product-price">$329.99</div>
+
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="reviews-count">(542 Reviews)</span>
+                    </div>
+
+                    <p class="product-description">
+                        Frame denim straighter jeans that move comfortably in midweight stretch denim — stylish,
+                        versatile, and built for everyday wear.
+                    </p>
+
+                    <div class="product-meta">
+                        <div class="meta-item">
+                            <span class="meta-label"><i class="fa-solid fa-barcode"></i> SKU:</span>
+                            <span class="meta-value">GLSKT47838</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label"><i class="fa-solid fa-tag"></i> Category:</span>
+                            <span class="meta-value">Sports Fashion</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label"><i class="fa-solid fa-tags"></i> Tags:</span>
+                            <div class="product-tags">
+                                <span class="tag">Game</span>
+                                <span class="tag">Sports</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="delivery-info">
+                        <div class="delivery-item">
+                            <i class="fa-solid fa-truck delivery-icon"></i>
+                            <span><strong>Estimated Delivery:</strong> Jun 25, 2026</span>
+                        </div>
+                        <div class="delivery-item">
+                            <i class="fa-solid fa-box delivery-icon"></i>
+                            <span><strong>Delivery In:</strong> 3–7 Working Days</span>
+                        </div>
+                    </div>
+
+                    <div class="payment-methods">
+                        <div class="payment-title">Checkout with:</div>
+                        <div class="payment-icons">
+                            <div class="payment-icon"><img
+                                    src="https://html.theme-village.com/transhub/demo/images/jcb.png"></div>
+                            <div class="payment-icon"><img
+                                    src="https://html.theme-village.com/transhub/demo/images/stripe.png"></div>
+                            <div class="payment-icon"><img
+                                    src="https://html.theme-village.com/transhub/demo/images/mastercard.png"></div>
+                            <div class="payment-icon"><img
+                                    src="https://html.theme-village.com/transhub/demo/images/gpay.png"></div>
+                            <div class="payment-icon"><img
+                                    src="https://html.theme-village.com/transhub/demo/images/skrill.png"></div>
+                        </div>
+                    </div>
+
+                    <div class="purchase-section">
+                        <div class="quantity-selector">
+                            <button class="qty-btn">-</button>
+                            <input type="number" class="qty-input" value="1" min="1">
+                            <button class="qty-btn">+</button>
+                        </div>
+                        <button class="add-to-cart-btn">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Tabs -->
+            <div class="product-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active">Description</button>
+                    <button class="tab-btn">Additional Info</button>
+                    <button class="tab-btn">Reviews</button>
+                </div>
+
+                <!-- Description Tab -->
+                <div class="tab-content active">
+                    <div style="display:flex; gap:30px; flex-wrap:wrap; align-items:center;">
+                        <div style="flex:1; min-width:250px;">
+                            <p>
+                                This crop top features a sleek fit, premium denim construction, and exceptional comfort.
+                                Its versatile design pairs well with both casual and dressy outfits.
+                            </p>
+                        </div>
+                        <div style="flex:1; min-width:250px;">
+                            <img src="https://html.theme-village.com/transhub/demo/images/shop1.jpg" alt="Product Image"
+                                style="width:100%; border-radius:10px;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Info Tab -->
+                <div class="tab-content">
+                    <ul style="padding-left:20px; line-height:1.8;">
+                        <li><strong>Weight:</strong> 1.25 kg</li>
+                        <li><strong>Dimensions:</strong> 90 x 60 x 90 cm</li>
+                        <li><strong>Sizes:</strong> XS, S, M, L, XL</li>
+                        <li><strong>Colors:</strong> Black, Yellow, White</li>
+                        <li><strong>Storage:</strong> Relaxed fit shirt-style dress with a rugged style</li>
+                    </ul>
+                </div>
+
+                <!-- Reviews Tab -->
+                <div class="tab-content">
+                    <p><em>There are no reviews yet.</em></p>
+                    <p>Be The First To Review “Le Skinny De Jeanne Crop”</p>
+
+                    <form class="review-form">
+                        <div style="margin-bottom:15px;">
+                            <span style="font-size:18px; color:var(--accent-color);">★ ★ ★ ★ ★</span>
+                        </div>
+                        <div>
+                            <label for="review-name">Name *</label>
+                            <input type="text" id="review-name" name="name" required>
+                        </div>
+                        <div>
+                            <label for="review-email">Email *</label>
+                            <input type="email" id="review-email" name="email" required>
+                        </div>
+                        <div>
+                            <label for="review-text">Your Review *</label>
+                            <textarea id="review-text" name="review" rows="5" required></textarea>
+                        </div>
+                        <button type="submit">Submit Review</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Thumbnail switching
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const mainImage = document.querySelector('.main-product-image');
+
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                thumbnails.forEach(t => t.classList.remove('active'));
+                thumb.classList.add('active');
+                mainImage.src = thumb.src;
+            });
+        });
+
+        // Quantity selector
+        const qtyBtns = document.querySelectorAll('.qty-btn');
+        const qtyInput = document.querySelector('.qty-input');
+
+        qtyBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                let value = parseInt(qtyInput.value);
+                if (btn.textContent === '+') qtyInput.value = value + 1;
+                else if (value > 1) qtyInput.value = value - 1;
+            });
+        });
+
+        // Tabs
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(tc => tc.classList.remove('active'));
+                btn.classList.add('active');
+                tabContents[index].classList.add('active');
+            });
+        });
+    </script>
+
+    <%- include('partials/footer.ejs') %>

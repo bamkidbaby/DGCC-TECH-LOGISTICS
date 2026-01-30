@@ -1,51 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ</title>
+<%- include('partials/header.ejs') %>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-        }
-
-        /* Page Hero */
-        .page-hero {
-            background: linear-gradient(rgba(26, 35, 55, 0.7), rgba(26, 35, 55, 0.7)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&h=400&fit=crop') center/cover;
-            padding: 100px 0 60px;
-            color: white;
-            text-align: center;
-        }
-
-        .page-hero h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .breadcrumb {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            font-size: 14px;
-        }
-
-        .breadcrumb a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .breadcrumb span {
-            color: #FF5722;
-        }
-
         /* FAQ Section */
         .faq-section {
             padding: 80px 20px;
@@ -216,155 +170,162 @@
             }
         }
     </style>
-</head>
+    </head>
 
-<body>
-    <!-- Page Hero -->
-    <section class="page-hero">
-        <h1>Faq</h1>
-        <div class="breadcrumb">
-            <a href="#">Home</a> > <span>Faq</span>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">OUR EXPERT TEAM MEMBERS</div>
-                <h2 class="section-title">What Details Are Required<br>for a Quote?</h2>
-            </div>
-
-            <div class="faq-layout">
-                <!-- FAQ List -->
-                <div class="faq-list">
-                    <div class="faq-item active">
-                        <div class="faq-question">
-                            How can I track my shipment?
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            You can easily track your shipment by entering your Tracking ID into our online tracking
-                            tool. Once submitted, you'll receive real-time updates on your shipment's location and
-                            estimated delivery.
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            How do I get in touch with customer support?
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            You can reach our customer support team via phone, email, or live chat. We're available 24/7
-                            to assist you with any questions or concerns.
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            What if my shipment is delayed or lost?
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            If your shipment is delayed or lost, please contact our customer support immediately. We'll
-                            investigate the issue and work to resolve it as quickly as possible.
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            Can I schedule recurring shipments?
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            Yes, we offer scheduled recurring shipments for businesses with regular shipping needs.
-                            Contact our sales team to set up a customized shipping schedule.
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            What is your pricing model?
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            Our pricing is based on factors such as shipment weight, dimensions, destination, and
-                            delivery speed. Request a quote for an accurate estimate.
-                        </div>
+    <body>
+        <!-- Page Hero -->
+        <section class="page-hero">
+            <div class="page-title">
+                <div class="vertical-line"></div>
+                <div class="page-text">
+                    <h1 class="tlt">Faq</h1>
+                    <div class="breadcrumb">
+                        <a href="/">Home</a>
+                        <i class="fa-solid fa-angle-right"></i>
+                        <span>Login</span>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Appointment Form -->
-                <div class="appointment-form">
-                    <h3 class="form-title">Make An Appointment</h3>
-                    <form>
-                        <div class="form-group">
-                            <div class="icon-input">
-                                <input type="text" placeholder="Your name">
-                                <span class="input-icon">👤</span>
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">OUR EXPERT TEAM MEMBERS</div>
+                    <h2 class="section-title">What Details Are Required<br>for a Quote?</h2>
+                </div>
+
+                <div class="faq-layout">
+                    <!-- FAQ List -->
+                    <div class="faq-list">
+                        <div class="faq-item active">
+                            <div class="faq-question">
+                                How can I track my shipment?
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                You can easily track your shipment by entering your Tracking ID into our online tracking
+                                tool. Once submitted, you'll receive real-time updates on your shipment's location and
+                                estimated delivery.
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="icon-input">
-                                <input type="email" placeholder="Your email">
-                                <span class="input-icon">✉️</span>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                How do I get in touch with customer support?
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                You can reach our customer support team via phone, email, or live chat. We're available
+                                24/7
+                                to assist you with any questions or concerns.
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="icon-input">
-                                <input type="tel" placeholder="Phone Number">
-                                <span class="input-icon">📞</span>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                What if my shipment is delayed or lost?
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                If your shipment is delayed or lost, please contact our customer support immediately.
+                                We'll
+                                investigate the issue and work to resolve it as quickly as possible.
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="icon-input">
-                                <select>
-                                    <option>Freight City</option>
-                                    <option>New York</option>
-                                    <option>Los Angeles</option>
-                                    <option>Chicago</option>
-                                </select>
-                                <span class="input-icon">📍</span>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                Can I schedule recurring shipments?
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                Yes, we offer scheduled recurring shipments for businesses with regular shipping needs.
+                                Contact our sales team to set up a customized shipping schedule.
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="icon-input">
-                                <input type="text" placeholder="Travel Unit">
-                                <span class="input-icon">📅</span>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                What is your pricing model?
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                Our pricing is based on factors such as shipment weight, dimensions, destination, and
+                                delivery speed. Request a quote for an accurate estimate.
                             </div>
                         </div>
+                    </div>
 
-                        <button type="submit" class="book-btn">Book An Appointment →</button>
-                    </form>
+                    <!-- Appointment Form -->
+                    <div class="appointment-form">
+                        <h3 class="form-title">Make An Appointment</h3>
+                        <form>
+                            <div class="form-group">
+                                <div class="icon-input">
+                                    <input type="text" placeholder="Your name">
+                                    <span class="input-icon">👤</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="icon-input">
+                                    <input type="email" placeholder="Your email">
+                                    <span class="input-icon">✉️</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="icon-input">
+                                    <input type="tel" placeholder="Phone Number">
+                                    <span class="input-icon">📞</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="icon-input">
+                                    <select>
+                                        <option>Freight City</option>
+                                        <option>New York</option>
+                                        <option>Los Angeles</option>
+                                        <option>Chicago</option>
+                                    </select>
+                                    <span class="input-icon">📍</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="icon-input">
+                                    <input type="text" placeholder="Travel Unit">
+                                    <span class="input-icon">📅</span>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="book-btn">Book An Appointment →</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <script>
-        const faqItems = document.querySelectorAll('.faq-item');
+        <script>
+            const faqItems = document.querySelectorAll('.faq-item');
 
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
 
-            question.addEventListener('click', () => {
-                // Close other items
-                faqItems.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('active');
-                    }
+                question.addEventListener('click', () => {
+                    // Close other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+
+                    // Toggle current item
+                    item.classList.toggle('active');
                 });
-
-                // Toggle current item
-                item.classList.toggle('active');
             });
-        });
-    </script>
-</body>
-
-</html>
+        </script>
+        <%- include('partials/footer.ejs') %>

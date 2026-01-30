@@ -1,0 +1,316 @@
+<%- include('partials/header.ejs') %>
+
+    <style>
+        :root {
+            --primary-navy: #0a1929;
+            --secondary-navy: #132f4c;
+            --accent-orange: #ff5722;
+            --accent-orange-light: #ff6e40;
+            --text-light: #ffffff;
+            --text-gray: #b0bec5;
+            --card-bg: #ffffff;
+            --section-bg: #f5f7fa;
+        }
+
+        /* === Hero Section === */
+        .hero {
+            margin-top: 80px;
+            height: 60vh;
+            background: linear-gradient(135deg, rgba(10, 25, 41, 0.95), rgba(19, 47, 76, 0.85)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%230a1929" width="1200" height="600"/><g fill-opacity="0.15"><circle fill="%23ff5722" cx="200" cy="100" r="150"/><circle fill="%23ff5722" cx="800" cy="400" r="200"/><circle fill="%23ff5722" cx="1100" cy="200" r="120"/></g></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect fill="none" width="100" height="100"/><path d="M0 0L50 50M50 0L0 50M100 0L50 50M50 50L100 100M0 100L50 50" stroke="%23ffffff" stroke-width="0.5" opacity="0.05"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* === Services Section === */
+        .services-section {
+            background: var(--section-bg);
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--secondary-navy), var(--primary-navy));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200"><rect fill="none" width="400" height="200"/><circle fill="%23ff5722" fill-opacity="0.2" cx="100" cy="100" r="80"/><circle fill="%23ff5722" fill-opacity="0.15" cx="300" cy="50" r="60"/></svg>');
+            background-size: cover;
+        }
+
+        .service-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+        }
+
+        .service-description {
+            color: #546e7a;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-orange);
+            font-weight: 600;
+            text-decoration: none;
+            transition: gap 0.3s;
+        }
+
+        .service-link:hover {
+            gap: 1rem;
+        }
+
+        .service-link::after {
+            content: '→';
+            font-size: 1.2rem;
+        }
+
+        /* === Contact Section === */
+        .contact-section {
+            background: var(--primary-navy);
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Quote Form inside Contact Section */
+        .quote-form {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 0.875rem 1rem;
+            color: white;
+            font-family: 'DM Sans', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .submit-button {
+            background: var(--accent-orange);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            width: 100%;
+            box-shadow: 0 4px 20px rgba(255, 87, 34, 0.3);
+        }
+
+        .submit-button:hover {
+            background: var(--accent-orange-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(255, 87, 34, 0.4);
+        }
+
+        /* === Responsive Media Queries === */
+        @media (max-width: 1200px) {
+            .form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            /* 3 cards per row on small screens */
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="page-title">
+            <div class="vertical-line"></div>
+            <div class="page-text">
+                <h1 class="tlt">Services</h1>
+                <div class="breadcrumb">
+                    <a href="/">Home</a>
+                    <i class="fa-solid fa-angle-right"></i>
+                    <span>Services</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <div class="services-grid">
+                <!-- Repeat your service cards here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <!-- Contact content and quote form -->
+    </section>
+
+    <%- include('partials/footer.ejs') %>

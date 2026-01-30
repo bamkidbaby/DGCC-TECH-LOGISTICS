@@ -1,262 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('partials/header.ejs') %>
+    <link rel="stylesheet" href="/styles/team-details.css">
+    <section class="page-hero">
+        <div class="page-title">
+            <div class="vertical-line"></div>
+            <div class="page-text">
+                <h1>Team Details</h1>
+                <div class="breadcrumb">
+                    <a href="/">Home</a> <i class="fas fa-arrow-right"></i> <span>Team Details</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Member Detail</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-            padding: 60px 20px;
-        }
-
-        .member-detail-section {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .member-grid {
-            display: grid;
-            grid-template-columns: 350px 1fr;
-            gap: 50px;
-        }
-
-        /* Left Sidebar */
-        .member-sidebar {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .member-photo {
-            width: 100%;
-            border-radius: 15px;
-            margin-bottom: 20px;
-        }
-
-        .member-name-box {
-            text-align: center;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            margin-bottom: 25px;
-        }
-
-        .member-name {
-            font-size: 24px;
-            color: #1a1a2e;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .member-position {
-            color: #666;
-            font-size: 14px;
-        }
-
-        .info-item {
-            padding: 15px 0;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .info-item:last-child {
-            border-bottom: none;
-        }
-
-        .info-label {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 5px;
-        }
-
-        .info-value {
-            font-size: 16px;
-            color: #1a1a2e;
-            font-weight: 500;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            background: #FF5722;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .social-icon:hover {
-            background: #e64a19;
-            transform: translateY(-3px);
-        }
-
-        /* Right Content */
-        .member-content {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .section-title {
-            font-size: 28px;
-            color: #1a1a2e;
-            margin-bottom: 20px;
-        }
-
-        .member-content p {
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .skills-section {
-            margin-top: 40px;
-        }
-
-        .skill-item {
-            margin-bottom: 25px;
-        }
-
-        .skill-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        .skill-name {
-            font-weight: 600;
-            color: #1a1a2e;
-        }
-
-        .skill-percentage {
-            background: #FF5722;
-            color: white;
-            padding: 3px 12px;
-            border-radius: 15px;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .skill-bar {
-            height: 8px;
-            background: #e0e0e0;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: linear-gradient(90deg, #FF5722, #ff7043);
-            border-radius: 10px;
-            transition: width 1s ease-out;
-        }
-
-        .points-section {
-            margin-top: 40px;
-        }
-
-        .point-item {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-
-        .point-icon {
-            color: #FF5722;
-            font-size: 20px;
-        }
-
-        .point-text {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Contact Form */
-        .contact-form {
-            margin-top: 40px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .send-btn {
-            background: #FF5722;
-            color: white;
-            padding: 15px 40px;
-            border: none;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .send-btn:hover {
-            background: #e64a19;
-        }
-
-        @media (max-width: 968px) {
-            .member-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-
-<body>
     <div class="member-detail-section">
         <div class="member-grid">
             <!-- Left Sidebar -->
             <div class="member-sidebar">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=350&h=400&fit=crop"
-                    alt="Brooklyn Simmons" class="member-photo">
+                <img src="https://html.theme-village.com/transhub/demo/images/single-team.jpg" alt="Brooklyn Simmons"
+                    class="member-photo">
 
                 <div class="member-name-box">
-                    <div class="member-name">Brooklyn Simmons</div>
+                    <div class="member-name">Taylor Brooks</div>
                     <div class="member-position">Technical Lead</div>
                 </div>
 
@@ -267,7 +32,7 @@
 
                 <div class="info-item">
                     <div class="info-label">Email Address</div>
-                    <div class="info-value">brooklyn@email.com</div>
+                    <div class="info-value">taylor@email.com</div>
                 </div>
 
                 <div class="info-item">
@@ -340,19 +105,25 @@
                         optimize workflows, ensuring the development of warehouse processes and standard operating</p>
 
                     <div class="point-item">
-                        <div class="point-icon">🎯</div>
+                        <div class="point-icon"><i class="fas fa-check-circle"></i>
+
+                        </div>
                         <div class="point-text">Performance based logistics Defense acquisition strategy for
                             cost-effective weapon system support</div>
                     </div>
 
                     <div class="point-item">
-                        <div class="point-icon">⚖️</div>
+                        <div class="point-icon"><i class="fas fa-check-circle"></i>
+
+                        </div>
                         <div class="point-text">Legal demands in a globalized as a compliance carrier in respect of
                             damages or loss to a shipment</div>
                     </div>
 
                     <div class="point-item">
-                        <div class="point-icon">🔄</div>
+                        <div class="point-icon"><i class="fas fa-check-circle"></i>
+
+                        </div>
                         <div class="point-text">Functions of understanding some one of a activities and the efficient
                             personnel demands on that stock</div>
                     </div>
@@ -383,12 +154,12 @@
                             <textarea placeholder="How can we help you? Feel free to get in touch!"></textarea>
                         </div>
 
-                        <button type="submit" class="send-btn">Send A Message →</button>
+                        <button type="submit" class="send-btn">Send A Message <i class="fas fa-arrow-right">
+
+                            </i></button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</body>
-
-</html>
+    <%- include('partials/footer.ejs') %>

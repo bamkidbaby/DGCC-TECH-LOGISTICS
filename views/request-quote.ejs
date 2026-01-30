@@ -1,339 +1,128 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('partials/header.ejs') %>
+    <link rel="stylesheet" href="styles/request-quote.css">
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request Quote</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-        }
-
-        /* Page Hero */
-        .page-hero {
-            background: linear-gradient(rgba(26, 35, 55, 0.7), rgba(26, 35, 55, 0.7)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&h=400&fit=crop') center/cover;
-            padding: 100px 0 60px;
-            color: white;
-            text-align: center;
-        }
-
-        .page-hero h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .breadcrumb {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            font-size: 14px;
-        }
-
-        .breadcrumb a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .breadcrumb span {
-            color: #FF5722;
-        }
-
-        /* Service Steps */
-        .service-steps {
-            background: white;
-            padding: 60px 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            text-align: center;
-        }
-
-        .step-box {
-            position: relative;
-        }
-
-        .step-icon-box {
-            width: 80px;
-            height: 80px;
-            background: #1a2337;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 36px;
-            transition: all 0.3s;
-        }
-
-        .step-box.active .step-icon-box {
-            background: #FF5722;
-        }
-
-        .step-title {
-            font-size: 20px;
-            color: #1a1a2e;
-            font-weight: 600;
-        }
-
-        .step-line {
-            position: absolute;
-            top: 40px;
-            left: 60%;
-            width: 80%;
-            height: 2px;
-            background: #e0e0e0;
-        }
-
-        .steps-grid .step-box:last-child .step-line {
-            display: none;
-        }
-
-        /* Quote Form Section */
-        .quote-form-section {
-            padding: 80px 20px;
-            background: #f5f5f5;
-        }
-
-        .quote-container {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 40px;
-            align-items: start;
-        }
-
-        .quote-image {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .quote-form-box {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .form-section-title {
-            font-size: 20px;
-            color: #1a1a2e;
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group label {
-            font-size: 14px;
-            color: #1a1a2e;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group select {
-            padding: 14px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: border 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #FF5722;
-        }
-
-        .icon-input {
-            position: relative;
-        }
-
-        .icon-input input {
-            padding-left: 45px;
-        }
-
-        .input-icon {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #FF5722;
-        }
-
-        .submit-btn {
-            background: #FF5722;
-            color: white;
-            padding: 15px 40px;
-            border: none;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .submit-btn:hover {
-            background: #e64a19;
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 1024px) {
-            .quote-container {
-                grid-template-columns: 1fr;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .steps-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <!-- Page Hero -->
-    <section class="page-hero">
-        <h1>Request Quote</h1>
-        <div class="breadcrumb">
-            <a href="#">Home</a> > <span>Request Quote</span>
-        </div>
-    </section>
-
-    <!-- Service Steps -->
-    <section class="service-steps">
-        <div class="container">
-            <div class="steps-grid">
-                <div class="step-box">
-                    <div class="step-icon-box">📦</div>
-                    <div class="step-title">Transparent Pricing</div>
-                    <div class="step-line"></div>
-                </div>
-                <div class="step-box active">
-                    <div class="step-icon-box">📍</div>
-                    <div class="step-title">Real Time Tracking</div>
-                    <div class="step-line"></div>
-                </div>
-                <div class="step-box">
-                    <div class="step-icon-box">💬</div>
-                    <div class="step-title">24/7 Online Support</div>
+    <body>
+        <!-- Page Hero -->
+        <section class="page-hero">
+            <div class="page-title">
+                <div class="vertical-line"></div>
+                <div class="page-text">
+                    <h1>Request Quote</h1>
+                    <div class="breadcrumb">
+                        <a href="/">Home</a> <i class="fas fa-arrow-right"></i> <span>Request Quote</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Quote Form -->
-    <section class="quote-form-section">
-        <div class="container">
-            <div class="quote-container">
-                <div>
-                    <img src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=500&h=600&fit=crop"
-                        alt="Truck" class="quote-image">
-                </div>
-
-                <div class="quote-form-box">
-                    <h3 class="form-section-title">Personal Info</h3>
-                    <form>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>Your Name</label>
-                                <div class="icon-input">
-                                    <span class="input-icon">👤</span>
-                                    <input type="text" placeholder="Your name">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Your Email</label>
-                                <div class="icon-input">
-                                    <span class="input-icon">✉️</span>
-                                    <input type="email" placeholder="Your email">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Your Phone</label>
-                                <div class="icon-input">
-                                    <span class="input-icon">📞</span>
-                                    <input type="tel" placeholder="Your phone">
-                                </div>
-                            </div>
-                        </div>
-
-                        <h3 class="form-section-title">Shipment Info</h3>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>Freight Type</label>
-                                <select>
-                                    <option>Select type</option>
-                                    <option>Air Freight</option>
-                                    <option>Sea Freight</option>
-                                    <option>Land Freight</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>City Departure</label>
-                                <input type="text" placeholder="City">
-                            </div>
-                            <div class="form-group">
-                                <label>Delivery City</label>
-                                <input type="text" placeholder="City">
-                            </div>
-                        </div>
-
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>Incoterms</label>
-                                <select>
-                                    <option>Select</option>
-                                    <option>FOB</option>
-                                    <option>CIF</option>
-                                    <option>EXW</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Date</label>
-                                <input type="date">
-                            </div>
-                            <div class="form-group">
-                                <label>Time</label>
-                                <input type="time">
-                            </div>
-                        </div>
-
-                        <button type="submit" class="submit-btn">Request A Quote →</button>
-                    </form>
+        </section>
+        <!-- Service Steps -->
+        <section class="service-steps">
+            <div class="container">
+                <div class="steps-grid">
+                    <div class="step-box">
+                        <div class="step-icon-box"><img
+                                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDUwIDUwIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgPGcgZmlsbD0iI2ZkNTUyMyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXBhdGg9InVybCgjYSkiIGNsaXAtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik04Ljc0LS4wNDloNC45OHEuMzkzLjMyMi40ODguODNhNDE2IDQxNiAwIDAgMCAyLjI0NiA3LjM3M3EzLjI3LjE3IDYuNTQzLjA1LS43NjYtMi44NDUtMS40NjUtNS43MTQuMDQyLS41MzQuNDg5LS44M2EyOCAyOCAwIDAgMSAzLjMyIDBxLjIxLjA2OS4zNDIuMjQ0YTYyNSA2MjUgMCAwIDAgMy45NTUgNi4zbDcuNTIuMDk3YTExLjA0IDExLjA0IDAgMCAxIDUuNzYxIDIuNTM5bDMuMTc0IDMuMTc0cTEuMjkxIDIuMTUtLjUzNyAzLjg1N2E1LjMgNS4zIDAgMCAxLS44OC4zOXEtOC4xNTQuMDI1LTE2LjMwOC4xNDdhNDE0IDQxNCAwIDAgMC00LjM0NSA2LjI1Ljg3Ljg3IDAgMCAxLS43ODIuMjkzIDIzIDIzIDAgMCAxLTIuNzgzLS44M3EtLjU0OS0uMjMyLS41ODYtLjgzYTkzIDkzIDAgMCAxIDIuMTQ5LTQuOTMycS00LjIyMy0uMDQtNy41Mi0yLjYzNkw4LjM5OCA5LjYxOUExMDkgMTA5IDAgMCAxIDguMy40NHEuMTUtLjMyLjQ0LS40ODhtMS4yNjkgMS43NThxMS4zMjItLjA0OSAyLjYzNy4wOTguOTc2IDMuMTczIDEuOTUzIDYuMzQ3YTU0IDU0IDAgMCAxLTQuNTkuMDk4em0xMy41NzQgMS43NThhMSAxIDAgMCAxIC40NC0uMDk4cS4zNDUtLjAyOS41ODYuMTk1bDIuODggNC42NHEtMS4zNjYuMDcyLTIuNzM0LjA0OGE1MSA1MSAwIDAgMC0xLjE3Mi00Ljc4NW0tMTIuMzA0IDYuNjRxMTIuODE3LS4xNyAyNS42ODMtLjA0OGE4LjQgOC40IDAgMCAxIDMuOTA2IDEuNDY0IDE4MSAxODEgMCAwIDEtNS45NTcuMDV2MS43NTdxNC4wMDYtLjAyNCA4LjAwOC4wNDlhMjggMjggMCAwIDEgMS45MDQgMi4wMDJxLjI2MS44MTQtLjUzNyAxLjEyMy03LjI3NS4xMjItMTQuNTUtLjA0OS40MjctLjc1LS4wOTgtMS40MTZhMjUgMjUgMCAwIDAtMy4wMjgtLjE0NmwtMi43MzQuMDQ4YS43LjcgMCAwIDAtLjQ0LjI0NCAyNCAyNCAwIDAgMC0uNjM0IDEuMzE5cS0zLjQ0My4zLTYuMzQ4LTEuNTYzYTcyIDcyIDAgMCAxLTUuMTc2LTQuODM0bTEzLjM3OCA2LjU0M3ExLjM2OC0uMDI0IDIuNzM1LjA1YTIxNiAyMTYgMCAwIDAtNC4zNDYgNi4ycS0uNTQuMTQtMS4wMjUtLjE5NXoiIG9wYWNpdHk9Ii45NDUiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTE4LjIxIDExLjU3MmgxLjc1OXYxLjc1OEgxOC4yMXoiIG9wYWNpdHk9Ii44OTciPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTIxLjUzMSAxMS41NzJoMS43NTh2MS43NThoLTEuNzU4ek0yNC45NTMgMTEuNTcyaDEuNzU4djEuNzU4aC0xLjc1OHpNMjguMjczIDExLjU3MmgxLjc1OHYxLjc1OGgtMS43NTh6IiBvcGFjaXR5PSIuODk5Ij48L3BhdGg+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0zMS41OTQgMTEuNTcyaDEuNzU4djEuNzU4aC0xLjc1OHoiIG9wYWNpdHk9Ii44OTciPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTIxLjYzMyA0OS45NTFoLS43ODFhNC42NCA0LjY0IDAgMCAxLTEuOTU0LTEuMzE4cS0uNzgtLjUwMS0xLjU2Mi0uMDk4YTYuNiA2LjYgMCAwIDEtMi4xNDggMS40MTZoLTEuNTYzYTQuNjQgNC42NCAwIDAgMS0xLjk1My0xLjMxOHEtMS4zODQtLjcxOS0yLjM0NC41ODZhNC42IDQuNiAwIDAgMS0xLjM2Ny43MzJINi4zOThhNS41IDUuNSAwIDAgMS0yLjE0OC0xLjQxNnEtMS4zMDYtLjUyNC0yLjE0OC42ODRhNC42IDQuNiAwIDAgMS0xLjM2OC43MzJoLS43OHYtMS43NThxLjI0OC4wMjQuNDg3LS4wNDguNzI2LS40ODIgMS4zNjgtMS4wNzVhNC4yIDQuMiAwIDAgMSAxLjI3LS40NCAxNzIgMTcyIDAgMCAwLTMuMTI2LTguNjl2LS44OHEuMTczLS4yODQuNDg4LS40MzkgMS4xMS0uMzA1IDIuMS0uODNsMS40NjUtOC4xMDVxLjAyMi0uNjU3LjUzNy0xLjAyNmE3MCA3MCAwIDAgMSAzLjcxLS4wNDlxLS4wNjQtMS41MjguMTQ3LTMuMDI3LjI2NC0uMjY2LjYzNS0uMzQyYTMyIDMyIDAgMCAxIDMuNTE2IDBxLjM3MS4wNzYuNjM0LjM0Mi4yMTMgMS40OTguMTQ3IDMuMDI3IDEuODU2LS4wMjQgMy43MTEuMDVsLjM0Mi4zNDFxLjg4NSA0LjM4MyAxLjY2IDguNzg5Ljk5LjUyNSAyLjEuODMuNjguNDMuNDM5IDEuMjJhNDY5IDQ2OSAwIDAgMC0zLjA3NiA4Ljc5IDMuMzYgMy4zNiAwIDAgMSAyLjI0NiAxLjMxOHEuMzk2LjI4Ljg3OS4yNDR6bS0xMS42MjEtMjVoMS41NjJ2MS42NmgtMS41NjJ6TTUuNzE1IDI4LjM3cTUuMDc5LS4wNDkgMTAuMTU2LjA5OC42OTggMy40MSAxLjIyIDYuODM2YTEwMiAxMDIgMCAwIDAtNi4yOTgtMi4wNTEgMTAyIDEwMiAwIDAgMC02LjI5OSAyLjA1cS41MTYtMy40OCAxLjIyLTYuOTMzTTkuNjIgMzUuNGguMjkzdjExLjMyOEEzLjYgMy42IDAgMCAwIDguMDYgNDcuOTVxLS44NzkuNDg5LTEuNzU4IDBhNS44IDUuOCAwIDAgMC0xLjE3Mi0xLjAyNSAyNDUgMjQ1IDAgMCAxLTMuMTI1LTguOTg0cTMuODUtMS4xODYgNy42MTctMi41NG0yLjA1IDAgNy45MTEgMi41NGEyNDUgMjQ1IDAgMCAxLTMuMTI1IDguOTg0IDUuOCA1LjggMCAwIDAtMS4xNzIgMS4wMjVxLS44NzkuNDg5LTEuNzU4IDBhMy42IDMuNiAwIDAgMC0xLjg1NS0xLjIyeiIgb3BhY2l0eT0iLjk0MSI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNNy4zNzUgMjkuOTMyaDYuODM2djEuNzU4SDcuMzc1eiIgb3BhY2l0eT0iLjkyNCI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNNDkuOTUgMzkuNTAydjcuNTJxLS4xOTkuMzItLjU4Ny40MzktMS40MTguMDI0LTIuODMyLjE0Ni0uNjU1IDEuNzgtMi40NDEgMi4zNDRoLTEuNTYzYTMuNzUgMy43NSAwIDAgMS0yLjE5Ny0xLjY2IDIuMiAyLjIgMCAwIDEtLjI0NC0uNzgxcS0zLjAzLS4wNDktNi4wNTUuMDk3LS42NTUgMS43OC0yLjQ0MSAyLjM0NGgtMS41NjNhMy43NSAzLjc1IDAgMCAxLTIuMTk3LTEuNjYgMi4yIDIuMiAwIDAgMS0uMjQ0LS43ODFxLTEuODU1LjAyNC0zLjcxMS0uMDQ5LS42MTUtLjE4LS42MzUtLjgzYTU3OCA1NzggMCAwIDEgMC0xNS4wNHEuMDEyLS43MzIuNzMzLS44M2E3MzkgNzM5IDAgMCAxIDE2Ljk5MiAwcS40NS4xMS42MzUuNTM4LjA3MyAxLjM2Ni4wNDggMi43MzQgMi41NC0uMDI0IDUuMDc5LjA1LjI1NS4wNjguNDg4LjE5NCAxLjM5IDIuNjEgMi43MzQgNS4yMjVtLTI1LTcuMDMxaDE0Ljk0djEzLjI4MXEtMi45My4wNDgtNS44NTktLjA5OC0xLjI4Mi0zLjA0MS00LjQ5Mi0yLjE5Ny0xLjUzNy42NTctMi4wNSAyLjI0Ni0xLjI3LjA3My0yLjU0LjA0OXptMTYuNjk5IDMuMzJoMS41NjJxLS4wMjQgMi4xNS4wNDkgNC4yOTcuMDc0LjY2LjczMi43MzIgMi4xLjA3NSA0LjIuMDV2NC44ODJxLS44MzcuMDQ4LTEuNjYtLjA5OC0uODI0LTIuMzEtMy4yNzItMi40NDFhNCA0IDAgMCAwLTEuNTE0LjM5cS0uMTQ3LTMuOTA0LS4wOTgtNy44MTJtMy4zMiAwcS41NzYtLjA0MyAxLjEyMy4wOThhMTQ1IDE0NSAwIDAgMCAxLjYxMSAzLjE3M3EtMS4zNjYuMDc1LTIuNzM0LjA1em0tMTQuMzU2IDkuMThxMi4yOTguMzQ4IDEuNTE0IDIuNTM5LTEuMjcxIDEuMzE0LTIuNjM3LjA5Ny0uODgyLTEuOTQ0IDEuMTIzLTIuNjM2bTEyLjUgMHEyLjI5OC4zNDggMS41MTQgMi41MzktMS4yNzEgMS4zMTQtMi42MzcuMDk3LS44ODItMS45NDQgMS4xMjMtMi42MzYiIG9wYWNpdHk9Ii45NDYiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGNsaXBQYXRoIGlkPSJhIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMGg1MHY1MEgweiI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2NsaXBQYXRoPgogICAgICAgICAgICAgICAgICAgICAgICAgICA8L2RlZnM+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc3ZnPg=="
+                                alt=""></div>
+                        <div class="step-title">Transparent Pricing</div>
+                    </div>
+                    <div class="step-box active">
+                        <div class="step-icon-box"><img
+                                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDUwIDUwIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgPGcgY2xpcC1wYXRoPSJ1cmwoI2EpIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTI1Ljg0IDcuMDVhNC41MjYgNC41MjYgMCAwIDAtNC41MjEtNC41MjIgNC41MjYgNC41MjYgMCAwIDAtNC41MjEgNC41MjEgNC41MjYgNC41MjYgMCAwIDAgNC41MiA0LjUyMiA0LjUyNyA0LjUyNyAwIDAgMCA0LjUyMi00LjUyMm0tNy40OCAwYTIuOTYgMi45NiAwIDAgMSAyLjk1OS0yLjk2IDIuOTYgMi45NiAwIDAgMSAyLjk1OSAyLjk2IDIuOTYgMi45NiAwIDAgMS0yLjk2IDIuOTU4QTIuOTYgMi45NiAwIDAgMSAxOC4zNiA3LjA1bTEyLjUzMyAzOS4yN2EuOTk5Ljk5OSAwIDEgMS0xLjk5NyAwIC45OTkuOTk5IDAgMCAxIDEuOTk3IDBtLTIwLjA5NCAwYS45OTUuOTk1IDAgMCAxLS45OTguOTk3Ljk5Ny45OTcgMCAxIDEgLjk5OC0uOTk4TTguNjQ1IDMyLjE2YS43OC43OCAwIDAgMSAuMjg2LTEuMDY3bDQuNDQzLTIuNTY1YS43ODEuNzgxIDAgMCAxIC43OCAxLjM1M2wtNC40NDEgMi41NjVhLjc4Ljc4IDAgMCAxLTEuMDY4LS4yODZtOC40NjUgMS4yNzhhLjc4Ljc4IDAgMCAxLS4yODYgMS4wNjdsLTQuNDQyIDIuNTY0YS43ODEuNzgxIDAgMSAxLS43ODEtMS4zNTNsNC40NDItMi41NjVhLjc4Ljc4IDAgMCAxIDEuMDY3LjI4Nm0tOS40NTIgMi4zNzRhLjc4Ljc4IDAgMCAxIC4yODYtMS4wNjdsOS4wODYtNS4yNDZhLjc4Ljc4IDAgMCAxIC43ODEgMS4zNTNsLTkuMDg1IDUuMjQ2YS43OC43OCAwIDAgMS0xLjA2OC0uMjg2bTM1Ljc5Mi0zLjQwNGgtMi44OTVhMy4xODYgMy4xODYgMCAwIDEtMy4xODItMy4xODIgMy4xODYgMy4xODYgMCAwIDEgMy4xODItMy4xODNoMi40MDdhNC43NSA0Ljc1IDAgMCAwIDQuNzQ1LTQuNzQ0IDQuNzUgNC43NSAwIDAgMC00Ljc0NS00Ljc0NWgtMTQuMjljLS42MjgtLjc4NS0yLjIwOC0xLjIwMi0zLjg3LTEuNDIgMS43MTEtMi4wNCAzLjUxNS00LjkzOSAzLjUxNS04LjA4N0E3LjAwNiA3LjAwNiAwIDAgMCAyMS4zMi4wNDlhNy4wMDYgNy4wMDYgMCAwIDAtNi45OTggNi45OThjMCAzLjE0OCAxLjgwNCA2LjA0NyAzLjUxNCA4LjA4OC0yLjE0NC4yOC00LjE1NC44OTMtNC4xNTQgMi4yIDAgMS4yOTQgMS45NjMgMS43NjIgMi42MDkgMS45MTUgMS4zNTIuMzIzIDMuMTM4LjUgNS4wMjkuNSAxLjg5IDAgMy42NzctLjE3NyA1LjAzLS41LjQ5My0uMTE3IDEuNzU3LS40MiAyLjMyNC0xLjEzNGgxNC4yODlhMy4xODYgMy4xODYgMCAwIDEgMy4xODIgMy4xODMgMy4xODYgMy4xODYgMCAwIDEtMy4xODIgMy4xODJoLTIuNDA3YTQuNzUgNC43NSAwIDAgMC00Ljc0NSA0Ljc0NSA0Ljc1IDQuNzUgMCAwIDAgNC43NDUgNC43NDVoMi44OTVhNC40NTUgNC40NTUgMCAwIDEgNC40NSA0LjQ1IDQuNDU1IDQuNDU1IDAgMCAxLTQuNDUgNC40NDloLTYuNDN2LTYuNjk0YzAtLjc1Mi0uMjU4LTEuNDE0LS43NjUtMS45N2wtNS4wMTUtNS40ODRhMi44NSAyLjg1IDAgMCAwLTIuMTU0LS45NWgtMy44N3YtLjUzMWMwLTEuNjEtMS4zMDktMi45Mi0yLjkxOC0yLjkySDMuNDU4Yy0xLjYxIDAtMi45MTkgMS4zMS0yLjkxOSAyLjkydjE2Ljk0YzAgMS42MSAxLjMxIDIuOTIgMi45MiAyLjkyaDIuNzk2QTMuNjQgMy42NCAwIDAgMCA5LjggNDkuOTVhMy42NCAzLjY0IDAgMCAwIDMuNTQ2LTIuODVIMjYuMzVhMy42NCAzLjY0IDAgMCAwIDMuNTQ2IDIuODUgMy42NCAzLjY0IDAgMCAwIDMuNTQ3LTIuODVoMi4wODRjLjgyMyAwIDEuNDk0LS42NyAxLjQ5NC0xLjQ5NHYtMS4xNzRoNi40M2E2LjAyIDYuMDIgMCAwIDAgNi4wMTItNi4wMTMgNi4wMiA2LjAyIDAgMCAwLTYuMDEyLTYuMDEyTTIxLjMyIDEuNjExYTUuNDQgNS40NCAwIDAgMSA1LjQzNiA1LjQzNmMwIDQuMjIzLTQuMDIyIDguMTY4LTUuNDM2IDkuNDI0LTEuNDE0LTEuMjU2LTUuNDM2LTUuMi01LjQzNi05LjQyNGE1LjQ0IDUuNDQgMCAwIDEgNS40MzYtNS40MzZtLTUuODYzIDE1LjcyNWMuNS0uMjUyIDEuNjczLS42MDIgMy42ODgtLjc2N2EyMCAyMCAwIDAgMCAxLjY5MSAxLjU0MiAxIDEgMCAwIDAgLjExMy4wNzRjLTIuOTEyLS4wMzctNC44MDItLjUwMS01LjQ5Mi0uODQ5bTYuMjM0Ljg1YTEgMSAwIDAgMCAuMTEzLS4wNzVjLjA4NS0uMDY3Ljc4Mi0uNjI0IDEuNjkxLTEuNTQyIDIuMDE1LjE2NSAzLjE4OS41MTUgMy42ODguNzY3LS42OS4zNDgtMi41OC44MTItNS40OTIuODVtOC4zOTcgMTEuNTkgNS4wMTUgNS40ODVxLjA2LjA2Ni4xMDguMTM0aC03LjA0MnYtNi4wNmguOTE4Yy40MDIgMCAuNzMuMTQ1IDEuMDAxLjQ0MU0zLjQ1OCAyNS44ODRoMTguODRjLjc0OCAwIDEuMzU2LjYwOSAxLjM1NiAxLjM1N3YxMy4xODVIMi4xMDJWMjcuMjRjMC0uNzQ4LjYwOC0xLjM1NyAxLjM1Ni0xLjM1N005LjgwMSA0OC4zOWMtMS4xNDEgMC0yLjA3LS45MjktMi4wNy0yLjA3cy45MjktMi4wNjkgMi4wNy0yLjA2OSAyLjA3LjkyOSAyLjA3IDIuMDctLjkzIDIuMDY5LTIuMDcgMi4wNjltMy41NDYtMi44NWEzLjY0IDMuNjQgMCAwIDAtMy41NDYtMi44NTEgMy42NCAzLjY0IDAgMCAwLTMuNTQ2IDIuODVIMy40NThhMS4zNiAxLjM2IDAgMCAxLTEuMzU2LTEuMzU2di0yLjE5NGgyMS41NTJ2My41NXptMTYuNTQ5IDIuODVhMi4wNyAyLjA3IDAgMCAxLTIuMDctMi4wN2MwLTEuMTQuOTI5LTIuMDY5IDIuMDctMi4wNjlzMi4wNjkuOTI5IDIuMDY5IDIuMDctLjkyOSAyLjA2OS0yLjA3IDIuMDY5bTMuNTQ2LTIuODVhMy42NCAzLjY0IDAgMCAwLTMuNTQ3LTIuODUxIDMuNjQgMy42NCAwIDAgMC0zLjU0NiAyLjg1aC0xLjEzMlYyOS4zMzVoMS4zODh2Ni44NDFhLjc4Ljc4IDAgMCAwIC43ODEuNzgyaDguMDd2OC41OHoiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGNsaXBQYXRoIGlkPSJhIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMGg1MHY1MEgweiI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2NsaXBQYXRoPgogICAgICAgICAgICAgICAgICAgICAgICAgICA8L2RlZnM+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc3ZnPg=="
+                                alt=""></div>
+                        <div class="step-title">Real Time Tracking</div>
+                    </div>
+                    <div class="step-box">
+                        <div class="step-icon-box"><img
+                                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDUwIDUwIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iI2ZkNTUyMyIgZD0iTTE3LjAzNyA3LjIzNWEuNzguNzggMCAwIDAgMS4wMTMuMzE0IDE2LjMgMTYuMyAwIDAgMSA1LjgwNC0xLjU0Ljc4Ljc4IDAgMCAwIC43MjItLjc3OVYxLjU2M2EuNzguNzggMCAwIDAtLjgzLS43OEEyMS41IDIxLjUgMCAwIDAgMTUuNTQgMi45OGEuNzguNzggMCAwIDAtLjMzIDEuMDkxem01Ljk3Ny00LjgyMlY0LjUyYy0xLjcyNi4yLTMuMzk1LjY0My00Ljk3NyAxLjMybC0xLjA0OC0xLjgxNGExOS45IDE5LjkgMCAwIDEgNi4wMjUtMS42MTNNNS43MSAzMi4wMTNhLjc4Ljc4IDAgMCAwIDEuMDkxLjMzbDMuMTgtMS44MzVhLjc4Ljc4IDAgMCAwIC4zMTQtMS4wMTMgMTYuNCAxNi40IDAgMCAxLTEuNTQ4LTUuNzk4Ljc4Ljc4IDAgMCAwLS43OC0uNzJINC4zYS43OC43OCAwIDAgMC0uNzguODMgMjEuNTUgMjEuNTUgMCAwIDAgMi4xOTEgOC4yMDZtMS41NS03LjQ3NGMuMiAxLjcxMS42NDcgMy4zODUgMS4zMjYgNC45N2wtMS44MyAxLjA1NmEyMCAyMCAwIDAgMS0xLjYwNy02LjAyN3pNNC4zIDIxLjg0MmgzLjY4MmEuNzguNzggMCAwIDAgLjc3OS0uNzE0Yy4xNzUtMi4wMjkuNy0zLjk3OCAxLjU2LTUuNzkzYS43OC43OCAwIDAgMC0uMzE2LTEuMDFsLTMuMTk4LTEuODQ3YS43OC43OCAwIDAgMC0xLjA5LjMzQTIxLjUgMjEuNSAwIDAgMCAzLjUyIDIxLjAxYS43OC43OCAwIDAgMCAuNzguODMybTIuNDYyLTcuNTg2IDEuODUgMS4wNjlhMTguNCAxOC40IDAgMCAwLTEuMzMzIDQuOTU0SDUuMTVjLjIyLTIuMDg5Ljc2MS00LjEwOCAxLjYxMy02LjAyM000OC42MyAyNC40NDhhMS4xOSAxLjE5IDAgMCAwLTEuMDgzLS42NzhoLS43N3EuMDQzLS42OC4wNDMtMS4zNjFhMjEuNTggMjEuNTggMCAwIDAtNS44OTUtMTQuODU3QTIxLjU4IDIxLjU4IDAgMCAwIDI2LjU0MS43ODJhLjc4Ljc4IDAgMCAwLS44My43OHYzLjY2OWEuNzguNzggMCAwIDAgLjcyLjc3OGM4LjUwNC42NTcgMTUuMTY2IDcuODYgMTUuMTY2IDE2LjRxMCAuNjgxLS4wNTYgMS4zNjFoLS41Yy0uNDY1IDAtLjg4LjI2LTEuMDgyLjY3N3MtLjE1LjkwNC4xMzcgMS4yN2wzLjI1NCA0LjEzMmExLjIgMS4yIDAgMCAwIC45NDQuNDU4Yy4zNzEgMCAuNzE2LS4xNjcuOTQ1LS40NTlsMy4yNTMtNC4xMzJjLjI4OC0uMzY0LjM0LS44NS4xMzgtMS4yNjhtLTQuMzM2IDQuMDc1LTIuNTExLTMuMTloLjQ2MmEuNzguNzggMCAwIDAgLjc3Ni0uNjg1cS4xMzgtMS4xMTUuMTM4LTIuMjM5YTE3Ljk1IDE3Ljk1IDAgMCAwLTQuODItMTIuMjYzIDE3Ljk1IDE3Ljk1IDAgMCAwLTExLjA2Ni01LjYyNHYtMi4xMWMxMC4xNSAxLjA2NyAxNy45ODUgOS42OTQgMTcuOTg1IDE5Ljk5NyAwIC42ODgtLjAzNiAxLjM4Mi0uMTA1IDIuMDYzYS43OC43OCAwIDAgMCAuNzc3Ljg2aC44NzZ6TTcuMzc3IDExLjQ5N2wzLjE4NyAxLjg0YS43OC43OCAwIDAgMCAxLjAzNi0uMjM4IDE2LjMgMTYuMyAwIDAgMSA0LjIyNC00LjI2Ljc4Ljc4IDAgMCAwIC4yMzMtMS4wMzRMMTQuMjI5IDQuNjRhLjc4Ljc4IDAgMCAwLTEuMTEtLjI1OSAyMS43IDIxLjcgMCAwIDAtNi4wMDEgNi4wMDUuNzguNzggMCAwIDAgLjI1OSAxLjExbTUuOTI1LTUuMzM4IDEuMDQ5IDEuODE2YTE3LjggMTcuOCAwIDAgMC0zLjYyMiAzLjY1M2wtMS44MzQtMS4wNTlhMjAgMjAgMCAwIDEgNC40MDctNC40MW0yMi43MzEgMjYuNDctNy41MzIgNC4zODdhNCA0IDAgMCAxLS44NzYuMzg3cS4xNDItLjI4OC4yMjQtLjU5OWMuNC0xLjQ5NS0uNDg2LTMuMDU1LTIuMDE5LTMuNTUyYTEgMSAwIDAgMC0uMTAyLS4wMjZjLTIuMTU2LS4zODgtNC4yODctMS4xNTktNi0xLjc3OC0uNTk3LS4yMTYtMS4xNjItLjQyLTEuNjQyLS41NzYtMS45Ny0uNjQtMy43NDIuMTQ2LTUuMjE0Ljk5OWwtNS41MDUgMy4xODctLjQ3My0uODM0YTEuODggMS44OCAwIDAgMC0xLjE0LS44OSAxLjg4IDEuODggMCAwIDAtMS40MzYuMTc2bC0yLjExMyAxLjE5NmExLjg5MyAxLjg5MyAwIDAgMC0uNzE0IDIuNTc2TDcuNzA0IDQ4LjI2Yy4yNDguNDM4LjY1My43NTQgMS4xNC44OXEuMjU1LjA3LjUxLjA3Yy4zMjIgMCAuNjQtLjA4NC45MjYtLjI0NmwyLjExNC0xLjE5NmMuNDM4LS4yNDguNzU0LS42NTMuODg5LTEuMTRhMS44OCAxLjg4IDAgMCAwLS4xNzUtMS40MzZsLS41ODYtMS4wMzUgMS4xNC0uNjU4IDkuNjAyIDIuNTczYTYuMiA2LjIgMCAwIDAgMS42MTIuMjE4YzEuMDc0IDAgMi4xMS0uMjk2IDMuMDU5LS44OGwxMy42NjktOC40MTdjMS4yOTYtLjc5NyAxLjcwOS0yLjgwNC44NjctNC4yMS0uNDA4LS42OC0yLjA3Ny0yLjcwNC02LjQzOC0uMTY0TTExLjc3NyA0Ni4yMmEuMzMuMzMgMCAwIDEtLjE1My4xOThsLTIuMTEzIDEuMTk2YS4zMy4zMyAwIDAgMS0uMjQ5LjAzLjMzLjMzIDAgMCAxLS4xOTgtLjE1NEwyLjg1IDM2LjUxMmEuMzMuMzMgMCAwIDEgLjEyNC0uNDQ3bDIuMTEzLTEuMTk1YS4zMi4zMiAwIDAgMSAuMjQ5LS4wM2MuMDUuMDE0LjE0LjA1Mi4xOTguMTUzbDYuMjEzIDEwLjk3OGMuMDU3LjEwMi4wNDMuMi4wMy4yNW0yOS4wMDgtMTAuNTQ3LTEzLjY3IDguNDE3Yy0xLjA1Ni42NS0yLjIxNS44MTMtMy40NDYuNDgzbC05LjkxNS0yLjY1N2EuNzguNzggMCAwIDAtLjU5My4wNzhsLTEuNDA4LjgxMy0zLjYxNy02LjM5IDUuNTE5LTMuMTk0YzEuMjMzLS43MTUgMi41NjUtMS4zMTQgMy45NDktLjg2NS40NTYuMTQ4Ljk4My4zMzggMS41OTMuNTU5IDEuNzUzLjYzNCAzLjkzMSAxLjQyMiA2LjE5NiAxLjgzNy43MjYuMjU3IDEuMTMxLjk1Ny45NDcgMS42NDYtLjI0NC45MDctMS4wMDcgMS4wMi0xLjYxNi45NS0xLjEwMi0uMjI2LTIuMTUzLS41MjYtMy4yNjQtLjg0My0uNTI5LS4xNTEtMS4wNzYtLjMwOC0xLjY0LS40NTlhLjc4Mi43ODIgMCAwIDAtLjQwNCAxLjUxYy41NS4xNDcgMS4wOTIuMzAyIDEuNjE1LjQ1MSAxLjE1Mi4zMyAzLjQ0Ljg4NSAzLjQ0NS44ODZsLjkzNy4xNTJjMS40MjcuMjI4IDIuNjk1LjAwNiAzLjg3NC0uNjgxbDcuNTMyLTQuMzg3YzIuMTA4LTEuMjI4IDMuNzItMS4zNzEgNC4zMTEtLjM4My40MDUuNjc0LjIzIDEuNzIzLS4zNDUgMi4wNzdtLTM1LjE0IDEuMjE4YS43NTUuNzU1IDAgMSAxLTEuNDkuMjQuNzU1Ljc1NSAwIDAgMSAxLjQ5LS4yNG0yNi4xNDItMjEuODAzYTUuNjYgNS42NiAwIDAgMC01LjY1Mi01LjY1MiA1LjY2IDUuNjYgMCAwIDAtNS42NTIgNS42NTJjMCAxLjkwMS45NDQgMy41ODQgMi4zODcgNC42MWExMC4zOCAxMC4zOCAwIDAgMC03LjA5IDguNzc0Ljc4Ljc4IDAgMCAwIC43NzcuODY1aDE5LjE1NmEuNzguNzggMCAwIDAgLjc3Ni0uODY1IDEwLjM4IDEwLjM4IDAgMCAwLTcuMDktOC43NzUgNS42NSA1LjY1IDAgMCAwIDIuMzg4LTQuNjA5TTM0LjggMjcuNzc0SDE3LjQ3YTguODMgOC44MyAwIDAgMSA4LjY2My03LjAzNGguMDA0YTguODMgOC44MyAwIDAgMSA4LjY2MyA3LjAzNG0tOC42NjUtOC41OTdoLS4wMDNhNC4wOTQgNC4wOTQgMCAwIDEtNC4wODYtNC4wODkgNC4wOTQgNC4wOTQgMCAwIDEgNC4wODktNC4wOSA0LjA5NCA0LjA5NCAwIDAgMSA0LjA5IDQuMDkgNC4wOTQgNC4wOTQgMCAwIDEtNC4wODcgNC4wOXoiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgPC9zdmc+"
+                                alt=""></div>
+                        <div class="step-title">24/7 Online Support</div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-</body>
+        </section>
 
-</html>
+        <!-- Quote Form -->
+        <!-- Quote Form -->
+        <section class="quote-form-section">
+            <div class="container">
+                <div class="quote-container">
+                    <div>
+                        <img src="https://html.theme-village.com/transhub/demo/images/quote-thumb.jpg" alt="Truck"
+                            class="quote-image">
+                    </div>
+
+                    <div class="quote-form-box">
+                        <h3 class="form-section-title">Personal Info</h3>
+                        <form>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <div class="icon-input">
+                                        <span class="input-icon"><i class="fas fa-user"></i></span>
+                                        <input type="text" placeholder="Your name">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="icon-input">
+                                        <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                                        <input type="email" placeholder="Your email">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="icon-input">
+                                        <span class="input-icon"><i class="fas fa-phone"></i></span>
+                                        <input type="tel" placeholder="Your phone">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h3 class="form-section-title">Shipment Info</h3>
+
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <select>
+                                        <option>Select type</option>
+                                        <option>Air Freight</option>
+                                        <option>Sea Freight</option>
+                                        <option>Land Freight</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" placeholder="City">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" placeholder="City">
+                                </div>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <select>
+                                        <option>Select</option>
+                                        <option>FOB</option>
+                                        <option>CIF</option>
+                                        <option>EXW</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="date">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="time">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="submit-btn">Request A Quote <i
+                                    class="fas fa-arrow-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <%- include('partials/footer.ejs') %>

@@ -1,58 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+<%- include('partials/header.ejs') %>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-        }
-
-        /* Page Hero */
-        .page-hero {
-            background: linear-gradient(rgba(26, 35, 55, 0.7), rgba(26, 35, 55, 0.7)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&h=400&fit=crop') center/cover;
-            padding: 100px 0 60px;
-            color: white;
-            text-align: center;
-        }
-
-        .page-hero h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .breadcrumb {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            font-size: 14px;
-        }
-
-        .breadcrumb a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .breadcrumb span {
-            color: #FF5722;
-        }
-
         /* Login Section */
         .login-section {
             padding: 80px 20px;
         }
 
-        .container {
-            max-width: 500px;
+        .login-section .container {
+            width: 60%;
             margin: 0 auto;
         }
 
@@ -60,7 +14,6 @@
             background: white;
             padding: 50px 40px;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
         }
 
         .login-title {
@@ -95,13 +48,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 18px;
         }
 
         .social-btn.facebook {
-            background: #FF5722;
+            background: #e2b40e;
             color: white;
-            border-color: #FF5722;
+            border-color: #e2b40e;
         }
 
         .social-btn.google {
@@ -153,7 +106,7 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: #1a1a2e;
+            color: #2c3192;
             font-weight: 500;
             font-size: 14px;
         }
@@ -169,7 +122,7 @@
 
         .form-group input:focus {
             outline: none;
-            border-color: #FF5722;
+            border-color: #e2b40e;
         }
 
         .remember-forgot {
@@ -187,11 +140,11 @@
         }
 
         .remember-me input[type="checkbox"] {
-            accent-color: #FF5722;
+            accent-color: #e2b40e;
         }
 
         .forgot-link {
-            color: #FF5722;
+            color: #e2b40e;
             text-decoration: none;
             font-size: 14px;
             font-weight: 600;
@@ -203,7 +156,7 @@
 
         .login-btn {
             width: 100%;
-            background: #FF5722;
+            background: #e2b40e;
             color: white;
             padding: 16px;
             border: none;
@@ -215,25 +168,25 @@
         }
 
         .login-btn:hover {
-            background: #e64a19;
+            background: #2c3192;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(255, 87, 34, 0.4);
         }
 
-        .register-link {
+        .Login-link {
             text-align: center;
             margin-top: 25px;
             font-size: 14px;
             color: #666;
         }
 
-        .register-link a {
-            color: #FF5722;
+        .Login-link a {
+            color: #e2b40e;
             text-decoration: none;
             font-weight: 600;
         }
 
-        .register-link a:hover {
+        .Login-link a:hover {
             text-decoration: underline;
         }
 
@@ -247,61 +200,68 @@
             }
         }
     </style>
-</head>
+    </head>
 
-<body>
-    <!-- Page Hero -->
-    <section class="page-hero">
-        <h1>Login</h1>
-        <div class="breadcrumb">
-            <a href="#">Home</a> > <span>Login</span>
-        </div>
-    </section>
-
-    <!-- Login Section -->
-    <section class="login-section">
-        <div class="container">
-            <div class="login-box">
-                <h2 class="login-title">Login To Your Account</h2>
-                <p class="login-subtitle">Please log-in access your account.</p>
-
-                <div class="social-login">
-                    <button class="social-btn facebook">Login With Facebook</button>
-                    <button class="social-btn google">Login With Google</button>
+    <body>
+        <!-- Page Hero -->
+        <section class="page-hero">
+            <div class="page-title">
+                <div class="vertical-line"></div>
+                <div class="page-text">
+                    <h1 class="tlt">Login</h1>
+                    <div class="breadcrumb">
+                        <a href="/">Home</a>
+                        <i class="fa-solid fa-angle-right"></i>
+                        <span>Login</span>
+                    </div>
                 </div>
-
-                <div class="divider">
-                    <span>OR</span>
-                </div>
-
-                <form>
-                    <div class="form-group">
-                        <label>Username*</label>
-                        <input type="text" placeholder="Username" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Password*</label>
-                        <input type="password" placeholder="Password" required>
-                    </div>
-
-                    <div class="remember-forgot">
-                        <label class="remember-me">
-                            <input type="checkbox">
-                            <span>Remember me</span>
-                        </label>
-                        <a href="#" class="forgot-link">Forgot Password</a>
-                    </div>
-
-                    <button type="submit" class="login-btn">Login</button>
-
-                    <p class="register-link">
-                        Don't have an account? <a href="#">Register Here</a>
-                    </p>
-                </form>
             </div>
-        </div>
-    </section>
-</body>
+        </section>
 
-</html>
+        <!-- Login Section -->
+        <section class="login-section">
+            <div class="container">
+                <div class="login-box">
+                    <h2 class="login-title">Login To Your Account</h2>
+                    <p class="login-subtitle">Please log-in access your account.</p>
+
+                    <div class="social-login">
+                        <button class="social-btn facebook">Login With Facebook</button>
+                        <button class="social-btn google">Login With Google</button>
+                    </div>
+
+                    <div class="divider">
+                        <span>OR</span>
+                    </div>
+
+                    <form>
+                        <div class="form-group">
+                            <label>Username*</label>
+                            <input type="text" placeholder="Username" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Password*</label>
+                            <input type="password" placeholder="Password" required>
+                        </div>
+
+                        <div class="remember-forgot">
+                            <label class="remember-me">
+                                <input type="checkbox">
+                                <span>Remember me</span>
+                            </label>
+                            <a href="#" class="forgot-link">Forgot Password</a>
+                        </div>
+
+                        <button type="submit" class="login-btn">Login</button>
+
+                        <p class="Login-link">
+                            Don't have an account? <a href="/register">Register Now</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </body>
+
+    <%- include('partials/footer.ejs') %>

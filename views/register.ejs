@@ -1,72 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+<%- include('partials/header.ejs') %>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-        }
-
-        /* Page Hero */
-        .page-hero {
-            background: linear-gradient(rgba(26, 35, 55, 0.7), rgba(26, 35, 55, 0.7)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&h=400&fit=crop') center/cover;
-            padding: 100px 0 60px;
-            color: white;
-            text-align: center;
-        }
-
-        .page-hero h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .breadcrumb {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            font-size: 14px;
-        }
-
-        .breadcrumb a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .breadcrumb span {
-            color: #FF5722;
-        }
-
         /* Register Section */
         .register-section {
             padding: 80px 20px;
         }
 
-        .container {
-            max-width: 500px;
+        .register-section .container {
+            max-width: 60%;
             margin: 0 auto;
         }
 
         .register-box {
-            background: white;
+            background: #ecf0f1;
             padding: 50px 40px;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ccc;
         }
 
         .register-title {
             text-align: center;
             font-size: 28px;
-            color: #1a1a2e;
+            color: #2c3192;
             margin-bottom: 40px;
         }
 
@@ -93,7 +47,7 @@
 
         .form-group input:focus {
             outline: none;
-            border-color: #FF5722;
+            border-color: #e2b40e;
         }
 
         .form-row {
@@ -104,7 +58,7 @@
 
         .register-btn {
             width: 100%;
-            background: #FF5722;
+            background: #e2b40e;
             color: white;
             padding: 16px;
             border: none;
@@ -117,7 +71,7 @@
         }
 
         .register-btn:hover {
-            background: #e64a19;
+            background: #2c3192;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(255, 87, 34, 0.4);
         }
@@ -130,7 +84,7 @@
         }
 
         .login-link a {
-            color: #FF5722;
+            color: #e2b40e;
             text-decoration: none;
             font-weight: 600;
         }
@@ -149,14 +103,18 @@
             }
         }
     </style>
-</head>
 
-<body>
-    <!-- Page Hero -->
     <section class="page-hero">
-        <h1>Register</h1>
-        <div class="breadcrumb">
-            <a href="#">Home</a> > <span>Register</span>
+        <div class="page-title">
+            <div class="vertical-line"></div>
+            <div class="page-text">
+                <h1 class="tlt">Register</h1>
+                <div class="breadcrumb">
+                    <a href="/">Home</a>
+                    <i class="fa-solid fa-angle-right"></i>
+                    <span>Register</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -201,12 +159,10 @@
                     <button type="submit" class="register-btn">SIGN UP</button>
 
                     <p class="login-link">
-                        Already have an account? <a href="#">Log In here</a>
+                        Already have an account? <a href="/login">Log In here</a>
                     </p>
                 </form>
             </div>
         </div>
     </section>
-</body>
-
-</html>
+    <%- include('partials/footer.ejs') %>
