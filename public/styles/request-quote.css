@@ -177,6 +177,10 @@
   .form-grid {
     grid-template-columns: 1fr;
   }
+
+  .quote-container > div > img {
+    display: none;
+  }
 }
 
 /* Small screens (phones) */
