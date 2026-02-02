@@ -1,0 +1,124 @@
+<%- include('partials/header.ejs') %>
+
+    <style>
+        /* Error Section */
+        .error-section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .error-section .container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+
+        .error-content {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .error-title {
+            font-size: 32px;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .error-message {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            width: 75%;
+        }
+
+        .back-home-btn {
+            background: #1a2337;
+            color: white;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .back-home-btn:hover {
+            background: #ca9b19;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 780px) {
+            .error-content {
+                padding: 40px 20px;
+
+                img {
+                    width: 70%;
+                }
+            }
+        }
+
+        @media (max-width: 640px) {
+            .error-illustration {
+                font-size: 120px;
+            }
+
+
+
+            .error-content {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+
+
+    <body>
+        <section class="page-hero">
+            <div class="page-title">
+                <div class="vertical-line"></div>
+                <div class="page-text">
+                    <h1>Error 404 Page</h1>
+                    <div class="breadcrumb">
+                        <a href="/">Home</a>
+                        <i class="fas fa-arrow-right"></i>
+                        <span>Error 404</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Error Section -->
+        <section class="error-section">
+            <div class="container">
+                <div class="error-content">
+                    <img src="images/404.svg" alt="">
+                </div>
+
+                <h2 class="error-title">Opp's that page can't be found</h2>
+                <p class="error-message">
+                    It looks the exciting was found at this location. Maybe try one of the links below or a search?
+                </p>
+
+                <a href="/" class="back-home-btn">
+                    <i class="fas fa-house"></i> Back to Home
+                </a>
+            </div>
+            </div>
+        </section>
+
+
+        <%- include('partials/footer.ejs') %>

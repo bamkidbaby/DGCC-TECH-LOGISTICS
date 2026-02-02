@@ -1,0 +1,437 @@
+<%- include('partials/header.ejs') %>
+    <style>
+        .projects-section {
+            padding: 80px 0;
+
+        }
+
+        .projects-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: clamp(1.6rem, 4vw, 2.5rem);
+            font-weight: 800;
+            color: var(--primary-navy);
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 26px;
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .filter-btn:hover {
+            background: #e2b40e;
+            border-color: var(--accent-orange);
+            color: #fff;
+        }
+
+        .filter-btn.active {
+            background: #e2b40e;
+            border-color: var(--accent-orange);
+            color: #fff;
+        }
+
+        /* Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        /* Card */
+        .project-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, .08);
+            transition: .4s;
+            cursor: pointer;
+            display: none;
+        }
+
+        .project-card.show {
+            display: block;
+            animation: fadeIn .5s ease forwards;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+        }
+
+        /* Image */
+        .project-image-container {
+            height: 240px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .5s;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.08);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, .65), transparent);
+            opacity: 0;
+            transition: .3s;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        /* Info */
+        .project-info {
+            padding: 22px;
+            position: relative;
+        }
+
+        .project-category-badge {
+            position: absolute;
+            top: -14px;
+            left: 18px;
+            background: var(--accent-orange);
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .project-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 12px;
+            color: var(--text-dark);
+        }
+
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--accent-orange);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Animations */
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 768px) {
+            .projects-container {
+                padding: 60px 0;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                padding: 5px;
+            }
+
+            .project-image-container {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filter-btn {
+                padding: 8px 18px;
+                font-size: 13px;
+            }
+
+            .project-image-container {
+                height: 180px;
+            }
+        }
+    </style>
+
+    <section class="page-hero">
+        <div class="page-title">
+            <div class="vertical-line"></div>
+            <div class="page-text">
+                <h1>Case Study</h1>
+                <div class="breadcrumb">
+                    <a href="/">Home</a>
+                    <i class="fa-solid fa-angle-right"></i>
+                    <span>Case Study</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section">
+        <div class="container">
+
+            <div class="section-header">
+                <h2 class="section-title">Our Recent Projects</h2>
+            </div>
+
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="company">TransHub Company</button>
+                <button class="filter-btn" data-filter="freight">Air Freight</button>
+                <button class="filter-btn" data-filter="security">Security</button>
+                <button class="filter-btn" data-filter="warehouse">Warehouse</button>
+                <button class="filter-btn" data-filter="ocean">Ocean</button>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="loading-spinner"></div>
+            </div>
+
+            <div class="projects-grid">
+
+                <div class="project-card show" data-category="company">
+                    <div class="project-image-container">
+                        <img class="project-image">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category-badge">Company</span>
+                        <h3 class="project-title">TransHub Company</h3>
+                    </div>
+                </div>
+
+                <div class="project-card show" data-category="company">
+                    <div class="project-image-container">
+                        <img class="project-image">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category-badge">Company</span>
+                        <h3 class="project-title">TransHub Company</h3>
+                    </div>
+                </div>
+
+                <div class="project-card show" data-category="freight">
+                    <div class="project-image-container">
+                        <img class="project-image">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category-badge">Freight</span>
+                        <h3 class="project-title">Air Freight Solution</h3>
+                    </div>
+                </div>
+
+                <div class="project-card show" data-category="security">
+                    <div class="project-image-container">
+                        <img class="project-image">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category-badge">Security</span>
+                        <h3 class="project-title">Cargo Protection</h3>
+                    </div>
+                </div>
+
+                <div class="project-card show" data-category="warehouse">
+                    <div class="project-image-container">
+                        <img class="project-image">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category-badge">Warehouse</span>
+                        <h3 class="project-title">Inventory Control</h3>
+                    </div>
+                </div>
+
+                <div class="project-card show" data-category="ocean">
+                    <div class="project-image-container">
+                        <img class="project-image">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category-badge">Ocean</span>
+                        <h3 class="project-title">Ocean Freight</h3>
+                    </div>
+                </div>
+
+                <div class="project-card show" data-category="warehouse">
+                    <div class="project-image-container">
+                        <img class="project-image">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category-badge">Warehouse</span>
+                        <h3 class="project-title">Smart Storage</h3>
+                    </div>
+                </div>
+
+                <div class="project-card show" data-category="warehouse">
+                    <div class="project-image-container">
+                        <img class="project-image">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category-badge">Warehouse</span>
+                        <h3 class="project-title">Modern Logistics</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Auto images
+            document.querySelectorAll('.project-image').forEach((img, i) => {
+                img.src = `https://html.theme-village.com/transhub/demo/images/port${i + 1}.jpg`;
+            });
+
+            const buttons = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.project-card');
+            const loader = document.getElementById('loading');
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+
+                    buttons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filter = btn.dataset.filter;
+
+                    loader.classList.add('show');
+                    cards.forEach(c => c.classList.remove('show'));
+
+                    setTimeout(() => {
+                        loader.classList.remove('show');
+
+                        cards.forEach((card, i) => {
+                            if (filter === 'all' || card.dataset.category === filter) {
+                                setTimeout(() => card.classList.add('show'), i * 80);
+                            }
+                        });
+                    }, 300);
+                });
+            });
+        });
+    </script>
+
+    <!-- <script>
+            // Filter Functionality
+            document.addEventListener('DOMContentLoaded', function () {
+                const filterButtons = document.querySelectorAll('.filter-btn');
+                const projectCards = document.querySelectorAll('.project-card');
+                const loading = document.getElementById('loading');
+
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const filterValue = this.getAttribute('data-filter');
+
+                        // Update active button
+                        filterButtons.forEach(btn => btn.classList.remove('active'));
+                        this.classList.add('active');
+
+                        // Show loading
+                        loading.classList.add('show');
+
+                        // Hide all cards first
+                        projectCards.forEach(card => {
+                            card.classList.remove('show');
+                        });
+
+                        // Filter and show cards after a short delay
+                        setTimeout(() => {
+                            loading.classList.remove('show');
+
+                            projectCards.forEach((card, index) => {
+                                const cardCategory = card.getAttribute('data-category');
+
+                                if (filterValue === 'all' || cardCategory === filterValue) {
+                                    setTimeout(() => {
+                                        card.classList.add('show');
+                                    }, index * 100); // Stagger animation
+                                }
+                            });
+                        }, 300);
+                    });
+                });
+
+                // Card click handler
+                projectCards.forEach(card => {
+                    card.addEventListener('click', function () {
+                        const title = this.querySelector('.project-title').textContent;
+                        console.log('Project clicked:', title);
+                        // Add your navigation logic here
+                    });
+                });
+
+                // Smooth scroll for any anchor links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
+        <%- include('partials/footer.ejs') %> -->

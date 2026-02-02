@@ -1,0 +1,331 @@
+<%- include('partials/header.ejs') %>
+    <!-- CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css">
+    <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+
+
+
+
+    <style>
+        :root {
+            --bg-color: #fff;
+            --text-color: #222;
+            --primary-color: #2c3192;
+            --accent-color: #fecb0a;
+        }
+
+        /* ===== Pricing Section ===== */
+        body {
+            background-color: #ecf0f1;
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .pricing {
+            padding: 90px 20px;
+        }
+
+        .pricing__container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Header */
+        .pricing__header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .pricing__tag {
+            color: var(--accent-color);
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .pricing__title {
+            font-size: 42px;
+            color: var(--text-color);
+        }
+
+        /* Toggle */
+        .billing {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 60px;
+        }
+
+        .billing__text {
+            color: #666;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .billing__switch {
+            width: 60px;
+            height: 30px;
+            background: #ddd;
+            border-radius: 50px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .billing__switch.active {
+            background: var(--primary-color);
+        }
+
+        .billing__ball {
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            transition: transform 0.3s;
+        }
+
+        .billing__switch.active .billing__ball {
+            transform: translateX(30px);
+        }
+
+        .billing__badge {
+            background: var(--primary-color);
+            color: var(--bg-color);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Cards */
+        .pricing__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .plan {
+            background: var(--bg-color);
+            padding: 42px 30px;
+            border-radius: 22px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .plan:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .plan__name {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .plan__desc {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .plan__price {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-color);
+            transition: 0.3s;
+        }
+
+        .plan__period {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 30px;
+        }
+
+        .plan__features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 35px;
+        }
+
+        .plan__features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            color: #666;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .plan__features li:last-child {
+            border-bottom: none;
+        }
+
+        .plan__features i {
+            color: var(--accent-color);
+        }
+
+        /* Button */
+        .plan__btn {
+            width: 100%;
+            background: var(--primary-color);
+            color: var(--bg-color);
+            border: none;
+            padding: 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .plan__btn:hover {
+            background: var(--accent-color);
+            color: var(--text-color);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .pricing__grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .pricing__title {
+                font-size: 32px;
+            }
+
+            .plan__price {
+                font-size: 36px;
+            }
+
+            .plan__btn {
+                font-size: 14px;
+                padding: 12px;
+            }
+        }
+    </style>
+
+    <section class="page-hero">
+        <div class="page-title">
+            <div class="vertical-line"></div>
+            <div class="page-text">
+                <h1 class="tlt">Pricing</h1>
+                <div class="breadcrumb">
+                    <a href="/">Home</a>
+                    <i class="fa-solid fa-angle-right"></i>
+                    <span>Pricing</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <div class="pricing__container">
+
+            <div class="pricing__header">
+                <div class="pricing__tag">Pricing Plan</div>
+                <h2 class="pricing__title ">Choose The Right Plan For Growth</h2>
+            </div>
+
+            <div class="billing">
+                <span class="billing__text"><i class="fa-regular fa-calendar"></i> Monthly</span>
+                <div class="billing__switch">
+                    <div class="billing__ball"></div>
+                </div>
+                <span class="billing__text"><i class="fa-solid fa-calendar-days"></i> Yearly</span>
+                <span class="billing__badge">Save 25%</span>
+            </div>
+
+            <div class="pricing__grid">
+
+                <!-- Basic Plan -->
+                <div class="plan">
+                    <h3 class="plan__name">Basic Plan</h3>
+                    <p class="plan__desc">Perfect for startups needing features to get started</p>
+                    <div class="plan__price" data-monthly="20" data-yearly="150">$20</div>
+                    <div class="plan__period">per year</div>
+                    <ul class="plan__features">
+                        <li><i class="fa-solid fa-check"></i> Branding & design identity</li>
+                        <li><i class="fa-solid fa-check"></i> Marketing solutions</li>
+                        <li><i class="fa-solid fa-check"></i> Network analysis</li>
+                        <li><i class="fa-solid fa-check"></i> 24/7 monitoring</li>
+                        <li><i class="fa-solid fa-check"></i> Secure IP address</li>
+                    </ul>
+                    <button class="plan__btn">Get Started <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <!-- Standard Plan -->
+                <div class="plan">
+                    <h3 class="plan__name">Standard Plan</h3>
+                    <p class="plan__desc">Best for growing businesses needing more power</p>
+                    <div class="plan__price" data-monthly="120" data-yearly="250">$120</div>
+                    <div class="plan__period">per year</div>
+                    <ul class="plan__features">
+                        <li><i class="fa-solid fa-check"></i> Branding & design identity</li>
+                        <li><i class="fa-solid fa-check"></i> Marketing solutions</li>
+                        <li><i class="fa-solid fa-check"></i> Advanced analysis</li>
+                        <li><i class="fa-solid fa-check"></i> 24/7 monitoring</li>
+                        <li><i class="fa-solid fa-check"></i> Secure IP address</li>
+                    </ul>
+                    <button class="plan__btn">Get Started <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="plan">
+                    <h3 class="plan__name">Premium Plan</h3>
+                    <p class="plan__desc">For businesses ready to scale massively</p>
+                    <div class="plan__price" data-monthly="220" data-yearly="450">$220</div>
+                    <div class="plan__period">per year</div>
+                    <ul class="plan__features">
+                        <li><i class="fa-solid fa-check"></i> Full branding system</li>
+                        <li><i class="fa-solid fa-check"></i> Marketing automation</li>
+                        <li><i class="fa-solid fa-check"></i> Deep analytics</li>
+                        <li><i class="fa-solid fa-check"></i> Priority support</li>
+                        <li><i class="fa-solid fa-check"></i> Top security</li>
+                    </ul>
+                    <button class="plan__btn">Get Started <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <script>
+        const billingSwitch = document.querySelector('.billing__switch');
+        const prices = document.querySelectorAll('.plan__price');
+
+        billingSwitch.addEventListener('click', () => {
+            billingSwitch.classList.toggle('active');
+            prices.forEach(price => {
+                const monthly = price.getAttribute('data-monthly');
+                const yearly = price.getAttribute('data-yearly');
+                if (billingSwitch.classList.contains('active')) {
+                    price.textContent = `$${yearly}`;
+                } else {
+                    price.textContent = `$${monthly}`;
+                }
+            });
+        });
+
+    </script>
+
+
+
+    <%- include('partials/footer.ejs') %>

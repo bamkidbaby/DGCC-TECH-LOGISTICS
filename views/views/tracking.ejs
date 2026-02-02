@@ -1,0 +1,212 @@
+<%- include('partials/header.ejs') %>
+
+    <style>
+        /* Layer 1: Section */
+        .tracking-form {
+            padding: 80px 20px;
+            background: #fff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Layer 2: Container with background image */
+        .tracking-form .container {
+            width: 100%;
+            max-width: 90%;
+            padding: 100px;
+            border-radius: 30px;
+            background-image: url("../images/imgi_11_ship.jpg");
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Layer 3: Form with dark glassmorphism */
+        .tracking-form form {
+            width: 100%;
+            padding: 100px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        }
+
+        .tracking-form .form-title {
+            text-align: center;
+            color: #fff;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .tracking-form .form-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .tracking-form input[type="text"],
+        .tracking-form input[type="email"] {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 12px;
+            outline: none;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .tracking-form input::placeholder {
+            color: #ddd;
+        }
+
+        .tracking-form input:focus {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .tracking-form button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(226, 180, 14, 0.85);
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tracking-form button:hover {
+            background: rgba(226, 180, 14, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(226, 180, 14, 0.6);
+        }
+
+        /* === Responsive Media Queries === */
+        @media (max-width: 1200px) {
+            .tracking-form .container {
+                padding: 80px;
+            }
+
+            .tracking-form form {
+                padding: 60px;
+                gap: 30px;
+            }
+
+            .tracking-form .form-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .tracking-form .container {
+                padding: 60px;
+            }
+
+            .tracking-form form {
+                padding: 50px;
+            }
+
+            .tracking-form .form-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tracking-form .container {
+                padding: 40px 0;
+                min-height: auto;
+                height: auto;
+            }
+
+            .tracking-form form {
+                padding: 30px;
+                gap: 20px;
+            }
+
+            .tracking-form .form-title {
+                font-size: 1.8rem;
+            }
+
+            .tracking-form .form-group {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tracking-form {
+                padding: 20px 10px;
+            }
+
+            .tracking-form .container {
+                padding: 20px;
+            }
+
+            .tracking-form form {
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .tracking-form .form-title {
+                font-size: 1.5rem;
+            }
+
+            .tracking-form input[type="text"],
+            .tracking-form input[type="email"] {
+                font-size: 14px;
+                padding: 10px 12px;
+            }
+
+            .tracking-form button {
+                font-size: 16px;
+                padding: 12px;
+            }
+        }
+    </style>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-title">
+            <div class="vertical-line"></div>
+            <div class="page-text">
+                <h1>Tracking Parcels</h1>
+                <div class="breadcrumb">
+                    <a href="/">Home</a>
+                    <i class="fa-solid fa-angle-right"></i>
+                    <span>Tracking Parcels</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tracking Form -->
+    <section class="tracking-form">
+        <div class="container">
+            <form>
+                <h2 class="form-title">Package Tracking</h2>
+                <div class="form-group">
+                    <input type="text" name="tracking" placeholder="Tracking Number">
+                    <input type="email" name="email" placeholder="Email Address">
+                </div>
+                <button type="submit">Track & Track</button>
+            </form>
+        </div>
+    </section>
+
+    <%- include('partials/footer.ejs') %>
