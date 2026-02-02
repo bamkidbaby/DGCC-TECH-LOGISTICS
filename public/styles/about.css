@@ -1,3 +1,10 @@
+:root {
+  --bg-color: #fff;
+  --text-color: #222;
+  --primary-color: #2c3192;
+  --accent-color: #e2b40e;
+}
+
 /* About Section */
 .about-section {
   padding: 80px 60px;
@@ -22,7 +29,7 @@
   position: absolute;
   top: 20px;
   left: 0;
-  background: #ff5722;
+  background: var(--accent-color);
   color: white;
   padding: 12px 30px;
   font-weight: 700;
@@ -98,7 +105,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #ff5722;
+  color: var(--accent-color);
   font-weight: 600;
   font-size: 13px;
   text-transform: uppercase;
@@ -150,13 +157,12 @@
 
 .tab-btn:hover {
   background: #ffe8e0;
-  color: #ff5722;
+  color: var(--accent-color);
 }
 
 .tab-btn.active {
-  background: #ff5722;
+  background: var(--accent-color);
   color: white;
-  box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
 }
 
 /* Info Box */
@@ -214,20 +220,18 @@
   align-items: center;
   gap: 12px;
   padding: 18px 35px;
-  background: #ff5722;
+  background: var(--accent-color);
   color: white;
   text-decoration: none;
   font-weight: 600;
   font-size: 15px;
   border-radius: 30px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
 }
 
 .cta-btn:hover {
-  background: #e64a19;
+  background: var(--primary-color);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
 }
 
 .cta-btn i {
@@ -271,7 +275,7 @@
 .phone-number {
   font-size: 18px;
   font-weight: 700;
-  color: #ff5722;
+  color: var(--accent-color);
 }
 
 /* Responsive Design */
@@ -389,7 +393,7 @@
 }
 
 .section-label {
-  color: #ff5722;
+  color: var(--accent-color);
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -405,7 +409,7 @@
 
 .quote-box {
   background: rgba(255, 255, 255, 0.05);
-  border-left: 4px solid #ff5722;
+  border-left: 4px solid var(--accent-color);
   padding: 30px;
   border-radius: 10px;
   margin-bottom: 30px;
@@ -431,7 +435,7 @@
 }
 
 .stat-arrow {
-  color: #ff5722;
+  color: var(--accent-color);
   font-size: 20px;
   margin-bottom: 10px;
 }
@@ -471,7 +475,7 @@
 }
 
 .more-link {
-  color: #ff5722;
+  color: var(--accent-color);
   text-decoration: none;
   font-weight: 600;
   font-size: 14px;
@@ -502,7 +506,7 @@
 }
 
 .section-label {
-  color: #ff5722;
+  color: var(--accent-color);
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 2px;
