@@ -20,33 +20,26 @@ app.use(express.static(path.join(__dirname, "Public")));
 //Bodyparser for form data
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//Routes
-app.get("/", (req, res) => res.render("index"));
-app.get("/services", (req, res) => res.render("services"));
-app.get("/about", (req, res) => res.render("about"));
-app.get("/request-quote", (req, res) => res.render("request-quote"));
-app.get("/tracking", (req, res) => res.render("tracking"));
-app.get("/team", (req, res) => res.render("team"));
-app.get("/team-details", (req, res) => res.render("team-details"));
-app.get("/shop", (req, res) => res.render("shop"));
-app.get("/single-product", (req, res) => res.render("single-product"));
-app.get("/cart", (req, res) => res.render("cart"));
-app.get("/checkout", (req, res) => res.render("checkout"));
-app.get("/login", (req, res) => res.render("login"));
-app.get("/register", (req, res) => res.render("register"));
-app.get("/pricing", (req, res) => res.render("pricing"));
-app.get("/faq", (req, res) => res.render("faq"));
-app.get("/error", (req, res) => res.render("error"));
-app.get("/case-study-details", (req, res) => res.render("case-study-details"));
-app.get("/blog-grid-01", (req, res) => res.render("blog-grid"));
-app.get("/blog-classic", (req, res) => res.render("blog-classic"));
-app.get("/single-post-01", (req, res) => res.render("single-post1"));
-app.get("/contact", (req, res) => res.render("contact"));
-app.get("/cart", (req, res) => res.render("cart"));
-app.get("/single-service", (req, res) => res.render("single-service"));
-app.get("/case-study", (req, res) => res.render("case-study"));
+app.get("/", (req, res) => {
+  res.render("index");
+});
 
-//start server
+app.get("/printing", (req, res) => {
+  res.render("printing");
+});
+
+app.get("/design", (req, res) => {
+  res.render("design");
+});
+
+app.get("/finishing", (req, res) => {
+  res.render("finishing");
+});
+
+app.get("/training", (req, res) => {
+  res.render("training");
+});
+
 app.listen(port, () => {
-  console.log(`Server is runnning on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });

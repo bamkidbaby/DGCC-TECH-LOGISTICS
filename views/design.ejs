@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Design & Branding | DGCC TECH</title>
+  <%- include('partials/other-header.ejs') %>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="brand">
+      <img src="./images/logo.png" alt="DGCC Logo" class="logo" />
+      DGCC TECH
+    </div>
+    <ul class="nav-links">
+      <a href="/"><li>Home</li></a>
+      <a href="/printing"><li>Printing</li></a>
+      <a href="/finishing"><li>Finishing</li></a>
+      <a href="/training"><li>Training</li></a>
+    </ul>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" data-aos="fade-down" style="background: linear-gradient(rgba(44, 49, 146, 0.7), rgba(44, 49, 146, 0.7)), url('./images/hero-image2.jpg') center/cover no-repeat;">
+    <div class="hero-text">
+      <h1>Design & Branding</h1>
+      <p>We craft creative visuals that capture attention and communicate your brand identity with style.</p>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery">
+    <h2>Our Recent Works</h2>
+    <div class="gallery-grid" data-aos="fade-right">
+      <div class="gallery-card"><img src="./images/design1.jpg" alt=""><div class="overlay">Flyer & Poster</div></div>
+      <div class="gallery-card"><img src="./images/design2.jpg" alt=""><div class="overlay">Logo Design</div></div>
+      <div class="gallery-card"><img src="./images/design3.jpg" alt=""><div class="overlay">Brand Kit</div></div>
+     
+    </div>
+  </section>
+
+<%- include('partials/footer.ejs') %>
