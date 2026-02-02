@@ -1,529 +1,413 @@
 <%- include('partials/header.ejs') %>
 
-    <section class="page-hero">
-        <div class="page-title">
-            <div class="vertical-line"></div>
-            <div class="page-text">
-                <h1>Our Team</h1>
-                <div class="breadcrumb">
-                    <a href="/">Home</a> <i class="fas fa-arrow-right"></i> <span>Our Team</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
     <style>
         :root {
-            /* New Brand Colors */
             --bg-color: #fff;
             --text-color: #222;
             --primary-color: #2c3192;
             --accent-color: #e2b40e;
-
-            /* Mapped to your existing system (so nothing breaks) */
-            --primary-navy: var(--primary-color);
-            --secondary-navy: #1f247a;
-
-            --accent-orange: var(--accent-color);
-            --accent-orange-light: #f0c93a;
-
-            --text-light: #ffffff;
-            --text-gray: #9aa3b2;
-
-            --card-bg: #ffffff;
-            --section-bg: #f6f7fb;
         }
 
-        .team-section {
+        /* ================= CONTAINER ================= */
+        .case-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 100px 0;
+            padding: 70px 0;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
+        /* ================= LAYOUT ================= */
+        .case-layout {
+            display: grid;
+            grid-template-columns: 2.5fr 1fr;
+            gap: 40px;
+        }
+
+        /* ================= MAIN CONTENT ================= */
+        .case-main {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 45px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+        }
+
+        .case-hero-img {
+            width: 100%;
+            height: 420px;
+            border-radius: 16px;
+            object-fit: cover;
+            margin-bottom: 35px;
+        }
+
+        /* ================= TEXT ================= */
+        .case-header h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 18px;
+        }
+
+        .case-desc {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.9;
+            margin-bottom: 22px;
         }
 
         .section-title {
             font-family: 'Syne', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary-navy);
-            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 45px 0 22px;
         }
 
-        .section-subtitle {
-            color: var(--text-gray);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Team Grid */
-        .team-grid {
+        /* ================= HIGHLIGHT BOX ================= */
+        .case-highlight {
+            background: linear-gradient(135deg, rgba(44, 49, 146, 0.05), rgba(226, 180, 14, 0.08));
+            border-radius: 18px;
+            padding: 25px;
+            margin: 35px 0;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 30px;
-            margin-top: 40px;
+            align-items: center;
         }
 
-        /* Team Card */
-        .team-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-
-        .team-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Team Image Container */
-        .team-image-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
-            aspect-ratio: 1;
-        }
-
-        .team-image {
+        .highlight-img {
             width: 100%;
-            height: 100%;
+            height: 50%;
+            border-radius: 14px;
             object-fit: cover;
-            transition: transform 0.5s ease;
         }
 
-        .team-card:hover .team-image {
-            transform: scale(1.08);
+        .highlight-text h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
         }
 
-        /* Social Icon Overlay */
-        .team-social-icon {
+        .highlight-items {
+            list-style: none;
+            padding: 0;
+        }
+
+        .highlight-items li {
+            padding: 9px 0 9px 28px;
+            position: relative;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .highlight-items li::before {
+            content: "✔";
             position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: var(--accent-orange);
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* ================= SIDEBAR ================= */
+        .case-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .sidebar-box {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 30px 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar-box h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 22px;
+        }
+
+        /* ================= INFO ITEMS ================= */
+        .info-block {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 14px 18px;
+            border-radius: 30px;
+            background: #f8f9fc;
+            margin-top: 15px;
+        }
+
+        .info-symbol {
+            width: 46px;
+            height: 46px;
+            background: rgba(44, 49, 146, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 20px;
+            color: var(--primary-color);
+            font-size: 18px;
+        }
+
+        .info-text h4 {
+            font-size: 0.75rem;
+            color: #777;
+            font-weight: 700;
+            margin-bottom: 3px;
+            text-transform: uppercase;
+        }
+
+        .info-text p {
+            font-size: 1rem;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        /* ================= CONTACT ================= */
+        .contact-blocks {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .contact-entry {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .contact-entry i {
+            color: var(--accent-color);
+        }
+
+        /* ================= BUTTONS ================= */
+        .btn-brochure {
+            width: 100%;
+            background: var(--accent-color);
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 1rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            z-index: 2;
-            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.4);
-        }
-
-        .team-social-icon:hover {
-            background: white;
-            color: var(--accent-orange);
-            transform: scale(1.1) rotate(15deg);
-        }
-
-        /* Gradient Overlay on Image */
-        .team-image-container::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .team-card:hover .team-image-container::after {
-            opacity: 1;
-        }
-
-        /* Team Info */
-        .team-info {
-            padding: 25px 20px;
-            text-align: center;
-        }
-
-        .team-name {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 5px;
-            transition: color 0.3s ease;
-        }
-
-        .team-card:hover .team-name {
-            color: var(--accent-orange);
-        }
-
-        .team-position {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        /* Social Links Popup */
-        .social-popup {
-            position: absolute;
-            bottom: 70px;
-            right: 20px;
-            background: white;
-            border-radius: 12px;
-            padding: 10px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .team-card:hover .social-popup {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .team-card .social-links {
-            display: flex;
-            gap: 8px;
-            flex-direction: column;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--bg-light);
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-dark);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 16px;
+            gap: 10px;
         }
 
-        .social-link:hover {
-            background: var(--accent-orange);
-            color: white;
-            transform: scale(1.1);
+        .btn-brochure:hover {
+            background: #d4a800;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(226, 180, 14, 0.4);
         }
 
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .team-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 25px;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
+        .btn-company {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
         }
 
-        @media (max-width: 768px) {
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+        .btn-company:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 968px) {
+            .case-layout {
+                grid-template-columns: 1fr;
             }
 
-            .section-title {
-                font-size: 1.8rem;
+            .case-highlight {
+                grid-template-columns: 1fr;
             }
 
-            .team-name {
-                font-size: 1.1rem;
-            }
-
-            .team-position {
-                font-size: 0.85rem;
-            }
-
-            .team-info {
-                padding: 20px 15px;
+            .highlight-img {
+                height: 100%;
             }
         }
 
         @media (max-width: 480px) {
-            .team-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+            .case-main {
+                padding: 25px 10px;
             }
-
-            body {
-                padding: 30px 15px;
-            }
-
-            .section-title {
-                font-size: 1.6rem;
-            }
-
-            .team-social-icon {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
-                bottom: 15px;
-                right: 15px;
-            }
-        }
-
-        /* Animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .team-card {
-            animation: fadeInUp 0.6s ease forwards;
-            opacity: 0;
-        }
-
-        .team-card:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .team-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .team-card:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .team-card:nth-child(4) {
-            animation-delay: 0.4s;
-        }
-
-        .team-card:nth-child(5) {
-            animation-delay: 0.5s;
-        }
-
-        .team-card:nth-child(6) {
-            animation-delay: 0.6s;
-        }
-
-        .team-card:nth-child(7) {
-            animation-delay: 0.7s;
-        }
-
-        .team-card:nth-child(8) {
-            animation-delay: 0.8s;
         }
     </style>
 
-    <section class="team-section">
-        <div class="section-header">
-            <h2 class="section-title">Meet Our Expert Team</h2>
-            <p class="section-subtitle">Dedicated professionals committed to delivering excellence in logistics and
-                transportation services</p>
-        </div>
-
-        <div class="team-grid">
-            <!-- Team Member 1 -->
-            <div class="team-card">
-                <div class="team-image-container">
-                    <img src="https://html.theme-village.com/transhub/demo/images/tm2.jpg" alt="Jenny Noah"
-                        class="team-image">
-                    <div class="team-social-icon">
-                        <i class="fab fa-linkedin-in"></i>
-                    </div>
-                    <div class="social-popup">
-                        <div class="social-links">
-                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-info">
-                    <h3 class="team-name">Jenny Noah</h3>
-                    <p class="team-position">Head of Operations</p>
-                </div>
-            </div>
-
-            <!-- Team Member 2 -->
-            <div class="team-card">
-                <div class="team-image-container">
-                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&h=500&fit=crop"
-                        alt="Jenny Mache" class="team-image">
-                    <div class="team-social-icon">
-                        <i class="fab fa-linkedin-in"></i>
-                    </div>
-                    <div class="social-popup">
-                        <div class="social-links">
-                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-info">
-                    <h3 class="team-name">Jenny Mache</h3>
-                    <p class="team-position">Head of Operations</p>
-                </div>
-            </div>
-
-            <!-- Team Member 3 -->
-            <div class="team-card">
-                <div class="team-image-container">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=500&fit=crop"
-                        alt="Sofia Melisa" class="team-image">
-                    <div class="team-social-icon">
-                        <i class="fab fa-linkedin-in"></i>
-                    </div>
-                    <div class="social-popup">
-                        <div class="social-links">
-                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-info">
-                    <h3 class="team-name">Sofia Melisa</h3>
-                    <p class="team-position">Project Manager</p>
-                </div>
-            </div>
-
-            <!-- Team Member 4 -->
-            <div class="team-card">
-                <div class="team-image-container">
-                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&h=500&fit=crop"
-                        alt="Shane Darren" class="team-image">
-                    <div class="team-social-icon">
-                        <i class="fab fa-linkedin-in"></i>
-                    </div>
-                    <div class="social-popup">
-                        <div class="social-links">
-                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-info">
-                    <h3 class="team-name">Shane Darren</h3>
-                    <p class="team-position">Head of Operations</p>
-                </div>
-            </div>
-
-            <!-- Team Member 5 -->
-            <div class="team-card">
-                <div class="team-image-container">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&h=500&fit=crop"
-                        alt="Jenny Noah" class="team-image">
-                    <div class="team-social-icon">
-                        <i class="fab fa-linkedin-in"></i>
-                    </div>
-                    <div class="social-popup">
-                        <div class="social-links">
-                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-info">
-                    <h3 class="team-name">Jenny Noah</h3>
-                    <p class="team-position">Head of Operations</p>
-                </div>
-            </div>
-
-            <!-- Team Member 6 -->
-            <div class="team-card">
-                <div class="team-image-container">
-                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&h=500&fit=crop"
-                        alt="Jenny Mache" class="team-image">
-                    <div class="team-social-icon">
-                        <i class="fab fa-linkedin-in"></i>
-                    </div>
-                    <div class="social-popup">
-                        <div class="social-links">
-                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-info">
-                    <h3 class="team-name">Jenny Mache</h3>
-                    <p class="team-position">Head of Operations</p>
-                </div>
-            </div>
-
-            <!-- Team Member 7 -->
-            <div class="team-card">
-                <div class="team-image-container">
-                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&h=500&fit=crop"
-                        alt="Sofia Melisa" class="team-image">
-                    <div class="team-social-icon">
-                        <i class="fab fa-linkedin-in"></i>
-                    </div>
-                    <div class="social-popup">
-                        <div class="social-links">
-                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-info">
-                    <h3 class="team-name">Sofia Melisa</h3>
-                    <p class="team-position">Project Manager</p>
-                </div>
-            </div>
-
-            <!-- Team Member 8 -->
-            <div class="team-card">
-                <div class="team-image-container">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&h=500&fit=crop"
-                        alt="Shane Darren" class="team-image">
-                    <div class="team-social-icon">
-                        <i class="fab fa-linkedin-in"></i>
-                    </div>
-                    <div class="social-popup">
-                        <div class="social-links">
-                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-info">
-                    <h3 class="team-name">Shane Darren</h3>
-                    <p class="team-position">Head of Operations</p>
+    <section class="page-hero">
+        <div class="page-title">
+            <div class="vertical-line"></div>
+            <div class="page-text">
+                <h1>Case Study Details</h1>
+                <div class="breadcrumb">
+                    <a href="/">Home</a>
+                    <i class="fa-solid fa-angle-right"></i>
+                    <span>Case Study Details</span>
                 </div>
             </div>
         </div>
     </section>
 
+    <div class="case-container">
+        <div class="case-layout">
+            <!-- Main Content -->
+            <div class="case-main">
+                <!-- Hero Image -->
+                <img src="https://html.theme-village.com/transhub/demo/images/single-pt.jpg" alt="MKS Logistics Project"
+                    class="case-hero-img">
+
+                <!-- Project Header -->
+                <div class="case-header">
+                    <h1>MKS Logistics Project V.1</h1>
+                    <p class="case-desc">
+                        Our Ocean Freight Services offer comprehensive solutions for all your shipping needs,
+                        ensuring your cargo is transported safely, cost-effectively, and timely. Whether you're shipping
+                        FCL
+                        (Full Container Load) or LCL (Less than Container Load) cargo, or even heavy cargo, our
+                        comprehensive services meet all aspects of your sea shipping needs.
+                    </p>
+                    <p class="case-desc">
+                        With our Ocean Freight Services, we handle all aspects of your sea shipping needs, from
+                        documentation to delivery, ensuring smooth transit and competitive pricing. We navigate the
+                        complexities of international trade regulations, making this seamless and efficient for you.
+                    </p>
+                </div>
+
+                <!-- Project Details Section -->
+                <h2 class="section-title">Project details</h2>
+                <p class="case-desc">
+                    With our Ocean Freight Services, we handle all aspects of your sea shipping needs, from
+                    documentation to delivery, ensuring smooth transit and competitive pricing. We navigate the
+                    complexities of international trade regulations and offer business operational support digging
+                    into navigate the complexities of international trade.
+                </p>
+
+                <!-- Highlight Box -->
+                <div class="case-highlight">
+                    <img src="https://html.theme-village.com/transhub/demo/images/case-video.jpg"
+                        alt="Project Highlight" class="highlight-img">
+                    <div class="highlight-text">
+                        <h3>Translog Around the World</h3>
+                        <p style="color: #777; margin-bottom: 15px; font-size: 0.95rem;">
+                            Three core values define the spirit of our culture
+                        </p>
+                        <ul class="highlight-items">
+                            <li>Ocean freight offers predictable transit times.</li>
+                            <li>It embody one of the most economical.</li>
+                            <li>Suitable for most, modern shipping services.</li>
+                            <li>We are all about quality transport company.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="case-desc">
+                    Freight forwarders often offer consolidated cargo services, where LCL cargo combines multiple
+                    shipments from multiple companies into a full container. FCL (Full Container Load) is typically
+                    used when you have enough cargo to fill an entire container. It offers advantages similar to LCL but
+                    without the consolidation process.
+                </p>
+                <p class="case-desc">
+                    This is a cost-effective option for smaller shipments. Your goods are consolidated with other
+                    shippers, and you only pay for the space your cargo occupies. It can take longer as it involves
+                    additional cost.
+                </p>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="case-sidebar">
+                <!-- Project Information -->
+                <div class="sidebar-box">
+                    <h3>Project Information</h3>
+                    <div class="info-block">
+                        <div class="info-symbol"><i class="fas fa-user"></i></div>
+                        <div class="info-text">
+                            <h4>Client</h4>
+                            <p>Mark Anthonica</p>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-symbol"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="info-text">
+                            <h4>Location</h4>
+                            <p>Port au Mount Stanford</p>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-symbol"><i class="fas fa-calendar-alt"></i></div>
+                        <div class="info-text">
+                            <h4>Project Date</h4>
+                            <p>January 22, 2025</p>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-symbol"><i class="fas fa-tag"></i></div>
+                        <div class="info-text">
+                            <h4>Category</h4>
+                            <p>Sea Logistics</p>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-symbol"><i class="fas fa-clock"></i></div>
+                        <div class="info-text">
+                            <h4>Duration</h4>
+                            <p>45 Days, 300</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="sidebar-box">
+                    <h3>Contact Info</h3>
+                    <div class="contact-blocks">
+                        <div class="contact-entry">
+                            <i class="fas fa-phone"></i>
+                            <span>+33 (0)6 Anveal, Australia</span>
+                        </div>
+                        <div class="contact-entry">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@gmhed.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brochures -->
+                <div class="sidebar-box">
+                    <h3>Brochures</h3>
+                    <button class="btn-brochure">
+                        <i class="fas fa-download"></i>
+                        Download Brochure
+                    </button>
+                    <button class="btn-brochure btn-company">
+                        <i class="fas fa-file-pdf"></i>
+                        Company Profile
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Add smooth scroll behavior
+        // Download button functionality
+        document.querySelectorAll('.btn-brochure').forEach(button => {
+            button.addEventListener('click', function () {
+                const buttonText = this.textContent.trim();
+                console.log('Download clicked:', buttonText);
+                alert(`Downloading ${buttonText}...`);
+            });
+        });
+
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -533,30 +417,6 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
-                }
-            });
-        });
-
-        // Add active state to social links
-        document.querySelectorAll('.social-link').forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                // Add your social media link functionality here
-                console.log('Social link clicked:', this.querySelector('i').className);
-            });
-        });
-
-        // Parallax effect on scroll
-        window.addEventListener('scroll', () => {
-            const cards = document.querySelectorAll('.team-card');
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                const scrollPercent = (window.innerHeight - rect.top) / window.innerHeight;
-                if (scrollPercent > 0 && scrollPercent < 1) {
-                    const image = card.querySelector('.team-image');
-                    if (image) {
-                        image.style.transform = `scale(${1 + scrollPercent * 0.05})`;
-                    }
                 }
             });
         });
