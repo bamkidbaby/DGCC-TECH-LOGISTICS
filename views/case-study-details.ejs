@@ -9,28 +9,28 @@
         }
 
         /* ================= CONTAINER ================= */
-        .project-container {
+        .case-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 70px 0;
         }
 
         /* ================= LAYOUT ================= */
-        .project-layout {
+        .case-layout {
             display: grid;
             grid-template-columns: 2.5fr 1fr;
             gap: 40px;
         }
 
         /* ================= MAIN CONTENT ================= */
-        .project-main {
+        .case-main {
             background: #ffffff;
             border-radius: 20px;
             padding: 45px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
         }
 
-        .project-hero-image {
+        .case-hero-img {
             width: 100%;
             height: 420px;
             border-radius: 16px;
@@ -39,7 +39,7 @@
         }
 
         /* ================= TEXT ================= */
-        .project-header h1 {
+        .case-header h1 {
             font-family: 'Syne', sans-serif;
             font-size: 2.3rem;
             font-weight: 800;
@@ -47,7 +47,7 @@
             margin-bottom: 18px;
         }
 
-        .project-description {
+        .case-desc {
             color: #555;
             font-size: 1rem;
             line-height: 1.9;
@@ -63,10 +63,8 @@
         }
 
         /* ================= HIGHLIGHT BOX ================= */
-        .project-highlight {
-            background: linear-gradient(135deg,
-                    rgba(44, 49, 146, 0.05),
-                    rgba(226, 180, 14, 0.08));
+        .case-highlight {
+            background: linear-gradient(135deg, rgba(44, 49, 146, 0.05), rgba(226, 180, 14, 0.08));
             border-radius: 18px;
             padding: 25px;
             margin: 35px 0;
@@ -76,14 +74,14 @@
             align-items: center;
         }
 
-        .highlight-image {
+        .highlight-img {
             width: 100%;
             height: 50%;
             border-radius: 14px;
             object-fit: cover;
         }
 
-        .highlight-content h3 {
+        .highlight-text h3 {
             font-family: 'Syne', sans-serif;
             font-size: 1.45rem;
             font-weight: 700;
@@ -91,19 +89,19 @@
             margin-bottom: 15px;
         }
 
-        .highlight-list {
+        .highlight-items {
             list-style: none;
             padding: 0;
         }
 
-        .highlight-list li {
+        .highlight-items li {
             padding: 9px 0 9px 28px;
             position: relative;
             color: #555;
             font-size: 0.95rem;
         }
 
-        .highlight-list li::before {
+        .highlight-items li::before {
             content: "✔";
             position: absolute;
             left: 0;
@@ -112,20 +110,20 @@
         }
 
         /* ================= SIDEBAR ================= */
-        .project-sidebar {
+        .case-sidebar {
             display: flex;
             flex-direction: column;
             gap: 25px;
         }
 
-        .sidebar-card {
+        .sidebar-box {
             background: #ffffff;
             border-radius: 18px;
             padding: 30px 25px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
         }
 
-        .sidebar-card h3 {
+        .sidebar-box h3 {
             font-family: 'Syne', sans-serif;
             font-size: 1.35rem;
             font-weight: 700;
@@ -134,7 +132,7 @@
         }
 
         /* ================= INFO ITEMS ================= */
-        .info-item {
+        .info-block {
             display: flex;
             align-items: center;
             gap: 15px;
@@ -144,7 +142,7 @@
             margin-top: 15px;
         }
 
-        .info-icon {
+        .info-symbol {
             width: 46px;
             height: 46px;
             background: rgba(44, 49, 146, 0.1);
@@ -156,7 +154,7 @@
             font-size: 18px;
         }
 
-        .info-content h4 {
+        .info-text h4 {
             font-size: 0.75rem;
             color: #777;
             font-weight: 700;
@@ -164,20 +162,20 @@
             text-transform: uppercase;
         }
 
-        .info-content p {
+        .info-text p {
             font-size: 1rem;
             color: var(--text-color);
             font-weight: 600;
         }
 
         /* ================= CONTACT ================= */
-        .contact-list {
+        .contact-blocks {
             display: flex;
             flex-direction: column;
             gap: 14px;
         }
 
-        .contact-item {
+        .contact-entry {
             display: flex;
             align-items: center;
             gap: 12px;
@@ -185,12 +183,12 @@
             font-size: 0.95rem;
         }
 
-        .contact-item i {
+        .contact-entry i {
             color: var(--accent-color);
         }
 
         /* ================= BUTTONS ================= */
-        .brochure-button {
+        .btn-brochure {
             width: 100%;
             background: var(--accent-color);
             color: #000;
@@ -208,45 +206,44 @@
             gap: 10px;
         }
 
-        .brochure-button:hover {
+        .btn-brochure:hover {
             background: #d4a800;
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(226, 180, 14, 0.4);
         }
 
-        .company-profile-btn {
+        .btn-company {
             background: transparent;
             color: var(--primary-color);
             border: 2px solid var(--primary-color);
         }
 
-        .company-profile-btn:hover {
+        .btn-company:hover {
             background: var(--primary-color);
             color: #fff;
         }
 
         /* ================= RESPONSIVE ================= */
         @media (max-width: 968px) {
-            .project-layout {
+            .case-layout {
                 grid-template-columns: 1fr;
             }
 
-            .project-highlight {
+            .case-highlight {
                 grid-template-columns: 1fr;
             }
 
-            .highlight-image {
+            .highlight-img {
                 height: 100%;
             }
         }
 
         @media (max-width: 480px) {
-            .project-main {
+            .case-main {
                 padding: 25px 18px;
             }
         }
     </style>
-
 
     <section class="page-hero">
         <div class="page-title">
@@ -262,26 +259,25 @@
         </div>
     </section>
 
-
-    <div class="project-container">
-        <div class="project-layout">
+    <div class="case-container">
+        <div class="case-layout">
             <!-- Main Content -->
-            <div class="project-main">
+            <div class="case-main">
                 <!-- Hero Image -->
                 <img src="https://html.theme-village.com/transhub/demo/images/single-pt.jpg" alt="MKS Logistics Project"
-                    class="project-hero-image">
+                    class="case-hero-img">
 
                 <!-- Project Header -->
-                <div class="project-header">
+                <div class="case-header">
                     <h1>MKS Logistics Project V.1</h1>
-                    <p class="project-description">
+                    <p class="case-desc">
                         Our Ocean Freight Services offer comprehensive solutions for all your shipping needs,
-                        ensuring
-                        your cargo is transported safely, cost-effectively, and timely. Whether you're shipping FCL
+                        ensuring your cargo is transported safely, cost-effectively, and timely. Whether you're shipping
+                        FCL
                         (Full Container Load) or LCL (Less than Container Load) cargo, or even heavy cargo, our
                         comprehensive services meet all aspects of your sea shipping needs.
                     </p>
-                    <p class="project-description">
+                    <p class="case-desc">
                         With our Ocean Freight Services, we handle all aspects of your sea shipping needs, from
                         documentation to delivery, ensuring smooth transit and competitive pricing. We navigate the
                         complexities of international trade regulations, making this seamless and efficient for you.
@@ -290,24 +286,23 @@
 
                 <!-- Project Details Section -->
                 <h2 class="section-title">Project details</h2>
-                <p class="project-description">
+                <p class="case-desc">
                     With our Ocean Freight Services, we handle all aspects of your sea shipping needs, from
                     documentation to delivery, ensuring smooth transit and competitive pricing. We navigate the
                     complexities of international trade regulations and offer business operational support digging
-                    into
-                    navigate the complexities of international trade.
+                    into navigate the complexities of international trade.
                 </p>
 
                 <!-- Highlight Box -->
-                <div class="project-highlight">
+                <div class="case-highlight">
                     <img src="https://html.theme-village.com/transhub/demo/images/case-video.jpg"
-                        alt="Project Highlight" class="highlight-image">
-                    <div class="highlight-content">
+                        alt="Project Highlight" class="highlight-img">
+                    <div class="highlight-text">
                         <h3>Translog Around the World</h3>
-                        <p style="color: var(--text-gray); margin-bottom: 15px; font-size: 0.95rem;">
+                        <p style="color: #777; margin-bottom: 15px; font-size: 0.95rem;">
                             Three core values define the spirit of our culture
                         </p>
-                        <ul class="highlight-list">
+                        <ul class="highlight-items">
                             <li>Ocean freight offers predictable transit times.</li>
                             <li>It embody one of the most economical.</li>
                             <li>Suitable for most, modern shipping services.</li>
@@ -316,14 +311,13 @@
                     </div>
                 </div>
 
-                <p class="project-description">
+                <p class="case-desc">
                     Freight forwarders often offer consolidated cargo services, where LCL cargo combines multiple
                     shipments from multiple companies into a full container. FCL (Full Container Load) is typically
-                    used
-                    when you have enough cargo to fill an entire container. It offers advantages similar to LCL but
+                    used when you have enough cargo to fill an entire container. It offers advantages similar to LCL but
                     without the consolidation process.
                 </p>
-                <p class="project-description">
+                <p class="case-desc">
                     This is a cost-effective option for smaller shipments. Your goods are consolidated with other
                     shippers, and you only pay for the space your cargo occupies. It can take longer as it involves
                     additional cost.
@@ -331,51 +325,41 @@
             </div>
 
             <!-- Sidebar -->
-            <div class="project-sidebar">
+            <div class="case-sidebar">
                 <!-- Project Information -->
-                <div class="sidebar-card">
+                <div class="sidebar-box">
                     <h3>Project Information</h3>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="info-content">
+                    <div class="info-block">
+                        <div class="info-symbol"><i class="fas fa-user"></i></div>
+                        <div class="info-text">
                             <h4>Client</h4>
                             <p>Mark Anthonica</p>
                         </div>
                     </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="info-content">
+                    <div class="info-block">
+                        <div class="info-symbol"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="info-text">
                             <h4>Location</h4>
                             <p>Port au Mount Stanford</p>
                         </div>
                     </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <div class="info-content">
+                    <div class="info-block">
+                        <div class="info-symbol"><i class="fas fa-calendar-alt"></i></div>
+                        <div class="info-text">
                             <h4>Project Date</h4>
                             <p>January 22, 2025</p>
                         </div>
                     </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-tag"></i>
-                        </div>
-                        <div class="info-content">
+                    <div class="info-block">
+                        <div class="info-symbol"><i class="fas fa-tag"></i></div>
+                        <div class="info-text">
                             <h4>Category</h4>
                             <p>Sea Logistics</p>
                         </div>
                     </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="info-content">
+                    <div class="info-block">
+                        <div class="info-symbol"><i class="fas fa-clock"></i></div>
+                        <div class="info-text">
                             <h4>Duration</h4>
                             <p>45 Days, 300</p>
                         </div>
@@ -383,14 +367,14 @@
                 </div>
 
                 <!-- Contact Info -->
-                <div class="sidebar-card">
+                <div class="sidebar-box">
                     <h3>Contact Info</h3>
-                    <div class="contact-list">
-                        <div class="contact-item">
+                    <div class="contact-blocks">
+                        <div class="contact-entry">
                             <i class="fas fa-phone"></i>
                             <span>+33 (0)6 Anveal, Australia</span>
                         </div>
-                        <div class="contact-item">
+                        <div class="contact-entry">
                             <i class="fas fa-envelope"></i>
                             <span>contact@gmhed.com</span>
                         </div>
@@ -398,13 +382,13 @@
                 </div>
 
                 <!-- Brochures -->
-                <div class="sidebar-card">
+                <div class="sidebar-box">
                     <h3>Brochures</h3>
-                    <button class="brochure-button">
+                    <button class="btn-brochure">
                         <i class="fas fa-download"></i>
                         Download Brochure
                     </button>
-                    <button class="brochure-button company-profile-btn">
+                    <button class="btn-brochure btn-company">
                         <i class="fas fa-file-pdf"></i>
                         Company Profile
                     </button>
@@ -415,11 +399,10 @@
 
     <script>
         // Download button functionality
-        document.querySelectorAll('.brochure-button').forEach(button => {
+        document.querySelectorAll('.btn-brochure').forEach(button => {
             button.addEventListener('click', function () {
                 const buttonText = this.textContent.trim();
                 console.log('Download clicked:', buttonText);
-                // Add your download logic here
                 alert(`Downloading ${buttonText}...`);
             });
         });
@@ -438,4 +421,5 @@
             });
         });
     </script>
+
     <%- include('partials/footer.ejs') %>
