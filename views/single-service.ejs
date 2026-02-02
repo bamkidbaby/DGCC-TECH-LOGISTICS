@@ -1,15 +1,409 @@
 <%- include('partials/header.ejs') %>
+
+    <style>
+        :root {
+            --bg-color: #fff;
+            --text-color: #222;
+            --primary-color: #2c3192;
+            --accent-color: #e2b40e;
+        }
+
+        /* ================= CONTAINER ================= */
+        .service-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 70px 0;
+        }
+
+        /* ================= LAYOUT ================= */
+        .service-layout {
+            display: grid;
+            grid-template-columns: 1fr 2.5fr;
+            gap: 40px;
+        }
+
+        /* ================= MAIN CONTENT ================= */
+        .service-main {
+            border-radius: 20px;
+            padding: 45px;
+        }
+
+        .service-hero-image {
+            width: 100%;
+            height: 420px;
+            border-radius: 16px;
+            object-fit: cover;
+            margin-bottom: 35px;
+        }
+
+        /* ================= TEXT ================= */
+        .service-header h1 {
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 18px;
+        }
+
+        .service-description {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.9;
+            margin-bottom: 22px;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 45px 0 22px;
+        }
+
+        /* ================= HIGHLIGHT BOX ================= */
+        .service-highlight {
+            background: linear-gradient(135deg,
+                    rgba(44, 49, 146, 0.05),
+                    rgba(226, 180, 14, 0.08));
+            border-radius: 18px;
+            padding: 35px;
+            margin: 35px 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .highlight-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 14px;
+            object-fit: cover;
+        }
+
+        .highlight-content h3 {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .highlight-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .highlight-list li {
+            padding: 9px 0 9px 28px;
+            position: relative;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .highlight-list li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* ================= SIDEBAR ================= */
+        .service-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .sidebar-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 30px 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 22px;
+        }
+
+        /* ================= INFO ITEMS ================= */
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 14px 18px;
+            border-radius: 30px;
+            background: #f8f9fc;
+            margin-top: 15px;
+        }
+
+        .info-icon {
+            width: 46px;
+            height: 46px;
+            background: rgba(44, 49, 146, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 18px;
+        }
+
+        .info-content {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .info-content h4 {
+            font-size: 0.75rem;
+            color: #777;
+            font-weight: 700;
+            margin-bottom: 3px;
+            text-transform: uppercase;
+        }
+
+        .info-content p {
+            font-size: 1rem;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        /* ================= CONTACT ================= */
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .contact-item i {
+            color: var(--accent-color);
+        }
+
+        /* ================= BUTTONS ================= */
+        .brochure-button {
+            width: 100%;
+            background: var(--accent-color);
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .brochure-button:hover {
+            background: #d4a800;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(226, 180, 14, 0.4);
+        }
+
+        .company-profile-btn {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .company-profile-btn:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 968px) {
+            .service-layout {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+            .service-main {
+                padding: 25px 18px;
+            }
+        }
+    </style>
+
+
     <section class="page-hero">
         <div class="page-title">
             <div class="vertical-line"></div>
             <div class="page-text">
-                <h1>Single Service</h1>
+                <h1>Air Freight</h1>
                 <div class="breadcrumb">
                     <a href="/">Home</a>
-                    <i class="fas fa-angle-right"></i>
-                    <span>Single Service</span>
+                    <i class="fa-solid fa-angle-right"></i>
+                    <span>Air Freight</span>
                 </div>
             </div>
         </div>
     </section>
+
+
+    <div class="service-container">
+        <div class="service-layout">
+
+            <!-- Sidebar -->
+            <div class="service-sidebar">
+                <!-- service Information -->
+                <div class="sidebar-card">
+                    <h3>Our Services</h3>
+                    <div class="info-item">
+                        <div class="info-content">
+                            <h4>Ocean Freight</h4>
+
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-content">
+                            <h4>Air Freight</h4>
+
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-content">
+                            <h4>Warehousing</h4>
+
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-content">
+                            <h4>Rail Freight</h4>
+
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-content">
+                            <h4>Ecommerce Logistics</h4>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="sidebar-card">
+                    <h3>Contact Info</h3>
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+33 (0)6 Anveal, Australia</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@gmhed.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brochures -->
+                <div class="sidebar-card">
+                    <h3>Brochures</h3>
+                    <button class="brochure-button">
+                        <i class="fas fa-download"></i>
+                        Download Brochure
+                    </button>
+                    <button class="brochure-button company-profile-btn">
+                        <i class="fas fa-file-pdf"></i>
+                        Company Profile
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="service-main">
+                <!-- Hero Image -->
+                <img src="https://html.theme-village.com/transhub/demo/images/single-service.jpg"
+                    alt="MKS Logistics service" class="service-hero-image">
+
+                <!-- service Header -->
+                <div class="service-header">
+                    <h1>MKS Logistics Service V.1</h1>
+                    <p class="service-description">
+                        Our Ocean Freight Services provide comprehensive shipping solutions designed to meet the needs
+                        of businesses of all sizes. Whether transporting FCL (Full Container Load), LCL (Less than
+                        Container Load), or oversized cargo, we ensure that your shipments arrive safely, on schedule,
+                        and cost-effectively. Our experienced team manages every step, from booking and documentation to
+                        customs clearance and final delivery, so you can focus on your business without shipping
+                        concerns.
+                    </p>
+                </div>
+
+                <p class="service-description">
+                    With our Ocean Freight Services, we simplify the complexities of global trade. We handle route
+                    optimization, documentation, cargo tracking, and compliance with international regulations, ensuring
+                    seamless transit from origin to destination. Our focus on efficiency and reliability allows
+                    businesses to save time and reduce costs while maintaining full visibility over shipments. Trust our
+                    expertise to make your sea freight operations smooth, predictable, and stress-free, no matter the
+                    size or type of cargo.
+                </p>
+
+                <h2 class="section-title">Service Details</h2>
+                <p class="service-description">
+                    We offer flexible shipping options tailored to your cargo requirements. LCL services allow multiple
+                    small shipments to share container space, reducing costs while maintaining security and handling
+                    standards. FCL shipments provide dedicated containers for larger consignments, ensuring faster
+                    transit times and minimal handling. Our team coordinates loading, scheduling, and route planning for
+                    all cargo types, delivering a professional, reliable service that ensures your goods reach their
+                    destination safely, efficiently, and on time.
+                </p>
+
+                <div class="service-highlight">
+                    <img src="https://html.theme-village.com/transhub/demo/images/serv-g1.jpg" alt="Service Highlight"
+                        class="highlight-image">
+                </div>
+
+                <p class="service-description">
+                    For smaller shipments, consolidated cargo through LCL services offers a cost-efficient solution.
+                    Your goods share container space with other shipments, minimizing expense while ensuring safety and
+                    proper handling. FCL shipments, in contrast, give full container control, providing a faster and
+                    more direct transit. Whether your cargo is large or small, our Ocean Freight Services are designed
+                    to offer flexibility, reliability, and transparency at every stage of the shipping process, making
+                    global logistics simple for your business.
+                </p>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Download button functionality
+        document.querySelectorAll('.brochure-button').forEach(button => {
+            button.addEventListener('click', function () {
+                const buttonText = this.textContent.trim();
+                console.log('Download clicked:', buttonText);
+                // Add your download logic here
+                alert(`Downloading ${buttonText}...`);
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
     <%- include('partials/footer.ejs') %>

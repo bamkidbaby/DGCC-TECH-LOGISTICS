@@ -1,7 +1,11 @@
 <%- include('partials/header.ejs') %>
     <style>
-        .projects-container {
-            padding: 80px 20px;
+        .projects-section {
+            padding: 80px 0;
+
+        }
+
+        .projects-section .container {
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -13,7 +17,6 @@
         }
 
         .section-title {
-            font-family: 'Syne', sans-serif;
             font-size: clamp(1.6rem, 4vw, 2.5rem);
             font-weight: 800;
             color: var(--primary-navy);
@@ -177,12 +180,12 @@
         /* Responsive tweaks */
         @media (max-width: 768px) {
             .projects-container {
-                padding: 60px 15px;
+                padding: 60px 0;
             }
 
             .projects-grid {
                 grid-template-columns: 1fr;
-                padding: 40px;
+                padding: 5px;
             }
 
             .project-image-container {
@@ -216,117 +219,119 @@
         </div>
     </section>
 
-    <div class="projects-container">
+    <section class="projects-section">
+        <div class="container">
 
-        <div class="section-header">
-            <h2 class="section-title">Our Recent Projects</h2>
+            <div class="section-header">
+                <h2 class="section-title">Our Recent Projects</h2>
+            </div>
+
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="company">TransHub Company</button>
+                <button class="filter-btn" data-filter="freight">Air Freight</button>
+                <button class="filter-btn" data-filter="security">Security</button>
+                <button class="filter-btn" data-filter="warehouse">Warehouse</button>
+                <button class="filter-btn" data-filter="ocean">Ocean</button>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="loading-spinner"></div>
+            </div>
+
+            <div class="projects-grid">
+
+                <div class="project-card show" data-category="company">
+                    <div class="project-image-container">
+                        <img class="project-image">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category-badge">Company</span>
+                        <h3 class="project-title">TransHub Company</h3>
+                    </div>
+                </div>
+
+                <div class="project-card show" data-category="company">
+                    <div class="project-image-container">
+                        <img class="project-image">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category-badge">Company</span>
+                        <h3 class="project-title">TransHub Company</h3>
+                    </div>
+                </div>
+
+                <div class="project-card show" data-category="freight">
+                    <div class="project-image-container">
+                        <img class="project-image">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category-badge">Freight</span>
+                        <h3 class="project-title">Air Freight Solution</h3>
+                    </div>
+                </div>
+
+                <div class="project-card show" data-category="security">
+                    <div class="project-image-container">
+                        <img class="project-image">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category-badge">Security</span>
+                        <h3 class="project-title">Cargo Protection</h3>
+                    </div>
+                </div>
+
+                <div class="project-card show" data-category="warehouse">
+                    <div class="project-image-container">
+                        <img class="project-image">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category-badge">Warehouse</span>
+                        <h3 class="project-title">Inventory Control</h3>
+                    </div>
+                </div>
+
+                <div class="project-card show" data-category="ocean">
+                    <div class="project-image-container">
+                        <img class="project-image">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category-badge">Ocean</span>
+                        <h3 class="project-title">Ocean Freight</h3>
+                    </div>
+                </div>
+
+                <div class="project-card show" data-category="warehouse">
+                    <div class="project-image-container">
+                        <img class="project-image">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category-badge">Warehouse</span>
+                        <h3 class="project-title">Smart Storage</h3>
+                    </div>
+                </div>
+
+                <div class="project-card show" data-category="warehouse">
+                    <div class="project-image-container">
+                        <img class="project-image">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category-badge">Warehouse</span>
+                        <h3 class="project-title">Modern Logistics</h3>
+                    </div>
+                </div>
+
+            </div>
         </div>
-
-        <div class="filter-tabs">
-            <button class="filter-btn active" data-filter="all">All Projects</button>
-            <button class="filter-btn" data-filter="company">TransHub Company</button>
-            <button class="filter-btn" data-filter="freight">Air Freight</button>
-            <button class="filter-btn" data-filter="security">Security</button>
-            <button class="filter-btn" data-filter="warehouse">Warehouse</button>
-            <button class="filter-btn" data-filter="ocean">Ocean</button>
-        </div>
-
-        <div class="loading" id="loading">
-            <div class="loading-spinner"></div>
-        </div>
-
-        <div class="projects-grid">
-
-            <div class="project-card show" data-category="company">
-                <div class="project-image-container">
-                    <img class="project-image">
-                    <div class="project-overlay"></div>
-                </div>
-                <div class="project-info">
-                    <span class="project-category-badge">Company</span>
-                    <h3 class="project-title">TransHub Company</h3>
-                </div>
-            </div>
-
-            <div class="project-card show" data-category="company">
-                <div class="project-image-container">
-                    <img class="project-image">
-                    <div class="project-overlay"></div>
-                </div>
-                <div class="project-info">
-                    <span class="project-category-badge">Company</span>
-                    <h3 class="project-title">TransHub Company</h3>
-                </div>
-            </div>
-
-            <div class="project-card show" data-category="freight">
-                <div class="project-image-container">
-                    <img class="project-image">
-                    <div class="project-overlay"></div>
-                </div>
-                <div class="project-info">
-                    <span class="project-category-badge">Freight</span>
-                    <h3 class="project-title">Air Freight Solution</h3>
-                </div>
-            </div>
-
-            <div class="project-card show" data-category="security">
-                <div class="project-image-container">
-                    <img class="project-image">
-                    <div class="project-overlay"></div>
-                </div>
-                <div class="project-info">
-                    <span class="project-category-badge">Security</span>
-                    <h3 class="project-title">Cargo Protection</h3>
-                </div>
-            </div>
-
-            <div class="project-card show" data-category="warehouse">
-                <div class="project-image-container">
-                    <img class="project-image">
-                    <div class="project-overlay"></div>
-                </div>
-                <div class="project-info">
-                    <span class="project-category-badge">Warehouse</span>
-                    <h3 class="project-title">Inventory Control</h3>
-                </div>
-            </div>
-
-            <div class="project-card show" data-category="ocean">
-                <div class="project-image-container">
-                    <img class="project-image">
-                    <div class="project-overlay"></div>
-                </div>
-                <div class="project-info">
-                    <span class="project-category-badge">Ocean</span>
-                    <h3 class="project-title">Ocean Freight</h3>
-                </div>
-            </div>
-
-            <div class="project-card show" data-category="warehouse">
-                <div class="project-image-container">
-                    <img class="project-image">
-                    <div class="project-overlay"></div>
-                </div>
-                <div class="project-info">
-                    <span class="project-category-badge">Warehouse</span>
-                    <h3 class="project-title">Smart Storage</h3>
-                </div>
-            </div>
-
-            <div class="project-card show" data-category="warehouse">
-                <div class="project-image-container">
-                    <img class="project-image">
-                    <div class="project-overlay"></div>
-                </div>
-                <div class="project-info">
-                    <span class="project-category-badge">Warehouse</span>
-                    <h3 class="project-title">Modern Logistics</h3>
-                </div>
-            </div>
-
-        </div>
-    </div>
+    </section>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
