@@ -1,80 +1,152 @@
-    <!-- Contact -->
-    <section id="contact" data-aos="fade-down">
-      <div class="contact-container">
-        <div class="contact-info">
-          <h2>Get in Touch</h2>
-          <p>
-            We'd love to hear from you! Reach out to DGCC TECH for inquiries,
-            collaborations, or services.
-          </p>
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
 
-          <div class="info-item">
-            <i class="fa-solid fa-location-dot"></i>
-            <p>
-              6 Aaromi Street, off Ori-ade Bus Stop, Gasline Agbado, Ogun State.
-            </p>
-            <p>
-              6 Akinguroye Street, off Adelani House, Matogun Ishaga, Ogun
-              State.
-            </p>
-          </div>
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <div class="newsletter-content">
+                <h2>Subscribe Our Newsletter</h2>
+            </div>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your Email">
+                <button type="submit">Subscribe <span class="send-circle">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </span>
+                </button>
+            </form>
+        </section>
 
-          <div class="info-item">
-            <i class="fa-solid fa-phone"></i>
-            <p>+234 708 252 3166,</p>
-            <p>+234 704 537 1328</p>
-          </div>
+        <!-- Footer Main Content -->
+        <div class="footer-grid">
+            <div class="footer-about">
+                <div class="logo">
+                    <img src="images/logo3.png" alt="">
+                </div>
+                <p>Our dedication lies in embracing challenges and pioneering innovation within the more attractive
+                    advertising sector.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
 
-          <div class="info-item">
-            <i class="fa-solid fa-envelope"></i>
-            <p><a href="mailto:info@dgcctech.com">dgcctech@gmail.com</a></p>
-          </div>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Services</a></li>
+                    <li><a href="#">Project</a></li>
+                    <li><a href="#">FAQ's</a></li>
+                    <li><a href="#">Our Blog</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="#">Ship Fright Shipping</a></li>
+                    <li><a href="#">Less Than Truckload</a></li>
+                    <li><a href="#">Container Freight</a></li>
+                    <li><a href="#">Adult Health</a></li>
+                    <li><a href="#">Rail Freight Shipping</a></li>
+                    <li><a href="#">Air Fright Trucking</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Opening Hours</h3>
+                <div class="opening-hours">
+                    <span>Week Days</span>
+                    <span>09:00 - 7:00</span>
+                </div>
+                <div class="opening-hours">
+                    <span>Saturday</span>
+                    <span>08:00 - 2:00</span>
+                </div>
+                <div class="opening-hours">
+                    <span>Sunday</span>
+                    <span>Day Off</span>
+                </div>
+                <a href="#" class="contact-btn">Contact Us</a>
+            </div>
         </div>
 
-        <div class="contact-form">
-          <form id="messageForm">
-            <h3>Send Us a Message</h3>
-
-            <div class="form-group">
-              <input type="text" id="name" placeholder="Your Name" required />
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>Copyright © 2026 <span style="color: #e2b40e;">DGCC TECH</span> All Rights Reserved.</p>
+            <div>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Condition</a>
             </div>
-
-            <div class="form-group">
-              <input
-                type="email"
-                id="email"
-                placeholder="Your Email"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <textarea
-                id="message"
-                rows="5"
-                placeholder="Your Message"
-                required
-              ></textarea>
-            </div>
-
-            <button type="submit" class="btn2">Send Message</button>
-          </form>
         </div>
-      </div>
-    </section>
-    
-  <footer>
-    <p>&copy; <%= new Date().getFullYear() %> DGCC TECH | All Rights Reserved.</p>
-  </footer>
+    </div>
+</footer>
 
-    <!-- JavaScript -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="./script/script.js"></script>
-    <script>
-      AOS.init({
-        duration: 2000, //animation speed
-        once: true, //whether animation happens every scroll
-      });
-    </script>
-  </body>
+
+<!-- Scroll to Top Button -->
+<button class="scroll-to-top" id="scrollToTop">
+    <svg class="progress-ring" width="50" height="50">
+        <circle class="progress-ring__circle" stroke-dasharray="144" stroke-dashoffset="144" cx="25" cy="25" r="23">
+        </circle>
+    </svg>
+    <span class="scroll-arrow"><i class="fas fa-angle-up"></i></span>
+</button>
+
+
+<script src="script/script.js"></script>
+<script src="script/scrollToTop.js"></script>
+<script src="script/service-section.js"></script>
+<script src="script/mobile-menu.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-+b3S4bUuQJ4vn3kEfl0sxP6uJ7L5a6Fhj7UVq1mx2/Y=" crossorigin="anonymous"></script>
+<!-- AOS Animate On Scroll -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<!-- PureCounter -->
+<script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js"></script>
+<!-- Font Awesome (for icons) -->
+<script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
+
+<script>
+    // Initialize AOS
+    AOS.init({
+        duration: 1000,
+        easing: "ease-out-cubic",
+        once: true,
+        offset: 120
+    });
+
+
+    // Scroll to Top Button with Progress Indicator
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    const progressCircle = document.querySelector('.progress-ring__circle');
+    const circumference = 144; // 2 * Math.PI * 23 (radius)
+
+    window.addEventListener('scroll', () => {
+        const scrollTotal = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollProgress = (window.pageYOffset / scrollTotal) * circumference;
+
+        // Update progress circle
+        progressCircle.style.strokeDashoffset = circumference - scrollProgress;
+
+        // Show/hide button
+        if (window.pageYOffset > 300) {
+            scrollToTopBtn.classList.add('visible');
+        } else {
+            scrollToTopBtn.classList.remove('visible');
+        }
+    });
+
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    new PureCounter();
+</script>
+</body>
+
 </html>

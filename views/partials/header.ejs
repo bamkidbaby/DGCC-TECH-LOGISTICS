@@ -1,48 +1,397 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DGCC TECH</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="./styles/styles.css" />
-    <link rel="stylesheet" href="./styles/about.css" />
-    <link rel="stylesheet" href="./styles/services.css" />
-    <link rel="stylesheet" href="./styles/contact.css" />
-  </head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/styles/pages.css">
+    <link rel="stylesheet" href="/styles/advantages.css">
+    <link rel="stylesheet" href="/styles/other.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+    <link rel="icon" type="image/x-icon" href="images/logo2.png">
+</head>
 
-  <body>
-    <!-- Navbar -->
-    <nav>
-      <div class="brand">
-        <img src="./images/logo.png" alt="DGCC Logo" class="logo" />
-        DGCC TECH
-      </div>
-      <ul class="nav-links">
-        <a href="#hero">
-          <li>Home</li>
-        </a>
-        <a href="#about">
-          <li>About Us</li>
-        </a>
-        <a href="#services">
-          <li>Services</li>
-        </a>
-        <a href="#contact">
-          <li>Contact</li>
-        </a>
-      </ul>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-home">
+        <!-- LOGO -->
+        <div class="navbar-logo">
+            <img src="images/logo.png" alt="DGCC TransHub Logo" class="navbar-logo-img">
+        </div>
 
-      <!-- Hamburger -->
-      <div class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+        <!-- NAV LINKS -->
+        <ul class="navbar-links" id="navLinks">
+            <!-- Home -->
+            <li class="navbar-item">
+                <a href="/" class="navbar-link">Home</a>
+            </li>
+
+            <!-- Services -->
+            <li class="navbar-item dron">
+                <a href="/services" class="navbar-link">Services </a>
+
+            </li>
+
+            <!-- Pages -->
+            <li class="navbar-item dropdown dropdown-nested">
+                <a href="#" class="navbar-link dropdown-toggle">Pages <span class="dropdown-icon"><i
+                            class="fas fa-angle-down"></i></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/about" class="dropdown-link">About</a></li>
+                    <li><a href="/pricing" class="dropdown-link">Pricing</a></li>
+                    <li><a href="/request-quote" class="dropdown-link">Request Quote</a></li>
+
+                    <!-- Team Nested -->
+                    <li class="dropdown dropdown-right">
+                        <a href="#" class="dropdown-link dropdown-toggle">Team <span class="dropdown-icon"><i
+                                    class="fas fa-angle-right"></i></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/team" class="dropdown-link">Our Team</a></li>
+                            <li><a href="/team-details" class="dropdown-link">Team Details</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Shop Nested -->
+                    <li class="dropdown dropdown-right">
+                        <a href="#" class="dropdown-link dropdown-toggle">Shop <span class="dropdown-icon"><i
+                                    class="fas fa-angle-right"></i></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/shop" class="dropdown-link">Shop</a></li>
+                            <li><a href="/single-product" class="dropdown-link">Product Details</a></li>
+                            <li><a href="/cart" class="dropdown-link">Cart</a></li>
+                            <li><a href="/checkout" class="dropdown-link">Checkout</a></li>
+                            <li><a href="/login" class="dropdown-link">Login</a></li>
+                            <li><a href="/register" class="dropdown-link">Register</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="/tracking" class="dropdown-link">Tracking</a></li>
+                    <li><a href="/faq" class="dropdown-link">FAQ</a></li>
+                    <li><a href="/error" class="dropdown-link">404 Page</a></li>
+                </ul>
+            </li>
+
+            <!-- Projects -->
+            <li class="navbar-item dropdown">
+                <a href="#" class="navbar-link dropdown-toggle">Projects <span class="dropdown-icon"><i
+                            class="fas fa-angle-down"></i></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/case-study" class="dropdown-link">Projects</a></li>
+                    <li><a href="/case-study-details" class="dropdown-link">Project Details</a></li>
+                </ul>
+            </li>
+
+            <!-- Blog -->
+            <li class="navbar-item dropdown">
+                <a href="#" class="navbar-link dropdown-toggle">Blog <span class="dropdown-icon"><i
+                            class="fas fa-angle-down"></i></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/blog-grid-01" class="dropdown-link">Blog Grid</a></li>
+                    <li><a href="/blog-classic" class="dropdown-link">Blog Classic</a></li>
+                    <li class="dropdown dropdown-right">
+                        <a href="" class="dropdown-link">Blog Details <span class="dropdown-icon"><i
+                                    class="fas fa-angle-right"></i></span>
+                            <ul class="dropdown-menu">
+                                <span><a href="/single-post" class="dropdown-link">Single Post </a></span>
+                            </ul>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Contact -->
+            <li class="navbar-item">
+                <a href="/contact" class="navbar-link">Contact Us</a>
+            </li>
+        </ul>
+
+        <!-- Right Actions -->
+        <div class="navbar-actions">
+            <a href="/cart" class="navbar-icon navbar-cart-btn"><i class="fa fa-shopping-cart"></i> <span
+                    class="notification">2</span></a>
+            <button class="navbar-icon navbar-search-btn"><i class="fa fa-search"></i></button>
+            <button class="navbar-icon navbar-menu-btn"><i class="fa fa-bars"></i></button>
+            <a href="/request-quote" class="navbar-cta">Free Quote <i
+                    class="navbar-cta-arrow fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="mobile-menu-toggle">
+            <span>MENU</span>
+            <i class="fas fa-bars"></i>
+        </div>
+
     </nav>
-  </body>
-</html>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <!-- Mobile Menu Header -->
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo">
+                <img src="images/logo.png" alt="DGCC TransHub Logo">
+            </div>
+            <button class="mobile-menu-close" id="mobileMenuClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Content -->
+        <div class="mobile-menu-content">
+            <ul class="mobile-menu-list">
+                <!-- Home -->
+                <li class="mobile-menu-item">
+                    <a href="/" class="mobile-menu-link">Home</a>
+                </li>
+
+                <!-- Services -->
+                <li class="mobile-menu-item">
+                    <a href="/services" class="mobile-menu-link">Services</a>
+                </li>
+
+                <!-- Pages with Dropdown -->
+                <li class="mobile-menu-item has-dropdown">
+                    <a href="#" class="mobile-menu-link">
+                        Pages
+                        <span class="mobile-dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                    </a>
+                    <ul class="mobile-dropdown-menu">
+                        <li><a href="/about" class="mobile-dropdown-link">About</a></li>
+                        <li><a href="/pricing" class="mobile-dropdown-link">Pricing</a></li>
+                        <li><a href="/request-quote" class="mobile-dropdown-link">Request Quote</a></li>
+
+                        <!-- Team Nested -->
+                        <li class="mobile-menu-item has-dropdown">
+                            <a href="#" class="mobile-dropdown-link">
+                                Team
+                                <span class="mobile-dropdown-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </span>
+                            </a>
+                            <ul class="mobile-dropdown-menu mobile-dropdown-nested">
+                                <li><a href="/team" class="mobile-dropdown-link">Our Team</a></li>
+                                <li><a href="/team-details" class="mobile-dropdown-link">Team Details</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Shop Nested -->
+                        <li class="mobile-menu-item has-dropdown">
+                            <a href="#" class="mobile-dropdown-link">
+                                Shop
+                                <span class="mobile-dropdown-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </span>
+                            </a>
+                            <ul class="mobile-dropdown-menu mobile-dropdown-nested">
+                                <li><a href="/shop" class="mobile-dropdown-link">Shop</a></li>
+                                <li><a href="/single-product" class="mobile-dropdown-link">Product Details</a></li>
+                                <li><a href="/cart" class="mobile-dropdown-link">Cart</a></li>
+                                <li><a href="/checkout" class="mobile-dropdown-link">Checkout</a></li>
+                                <li><a href="/login" class="mobile-dropdown-link">Login</a></li>
+                                <li><a href="/register" class="mobile-dropdown-link">Register</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="/tracking" class="mobile-dropdown-link">Tracking</a></li>
+                        <li><a href="/faq" class="mobile-dropdown-link">FAQ</a></li>
+                        <li><a href="/error" class="mobile-dropdown-link">404 Page</a></li>
+                    </ul>
+                </li>
+
+                <!-- Projects with Dropdown -->
+                <li class="mobile-menu-item has-dropdown">
+                    <a href="#" class="mobile-menu-link">
+                        Projects
+                        <span class="mobile-dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                    </a>
+                    <ul class="mobile-dropdown-menu">
+                        <li><a href="/case-study" class="mobile-dropdown-link">Projects</a></li>
+                        <li><a href="/case-study-details" class="mobile-dropdown-link">Project Details</a></li>
+                    </ul>
+                </li>
+
+                <!-- Blog with Dropdown -->
+                <li class="mobile-menu-item has-dropdown">
+                    <a href="#" class="mobile-menu-link">
+                        Blog
+                        <span class="mobile-dropdown-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                    </a>
+                    <ul class="mobile-dropdown-menu">
+                        <li><a href="/blog-grid-01" class="mobile-dropdown-link">Blog Grid</a></li>
+                        <li><a href="/blog-classic" class="mobile-dropdown-link">Blog Classic</a></li>
+                        <li class="mobile-menu-item has-dropdown">
+                            <a href="#" class="mobile-dropdown-link">
+                                Blog Details
+                                <span class="mobile-dropdown-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </span>
+                            </a>
+                            <ul class="mobile-dropdown-menu mobile-dropdown-nested">
+                                <li><a href="/single-post" class="mobile-dropdown-link">Single Post</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Contact -->
+                <li class="mobile-menu-item">
+                    <a href="/contact" class="mobile-menu-link">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <script>
+        // Mobile Menu Functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuClose = document.getElementById('mobileMenuClose');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const body = document.body;
+
+            // Open mobile menu
+            function openMobileMenu() {
+                mobileMenu.classList.add('active');
+                mobileMenuOverlay.classList.add('active');
+                body.classList.add('mobile-menu-open');
+            }
+
+            // Close mobile menu
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                body.classList.remove('mobile-menu-open');
+            }
+
+            // Toggle menu button
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', openMobileMenu);
+            }
+
+            // Close button
+            if (mobileMenuClose) {
+                mobileMenuClose.addEventListener('click', closeMobileMenu);
+            }
+
+            // Overlay click
+            if (mobileMenuOverlay) {
+                mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+            }
+
+            // Close on ESC key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Dropdown functionality
+            const dropdownToggles = document.querySelectorAll('.mobile-menu .has-dropdown > a');
+
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const parentItem = this.closest('.has-dropdown');
+                    const dropdownMenu = parentItem.querySelector('.mobile-dropdown-menu');
+
+                    // Toggle active class
+                    parentItem.classList.toggle('active');
+                    dropdownMenu.classList.toggle('active');
+
+                    // Close other dropdowns at the same level
+                    const siblings = Array.from(parentItem.parentElement.children).filter(
+                        item => item !== parentItem && item.classList.contains('has-dropdown')
+                    );
+
+                    siblings.forEach(sibling => {
+                        sibling.classList.remove('active');
+                        const siblingDropdown = sibling.querySelector('.mobile-dropdown-menu');
+                        if (siblingDropdown) {
+                            siblingDropdown.classList.remove('active');
+                        }
+                    });
+                });
+            });
+
+            // Close menu when clicking on non-dropdown links
+            const mobileLinks = document.querySelectorAll('.mobile-menu-link:not(.has-dropdown > .mobile-menu-link), .mobile-dropdown-link:not(.has-dropdown > .mobile-dropdown-link)');
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    // Don't close if it's a dropdown toggle
+                    if (!this.nextElementSibling || !this.nextElementSibling.classList.contains('mobile-dropdown-menu')) {
+                        closeMobileMenu();
+                    }
+                });
+            });
+
+            // Smooth scroll prevention when menu is open
+            let startY = 0;
+            mobileMenu.addEventListener('touchstart', function (e) {
+                startY = e.touches[0].pageY;
+            }, { passive: true });
+
+            mobileMenu.addEventListener('touchmove', function (e) {
+                const scrollTop = mobileMenu.querySelector('.mobile-menu-content').scrollTop;
+                const scrollHeight = mobileMenu.querySelector('.mobile-menu-content').scrollHeight;
+                const height = mobileMenu.querySelector('.mobile-menu-content').clientHeight;
+                const currentY = e.touches[0].pageY;
+
+                if ((scrollTop === 0 && currentY > startY) ||
+                    (scrollTop + height === scrollHeight && currentY < startY)) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+        });
+    </script>
+
+    <!--Services-menu-->
+    <div class="services-bg"></div>
+    <div class="services-menu">
+        <div class="brand">
+            <img src="/images/logo.png" alt="">
+            <span class="material-symbols-outlined close-btn">close</span>
+        </div>
+        <p>We are a trusted transport company committed to delivering secure and punctual logistics services,
+            catering
+            to both local and long-distance transportation requirements.</p>
+        <ul class="services-list">
+            <li class="services-head">Our Services</li>
+            <li><a href="/single-service">Air Freight</a></li>
+            <li><a href="/single-service">Warehousing</a></li>
+            <li><a href="/single-service">Sea Freight</a></li>
+            <li><a href="/single-service">Road Freight</a></li>
+            <li><a href="/single-service">Customs Brokerage</a></li>
+        </ul>
+
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://pinterest.com" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+
+        <a href="/contact" class="cta-btn">Get a Quote <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>

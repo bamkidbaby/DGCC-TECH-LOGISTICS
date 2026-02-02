@@ -1,57 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
+<%- include('partials/header.ejs') %>
+    <section class="page-hero">
+        <div class="page-title">
+            <div class="vertical-line"></div>
+            <div class="page-text">
+                <h1>Contact Us</h1>
+                <div class="breadcrumb">
+                    <a href="/">Home</a>
+                    <i class="fas fa-angle-right"></i>
+                    <span>Contact Us</span>
+                </div>
+            </div>
+        </div>
+    </section>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-        }
-
-        /* Page Hero */
-        .page-hero {
-            background: linear-gradient(rgba(26, 35, 55, 0.7), rgba(26, 35, 55, 0.7)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&h=400&fit=crop') center/cover;
-            padding: 100px 0 60px;
-            color: white;
-            text-align: center;
-        }
-
-        .page-hero h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .breadcrumb {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            font-size: 14px;
-        }
-
-        .breadcrumb a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .breadcrumb span {
-            color: #FF5722;
-        }
-
         /* Contact Info Section */
         .contact-info-section {
             padding: 80px 20px;
         }
 
-        .container {
+        .contact-info-section .container {
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -293,16 +260,6 @@
             }
         }
     </style>
-</head>
-
-<body>
-    <!-- Page Hero -->
-    <section class="page-hero">
-        <h1>Contact Us</h1>
-        <div class="breadcrumb">
-            <a href="#">Home</a> > <span>Contact Us</span>
-        </div>
-    </section>
 
     <!-- Contact Info Section -->
     <section class="contact-info-section">
@@ -407,6 +364,4 @@
             });
         });
     </script>
-</body>
-
-</html>
+    <%- include('partials/footer.ejs') %>
