@@ -22,11 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //Routes
 app.get("/", (req, res) => res.render("index"));
-app.get("/home2", (req, res) => res.render("home2"));
-app.get("/home3", (req, res) => res.render("home3"));
 app.get("/services", (req, res) => res.render("services"));
-app.get("/services1", (req, res) => res.render("services1"));
-app.get("/service-details", (req, res) => res.render("services-details"));
 app.get("/about", (req, res) => res.render("about"));
 app.get("/request-quote", (req, res) => res.render("request-quote"));
 app.get("/tracking", (req, res) => res.render("tracking"));
@@ -41,16 +37,14 @@ app.get("/register", (req, res) => res.render("register"));
 app.get("/pricing", (req, res) => res.render("pricing"));
 app.get("/faq", (req, res) => res.render("faq"));
 app.get("/error", (req, res) => res.render("error"));
-app.get("/projects", (req, res) => res.render("projects"));
-app.get("/projects2", (req, res) => res.render("projects2"));
-app.get("/project-details", (req, res) => res.render("project-details"));
+app.get("/case-study-details", (req, res) => res.render("case-study-details"));
 app.get("/blog-grid-01", (req, res) => res.render("blog-grid"));
 app.get("/blog-classic", (req, res) => res.render("blog-classic"));
 app.get("/single-post-01", (req, res) => res.render("single-post1"));
 app.get("/contact", (req, res) => res.render("contact"));
 app.get("/cart", (req, res) => res.render("cart"));
 app.get("/single-service", (req, res) => res.render("single-service"));
-app.get("/single-case-study", (req, res) => res.render("case-study"));
+app.get("/case-study", (req, res) => res.render("case-study"));
 
 //start server
 app.listen(port, () => {
