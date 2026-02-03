@@ -324,7 +324,7 @@ text {
 /* Responsive */
 @media (max-width: 1200px) {
   #hero {
-    height: 50vh;
+    height: 55vh;
   }
 
   h2 {
@@ -531,3 +531,4 @@ text {
     border-radius: 12px;
   }
 }
+
