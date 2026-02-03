@@ -323,9 +323,9 @@ text {
 
 /* Responsive */
 @media (max-width: 1200px) {
-#hero{
-  min-height: 40vh;
-}
+  #hero {
+    height: 50vh;
+  }
 
   h2 {
     font-size: 3rem;
