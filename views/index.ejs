@@ -311,27 +311,281 @@
         </div>
     </section>
 
+
+
+
+    <style>
+        /* ===============================
+           CARGO SECTION
+        ================================ */
+
+
+
+        /* Desktop: Infinite Scroll */
+        .cargo-icons {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            animation: scroll 3s linear infinite alternate;
+        }
+
+
+
+
+        /* Keyframe for infinite scroll */
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-2%);
+            }
+        }
+
+        /* Pause animation on hover */
+        .cargo-icons:hover {
+            animation-play-state: paused;
+        }
+
+        /* Mobile: One at a time slider */
+        @media (max-width: 768px) {
+            .cargo {
+                padding: 40px 0;
+            }
+
+            .cargo-icons {
+                gap: 45px;
+                animation: none;
+                position: relative;
+                width: 100%;
+            }
+
+            .cargo-icon {
+                min-width: 100%;
+                display: none;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .cargo-icon.active {
+                display: flex;
+            }
+
+            .cargo-icon img {
+                height: 60px;
+            }
+
+            /* Mobile slider dots (optional) */
+            .slider-dots {
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+                margin-top: 25px;
+            }
+
+            .slider-dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.4);
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .slider-dot.active {
+                background: white;
+                width: 24px;
+                border-radius: 4px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .slider-dots {
+                display: none;
+            }
+        }
+    </style>
+
     <section class="cargo">
         <div class="container">
-            <div class="cargo-icons">
+            <div class="cargo-icons" id="cargoSlider">
+                <!-- Original set -->
                 <div class="cargo-icon">
-                    <img src="https://html.theme-village.com/transhub/demo/images/br6.png" alt="">
+                    <img src="https://html.theme-village.com/transhub/demo/images/br6.png" alt="Partner 1">
                 </div>
                 <div class="cargo-icon">
-                    <img src="https://html.theme-village.com/transhub/demo/images/br1.png" alt="">
+                    <img src="https://html.theme-village.com/transhub/demo/images/br1.png" alt="Partner 2">
                 </div>
                 <div class="cargo-icon">
-                    <img src="https://html.theme-village.com/transhub/demo/images/br1.png" alt="">
+                    <img src="https://html.theme-village.com/transhub/demo/images/br1.png" alt="Partner 3">
                 </div>
                 <div class="cargo-icon">
-                    <img src="https://html.theme-village.com/transhub/demo/images/br2.png" alt="">
+                    <img src="https://html.theme-village.com/transhub/demo/images/br2.png" alt="Partner 4">
                 </div>
                 <div class="cargo-icon">
-                    <img src="https://html.theme-village.com/transhub/demo/images/br3.png" alt="">
+                    <img src="https://html.theme-village.com/transhub/demo/images/br3.png" alt="Partner 5">
+                </div>
+
+                <!-- Duplicate set for seamless loop (desktop only) -->
+                <div class="cargo-icon desktop-duplicate">
+                    <img src="https://html.theme-village.com/transhub/demo/images/br6.png" alt="Partner 1">
+                </div>
+                <div class="cargo-icon desktop-duplicate">
+                    <img src="https://html.theme-village.com/transhub/demo/images/br1.png" alt="Partner 2">
+                </div>
+                <div class="cargo-icon desktop-duplicate">
+                    <img src="https://html.theme-village.com/transhub/demo/images/br1.png" alt="Partner 3">
+                </div>
+                <div class="cargo-icon desktop-duplicate">
+                    <img src="https://html.theme-village.com/transhub/demo/images/br2.png" alt="Partner 4">
+                </div>
+                <div class="cargo-icon desktop-duplicate">
+                    <img src="https://html.theme-village.com/transhub/demo/images/br3.png" alt="Partner 5">
                 </div>
             </div>
+
+            <!-- Slider dots for mobile -->
+            <div class="slider-dots" id="sliderDots"></div>
         </div>
     </section>
+
+    <script>
+        // Mobile Slider Functionality
+        let activeSlideIndex = 0;
+        let autoSlideTimer;
+
+        const isMobileView = () => window.innerWidth <= 768;
+
+        function initializeMobileSlider() {
+            if (!isMobileView()) return;
+
+            const sliderContainer = document.getElementById('cargoSlider');
+            const mobileSlides = sliderContainer.querySelectorAll('.cargo-icon:not(.desktop-duplicate)');
+            const dotsWrapper = document.getElementById('sliderDots');
+
+            // Hide desktop duplicates on mobile
+            document.querySelectorAll('.desktop-duplicate').forEach(element => {
+                element.style.display = 'none';
+            });
+
+            // Create navigation dots
+            dotsWrapper.innerHTML = '';
+            mobileSlides.forEach((_, slideIndex) => {
+                const dotElement = document.createElement('div');
+                dotElement.className = 'slider-dot';
+
+                if (slideIndex === 0) dotElement.classList.add('active');
+
+                dotElement.addEventListener('click', () => goToSpecificSlide(slideIndex));
+                dotsWrapper.appendChild(dotElement);
+            });
+
+            // Show first slide
+            displaySlide(0);
+
+            // Start auto sliding
+            startAutoSlide();
+        }
+
+        function displaySlide(slideIndex) {
+            if (!isMobileView()) return;
+
+            const mobileSlides = document.querySelectorAll('.cargo-icon:not(.desktop-duplicate)');
+            const dotElements = document.querySelectorAll('.slider-dot');
+
+            // Remove active classes
+            mobileSlides.forEach(slide => slide.classList.remove('active'));
+            dotElements.forEach(dot => dot.classList.remove('active'));
+
+            // Activate current slide
+            if (mobileSlides[slideIndex]) {
+                mobileSlides[slideIndex].classList.add('active');
+                dotElements[slideIndex].classList.add('active');
+            }
+
+            activeSlideIndex = slideIndex;
+        }
+
+        function moveToNextSlide() {
+            if (!isMobileView()) return;
+
+            const mobileSlides = document.querySelectorAll('.cargo-icon:not(.desktop-duplicate)');
+            activeSlideIndex = (activeSlideIndex + 1) % mobileSlides.length;
+
+            displaySlide(activeSlideIndex);
+        }
+
+        function goToSpecificSlide(slideIndex) {
+            displaySlide(slideIndex);
+            stopAutoSlide();
+            startAutoSlide();
+        }
+
+        function startAutoSlide() {
+            if (!isMobileView()) return;
+
+            stopAutoSlide();
+            autoSlideTimer = setInterval(moveToNextSlide, 3000);
+        }
+
+        function stopAutoSlide() {
+            if (autoSlideTimer) {
+                clearInterval(autoSlideTimer);
+            }
+        }
+
+        function resetForDesktopView() {
+            const allSlides = document.querySelectorAll('.cargo-icon');
+            const dotsWrapper = document.getElementById('sliderDots');
+
+            // Restore all slides
+            allSlides.forEach(slide => {
+                slide.classList.remove('active');
+                slide.style.display = '';
+            });
+
+            // Remove dots
+            dotsWrapper.innerHTML = '';
+
+            stopAutoSlide();
+        }
+
+        function handleInitialLoad() {
+            if (isMobileView()) {
+                initializeMobileSlider();
+            }
+        }
+
+        // Resize handler
+        let resizeDebounceTimer;
+
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeDebounceTimer);
+
+            resizeDebounceTimer = setTimeout(() => {
+                if (isMobileView()) {
+                    initializeMobileSlider();
+                } else {
+                    resetForDesktopView();
+                }
+            }, 250);
+        });
+
+        // Run on load
+        handleInitialLoad();
+
+        // Pause when tab is hidden
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopAutoSlide();
+            } else if (isMobileView()) {
+                startAutoSlide();
+            }
+        });
+    </script>
+
+
 
     <!-- Working Process -->
     <section class="work-process">
@@ -626,34 +880,63 @@
                     </div>
 
                     <div class="line-divide"></div>
+                    <div class="comments">
+                        <div class="testimonial-text">
 
-                    <div class="testimonial-text">
-                        <div class="quote-mark"><i class="fa-solid fa-quote-left"></i>
+                            <div class="quote-mark active">
+                                <i class="fa-solid fa-quote-left"></i>
+                                <p>
+                                    DGCC TECH completely improved our logistics process with their dependable and fast
+                                    services.
+                                    Their team is always available and makes sure every delivery arrives on time.
+                                    We couldn’t ask for a better partner.
+                                </p>
+                            </div>
+
+                            <div class="quote-mark">
+                                <i class="fa-solid fa-quote-left"></i>
+                                <p>
+                                    Working with DGCC TECH has made our supply chain smoother and more efficient.
+                                    Their professionalism, quick response, and attention to detail truly set them apart.
+                                </p>
+                            </div>
+
+                            <div class="quote-mark">
+                                <i class="fa-solid fa-quote-left"></i>
+                                <p>
+                                    Thanks to DGCC TECH, our deliveries are now stress-free and well-managed.
+                                    Their logistics solutions are reliable, and their customer support is outstanding.
+                                </p>
+                            </div>
+
                         </div>
-                        <p>
-                            DGCC TECH has transformed our supply chain with their reliable and efficient logistics
-                            solutions. Their team is responsive and always goes the extra mile to ensure timely
-                            deliveries. Highly recommended!
-                        </p>
                     </div>
 
-                    <!-- BOTTOM ROW -->
+                    <!-- FOOTER CONTROLS -->
                     <div class="testimonial-footer">
 
-
                         <div class="testimonial-arrows">
-                            <button class="arrow-btn"><i class="fas fa-arrow-left"></i></button>
-                            <button class="arrow-btn"><i class="fas fa-arrow-right"></i>
+                            <button class="arrow-btn prev-btn">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <button class="arrow-btn next-btn">
+                                <i class="fas fa-arrow-right"></i>
                             </button>
                         </div>
+
                         <div class="line-divide"></div>
 
                         <div class="testimonial-avatars">
-                            <div class="slide-img active"><img src="images/imgi_74_rev1.png" alt=""></div>
-                            <div class="slide-img"><img src="images/imgi_75_rev2.png" alt=""></div>
-                            <div class="slide-img"><img src="images/imgi_76_rev3.png" alt=""></div>
+                            <div class="slide-img active">
+                                <img src="images/imgi_74_rev1.png" alt="Client 1">
+                            </div>
+                            <div class="slide-img">
+                                <img src="images/imgi_75_rev2.png" alt="Client 2">
+                            </div>
+                            <div class="slide-img">
+                                <img src="images/imgi_76_rev3.png" alt="Client 3">
+                            </div>
                         </div>
-
 
                     </div>
 

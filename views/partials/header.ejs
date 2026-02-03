@@ -21,7 +21,8 @@
     <nav class="navbar navbar-home">
         <!-- LOGO -->
         <div class="navbar-logo">
-            <img src="images/logo.png" alt="DGCC TransHub Logo" class="navbar-logo-img">
+            <img src="images/logo2.png" alt="DGCC Logo" class="navbar-logo-img">
+            <span style="font-weight: 700;">DGCC TECH</span>
         </div>
 
         <!-- NAV LINKS -->
@@ -114,7 +115,7 @@
         <div class="navbar-actions">
             <a href="/cart" class="navbar-icon navbar-cart-btn"><i class="fa fa-shopping-cart"></i> <span
                     class="notification">2</span></a>
-            <button class="navbar-icon navbar-search-btn"><i class="fa fa-search"></i></button>
+            <button class="navbar-icon navbar-search-btn" onclick="openSearch()"><i class="fa fa-search"></i></button>
             <button class="navbar-icon navbar-menu-btn"><i class="fa fa-bars"></i></button>
             <a href="/request-quote" class="navbar-cta">Free Quote <i
                     class="navbar-cta-arrow fas fa-arrow-right"></i></a>
@@ -395,3 +396,365 @@
 
     <!-- Mobile Overlay -->
     <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- search-section -->
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Search Overlay - TransHub</title>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            :root {
+                --accent-orange: #e2b40e;
+            }
+
+            .demo-button:hover {
+                background: #2c3192;
+                transform: translateY(-2px);
+            }
+
+            /* Search Overlay */
+            .search-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 50%;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                z-index: 9999;
+                display: none;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .search-overlay.active {
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                padding-top: 60px;
+                opacity: 1;
+                animation: fadeIn 0.9s ease;
+            }
+
+            /* Search Container */
+            .search-container {
+                max-width: 900px;
+                width: 100%;
+                padding: 0 20px;
+                transform: translateY(-30px);
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .search-overlay.active .search-container {
+                transform: translateY(0);
+            }
+
+            /* Search Form */
+            .search-form {
+                position: relative;
+            }
+
+            .search-input-wrapper {
+                position: relative;
+                display: flex;
+                align-items: center;
+                background: white;
+                border: 2px solid #e0e0e0;
+                border-radius: 10px;
+                padding: 0 20px;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+                transition: all 0.3s ease;
+            }
+
+            .search-input-wrapper:focus-within {
+                border-color: var(--accent-orange);
+                box-shadow: 0 10px 50px rgba(255, 87, 34, 0.15);
+            }
+
+            .search-icon {
+                color: #999;
+                font-size: 20px;
+                margin-right: 15px;
+            }
+
+            .search-input {
+                flex: 1;
+                padding: 22px 0;
+                border: none;
+                outline: none;
+                font-size: 18px;
+                font-family: 'DM Sans', sans-serif;
+                color: #333;
+            }
+
+            .search-input::placeholder {
+                color: #999;
+            }
+
+            /* Close Button */
+            .search-close-btn {
+                position: absolute;
+                top: 30px;
+                right: 30px;
+                width: 50px;
+                height: 50px;
+                background: var(--accent-orange);
+                border: none;
+                border-radius: 50%;
+                color: white;
+                font-size: 20px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 15px rgba(34, 148, 255, 0.3);
+                z-index: 10000;
+            }
+
+            .search-close-btn:hover {
+                background: #2c3192;
+                transform: rotate(90deg) scale(1.1);
+            }
+
+            /* Search Suggestions (Optional) */
+            .search-suggestions {
+                margin-top: 30px;
+                padding: 0 20px;
+            }
+
+            .suggestions-title {
+                font-size: 14px;
+                font-weight: 600;
+                color: #666;
+                margin-bottom: 15px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .suggestion-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .suggestion-tag {
+                background: #f5f5f5;
+                color: #333;
+                padding: 8px 16px;
+                border-radius: 50px;
+                font-size: 14px;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                border: 2px solid transparent;
+            }
+
+            .suggestion-tag:hover {
+                background: var(--accent-orange);
+                color: white;
+                border-color: var(--accent-orange);
+                transform: translateY(-2px);
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .search-overlay.active {
+                    padding-top: 80px;
+                }
+
+                .search-container {
+                    padding: 0 15px;
+                }
+
+                .search-close-btn {
+                    top: 20px;
+                    right: 20px;
+                    width: 45px;
+                    height: 45px;
+                    font-size: 18px;
+                }
+
+                .search-input-wrapper {
+                    padding: 0 15px;
+                }
+
+                .search-input {
+                    padding: 18px 0;
+                    font-size: 16px;
+                }
+
+                .search-icon {
+                    font-size: 18px;
+                }
+
+                .search-suggestions {
+                    padding: 0 15px;
+                    margin-top: 25px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .search-overlay.active {
+                    padding-top: 60px;
+                }
+
+                .search-close-btn {
+                    width: 42px;
+                    height: 42px;
+                    font-size: 16px;
+                    top: 15px;
+                    right: 15px;
+                }
+
+                .search-input-wrapper {
+                    border-radius: 8px;
+                }
+
+                .search-input {
+                    padding: 16px 0;
+                    font-size: 15px;
+                }
+
+                .suggestion-tag {
+                    font-size: 13px;
+                    padding: 7px 14px;
+                }
+            }
+
+            /* Animation */
+            @keyframes fadeIn {
+                from {
+                    opacity: 0.5;
+                    transform: translateY(-100%);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Prevent body scroll when overlay is open */
+            body.search-active {
+                overflow: hidden;
+            }
+        </style>
+    </head>
+
+    <body>
+
+
+        <!-- Search Overlay -->
+        <div class="search-overlay" id="searchOverlay">
+            <!-- Close Button -->
+            <button class="search-close-btn" onclick="closeSearch()" aria-label="Close search">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <!-- Search Container -->
+            <div class="search-container">
+                <!-- Search Form -->
+                <form class="search-form" onsubmit="handleSearch(event)">
+                    <div class="search-input-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="search-input" placeholder="Type keyword and hit enter"
+                            id="searchInput" autocomplete="off">
+                    </div>
+                </form>
+
+                <!-- Search Suggestions (Optional) -->
+                <div class="search-suggestions">
+                    <h4 class="suggestions-title">Popular Searches</h4>
+                    <div class="suggestion-tags">
+                        <a href="#" class="suggestion-tag" onclick="fillSearch(event, 'Air Freight')">Air Freight</a>
+                        <a href="#" class="suggestion-tag" onclick="fillSearch(event, 'Ocean Cargo')">Ocean Cargo</a>
+                        <a href="#" class="suggestion-tag" onclick="fillSearch(event, 'Warehouse')">Warehouse</a>
+                        <a href="#" class="suggestion-tag" onclick="fillSearch(event, 'Logistics')">Logistics</a>
+                        <a href="#" class="suggestion-tag"
+                            onclick="fillSearch(event, 'Transportation')">Transportation</a>
+                        <a href="#" class="suggestion-tag" onclick="fillSearch(event, 'Road Freight')">Road Freight</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Open search overlay
+            function openSearch() {
+                const overlay = document.getElementById('searchOverlay');
+                const searchInput = document.getElementById('searchInput');
+
+                overlay.classList.add('active');
+                document.body.classList.add('search-active');
+
+                // Focus on input after animation
+                setTimeout(() => {
+                    searchInput.focus();
+                }, 300);
+            }
+
+            // Close search overlay
+            function closeSearch() {
+                const overlay = document.getElementById('searchOverlay');
+                const searchInput = document.getElementById('searchInput');
+
+                overlay.classList.remove('active');
+                document.body.classList.remove('search-active');
+
+                // Clear input
+                searchInput.value = '';
+            }
+
+            // Handle search form submission
+            function handleSearch(event) {
+                event.preventDefault();
+                const searchInput = document.getElementById('searchInput');
+                const query = searchInput.value.trim();
+
+                if (query) {
+                    console.log('Searching for:', query);
+                    // Add your search logic here
+                    alert(`Searching for: ${query}`);
+                    closeSearch();
+                }
+            }
+
+            // Fill search input from suggestion tag
+            function fillSearch(event, keyword) {
+                event.preventDefault();
+                const searchInput = document.getElementById('searchInput');
+                searchInput.value = keyword;
+                searchInput.focus();
+            }
+
+            // Close on ESC key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    closeSearch();
+                }
+            });
+
+            // Close on overlay click (outside search container)
+            document.getElementById('searchOverlay').addEventListener('click', function (e) {
+                if (e.target === this) {
+                    closeSearch();
+                }
+            });
+
+            // Prevent closing when clicking inside search container
+            document.querySelector('.search-container').addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
+        </script>
