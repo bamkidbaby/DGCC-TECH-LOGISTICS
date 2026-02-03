@@ -118,7 +118,7 @@
 @media (max-width: 1024px) {
   .work-process .container {
     padding: 60px 40px;
-  min-height: 75vh;
+    min-height: 50vh;
   }
 
   .work-process .absolute-img {
