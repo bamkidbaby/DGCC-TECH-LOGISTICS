@@ -118,7 +118,7 @@
 @media (max-width: 1024px) {
   .work-process .container {
     padding: 60px 40px;
-    height: auto;
+  min-height: 75vh;
   }
 
   .work-process .absolute-img {
@@ -818,7 +818,7 @@
 /* Medium screens (tablets) */
 @media (max-width: 1024px) {
   .quote-section {
-    height: auto;
+    min-height: 75vh;
   }
   /* Tracking Section adjustments */
   .quote-section .tracking-section {
