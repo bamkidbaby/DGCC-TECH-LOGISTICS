@@ -296,6 +296,7 @@
     position: relative;
     bottom: auto;
     height: auto;
+    display: none;
   }
 
   .why-content .why-head h2 {
@@ -1018,6 +1019,12 @@
   font-size: 48px;
   color: var(--accent-color);
   line-height: 1;
+  display: none;
+  transition: 0.3s;
+}
+
+.quote-mark.active {
+  display: block;
 }
 
 .testimonial-text p {
@@ -1782,7 +1789,6 @@
   .why-choose {
     padding: 60px 30px;
     height: auto;
-    min-height: 80vh;
   }
 
   .why-content .why-head h2 {

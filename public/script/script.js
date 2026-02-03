@@ -1,46 +1,11 @@
-// const hamburger = document.querySelector('.hamburger');
-//   const navLinks = document.querySelector('.nav-links');
-//   const links = document.querySelectorAll('.nav-links a');
-
-//   hamburger.addEventListener('click', () => {
-//     hamburger.classList.toggle('active');
-//     navLinks.classList.toggle('active');
-//   });
-
-//   for(let i = 0; i<links.length; i++){
-//     links[i].addEventListener('click', () => {
-//        navLinks.classList.remove('active');
-//     });
-//   }
-
-// const form = document.getElementById('messageForm');
-// form.addEventListener('submit', function(e) {
-//   e.preventDefault(); // Prevent form from refreshing the page
-
-//   // Check if fields are filled
-//   const name = document.getElementById('name').value.trim();
-//   const email = document.getElementById('email').value.trim();
-//   const message = document.getElementById('message').value.trim();
-
-//   if (!name || !email || !message) {
-//     alert('⚠️ Please fill in all fields before sending.');
-//     return;
-//   }
-
-//   alert("✅ Message sent successfully! We'll get back to you shortly.");
-//   form.reset();
-// });
-
 //SCRIPT FOR SCROLL EFFECT
 /* ================= SCROLL EFFECT ================= */
 const navbar = document.querySelector(".navbar");
 const hero = document.querySelector("#hero");
 
-if (navbar && hero) {
-  const heroHeight = hero.offsetHeight;
-
+if (navbar) {
   window.addEventListener("scroll", () => {
-    navbar.classList.toggle("scrolled", window.scrollY > heroHeight - 50);
+    navbar.classList.toggle("scrolled", window.scrollY > 100);
   });
 }
 
@@ -152,8 +117,49 @@ if (cardsWrap && prev && next) {
   setInterval(() => {
     index++;
     updateCards();
-  }, 4000);
+  }, 3000);
 
   window.addEventListener("resize", updateCards);
   updateCards();
 }
+
+//testimonial sliders
+const testimonialSlides = document.querySelectorAll(".quote-mark");
+const avatarIndicators = document.querySelectorAll(".slide-img");
+const sliderArrows = document.querySelectorAll(
+  ".testimonial-arrows .arrow-btn",
+);
+
+let activeTestimonialIndex = 0;
+
+function showTestimonial(index) {
+  testimonialSlides.forEach((slide) => slide.classList.remove("active"));
+  avatarIndicators.forEach((avatar) => avatar.classList.remove("active"));
+
+  testimonialSlides[index].classList.add("active");
+  avatarIndicators[index].classList.add("active");
+
+  activeTestimonialIndex = index;
+}
+
+function nextTestimonial() {
+  activeTestimonialIndex =
+    (activeTestimonialIndex + 1) % testimonialSlides.length;
+  showTestimonial(activeTestimonialIndex);
+}
+
+function previousTestimonial() {
+  activeTestimonialIndex =
+    (activeTestimonialIndex - 1 + testimonialSlides.length) %
+    testimonialSlides.length;
+  showTestimonial(activeTestimonialIndex);
+}
+
+sliderArrows[1].addEventListener("click", nextTestimonial);
+sliderArrows[0].addEventListener("click", previousTestimonial);
+
+avatarIndicators.forEach((avatar, index) => {
+  avatar.addEventListener("click", () => showTestimonial(index));
+});
+
+showTestimonial(0);
