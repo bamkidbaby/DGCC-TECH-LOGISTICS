@@ -324,7 +324,7 @@ text {
 /* Responsive */
 @media (max-width: 1200px) {
   #hero {
-    height: auto;
+    min-height: auto;
   }
 
   .hero-content {
@@ -526,3 +526,4 @@ text {
     border-radius: 12px;
   }
 }
+
