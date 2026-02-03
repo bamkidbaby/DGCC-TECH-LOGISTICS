@@ -770,7 +770,11 @@ body.mobile-menu-open {
 /* RESPONSIVE */
 @media (max-width: 992px) {
   .navbar {
-    padding: 12px 20px;
+    padding: 12px 15px;
+  }
+
+  .navbar.scrolled {
+    padding: 12px 10px;
   }
 
   .navbar-links {
