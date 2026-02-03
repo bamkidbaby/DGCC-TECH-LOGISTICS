@@ -323,20 +323,7 @@ text {
 
 /* Responsive */
 @media (max-width: 1200px) {
-  #hero {
-    height: 45vh;
-    padding: 0;
-  }
 
-  .hero-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .text-content {
-    order: 1;
-    padding-left: 35px;
-  }
 
   h2 {
     font-size: 3rem;
@@ -361,6 +348,21 @@ text {
 @media (max-width: 768px) {
   .nav-menu {
     display: none;
+  }
+
+    #hero {
+    height: fit-content;
+    padding: 0;
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .text-content {
+    order: 1;
+    padding-left: 35px;
   }
 
   h2 {
@@ -527,7 +529,3 @@ text {
     border-radius: 12px;
   }
 }
-
-
-
-
